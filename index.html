@@ -3,40 +3,123 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Zeze Galeri</title>
 <style>
+* { box-sizing: border-box; }
 body {
   margin: 0;
-  padding: 20px;
-  background: #f5f0f7;
+  background: #100d17;
+  color: #fff;
   font-family: Arial, sans-serif;
-  color: #333;
 }
-h1 { text-align: center; }
-p { text-align: center; }
-.galeri {
+header {
+  text-align: center;
+  padding: 35px 15px;
+  background: linear-gradient(135deg,#21152f,#100d17);
+  border-bottom: 1px solid #49345e;
+}
+h1 {
+  margin: 0;
+  color: #e6c68a;
+  letter-spacing: 5px;
+  font-size: 28px;
+}
+header p {
+  color: #c4b5d3;
+  font-size: 13px;
+  letter-spacing: 2px;
+}
+main {
+  max-width: 900px;
+  margin: auto;
+  padding: 22px;
+}
+h2 {
+  color: #e6c68a;
+  font-size: 17px;
+  margin-bottom: 18px;
+}
+.gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  max-width: 800px;
-  margin: 25px auto;
+  grid-template-columns: repeat(2,1fr);
+  gap: 13px;
 }
-.galeri img {
+.gallery img {
   width: 100%;
+  display: block;
+  border-radius: 13px;
+  border: 1px solid #49345e;
+  cursor: pointer;
+  transition: .2s;
+}
+.gallery img:active { transform: scale(.97); }
+footer {
+  text-align: center;
+  color: #887b94;
+  padding: 30px 10px;
+  font-size: 12px;
+}
+#viewer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000e;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  z-index: 5;
+}
+#viewer img {
+  max-width: 100%;
+  max-height: 85vh;
   border-radius: 12px;
-  object-fit: cover;
+}
+#viewer button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #352440;
+  color: white;
+  border: 0;
+  border-radius: 50%;
+  padding: 12px 16px;
+  font-size: 20px;
 }
 </style>
 </head>
 <body>
 
-<h1>Zeze Galeri</h1>
-<p>Kumpulan foto kesayangan</p>
+<header>
+  <h1>ZEZE GALERI</h1>
+  <p>YOUR PRIVATE PHOTO COLLECTION</p>
+</header>
 
-<div class="galeri">
-  <img src="https://dhjxyldtygcibrtnpjcd.supabase.co/storage/v1/object/public/zeze-foto/file_00000000bb2c8211821c1a24a519bcb8.png" alt="Foto galeri">
+<main>
+  <h2>✦ Koleksi Foto</h2>
+  <div class="gallery">
+    <img onclick="openPhoto(this.src)"
+    src="https://dhjxyldtygcibrtnpjcd.supabase.co/storage/v1/object/public/zeze-foto/file_00000000bb2c8211821c1a24a519bcb8.png"
+    alt="Foto Zeze">
+  </div>
+</main>
+
+<div id="viewer" onclick="closePhoto()">
+  <button>×</button>
+  <img id="largePhoto" alt="Foto diperbesar">
 </div>
+
+<footer>© 2026 ZEZE GALERI</footer>
+
+<script>
+function openPhoto(src) {
+  document.getElementById('largePhoto').src = src;
+  document.getElementById('viewer').style.display = 'flex';
+}
+function closePhoto() {
+  document.getElementById('viewer').style.display = 'none';
+}
+</script>
 
 </body>
 </html>

@@ -3,320 +3,225 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#100b18">
-<title>ZEZE GALERI | Luxury Collection</title>
+<title>ZEZE GALERI</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 :root {
-  --bg:#100b18;
-  --panel:#1b1325;
-  --purple:#342044;
-  --gold:#e5c58b;
-  --gold2:#b58a4d;
-  --muted:#b6a9c1;
-  --white:#fffaf2;
+  --bg: #100b18;
+  --panel: #1c1426;
+  --gold: #e6c477;
+  --purple: #9b72c9;
+  --text: #f8f2ff;
+  --muted: #b9aabd;
 }
-
-* { box-sizing:border-box; }
+* { box-sizing: border-box; }
 
 body {
-  margin:0;
-  color:var(--white);
-  background:
-    radial-gradient(ellipse at 50% 0%,#352044 0%,transparent 45%),
-    var(--bg);
-  font-family:Arial,sans-serif;
-  min-height:100vh;
+  margin: 0;
+  background: radial-gradient(circle at top, #352044, #100b18 55%);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
 }
-
-button { cursor:pointer; font-family:inherit; }
 
 header {
-  padding:45px 18px 35px;
-  text-align:center;
-  background:linear-gradient(180deg,#21152eaa,transparent);
+  text-align: center;
+  padding: 38px 16px 24px;
 }
 
-.brand {
-  color:var(--gold);
-  font-family:Georgia,serif;
-  font-size:clamp(30px,7vw,48px);
-  letter-spacing:7px;
-  margin:0;
-  text-shadow:0 3px 25px #d3a65a55;
+.logo {
+  color: var(--gold);
+  font-size: clamp(30px, 8vw, 48px);
+  font-weight: 900;
+  letter-spacing: 5px;
+  text-shadow: 0 0 20px #d5a94d55;
 }
 
-.tagline {
-  color:var(--muted);
-  letter-spacing:4px;
-  font-size:10px;
-  margin-top:12px;
-}
-
-.gold-line {
-  width:65px;
-  height:2px;
-  margin:22px auto 0;
-  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+.subtitle {
+  color: var(--muted);
+  letter-spacing: 3px;
+  font-size: 11px;
+  margin-top: 10px;
 }
 
 main {
-  max-width:1050px;
-  margin:auto;
-  padding:12px 20px 55px;
+  max-width: 1100px;
+  margin: auto;
+  padding: 12px 15px 45px;
 }
 
-.intro {
-  text-align:center;
-  margin:20px 0 35px;
+.panel {
+  background: #1c1426dd;
+  border: 1px solid #b18a573d;
+  border-radius: 18px;
+  padding: 18px;
+  margin-bottom: 22px;
+  box-shadow: 0 12px 35px #0005;
 }
 
-.intro h2 {
-  font-family:Georgia,serif;
-  font-weight:normal;
-  font-size:27px;
-  color:var(--gold);
-  margin:0 0 10px;
+h2 {
+  color: var(--gold);
+  font-size: 19px;
+  margin: 0 0 15px;
 }
 
-.intro p {
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.7;
-  margin:0;
+input {
+  width: 100%;
+  padding: 13px;
+  margin: 6px 0;
+  border-radius: 10px;
+  border: 1px solid #654b77;
+  background: #100b18;
+  color: white;
+  font-size: 15px;
 }
 
-.toolbar {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  flex-wrap:wrap;
-  padding:15px 0;
-  border-top:1px solid #ffffff15;
-  border-bottom:1px solid #ffffff15;
-  margin-bottom:25px;
+button, .download {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 17px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  font-size: 13px;
 }
 
-.section-label {
-  font-family:Georgia,serif;
-  font-size:19px;
-  color:var(--gold);
+.primary {
+  background: linear-gradient(135deg, #e9ce8a, #b88b42);
+  color: #21152b;
+}
+
+.secondary {
+  background: #51396a;
+  color: white;
+}
+
+.danger {
+  background: #873c52;
+  color: white;
+}
+
+button:disabled {
+  opacity: .5;
+  cursor: wait;
 }
 
 .actions {
-  display:flex;
-  gap:8px;
-  flex-wrap:wrap;
-}
-
-.button {
-  border-radius:30px;
-  padding:11px 17px;
-  font-size:11px;
-  font-weight:bold;
-  letter-spacing:1px;
-  transition:.25s;
-}
-
-.button:hover {
-  transform:translateY(-2px);
-  filter:brightness(1.15);
-}
-
-.gold-button {
-  color:#21152b;
-  background:linear-gradient(135deg,#f1d9a7,#b58a4d);
-  border:1px solid #f1d9a7;
-  box-shadow:0 5px 20px #d5a75b22;
-}
-
-.dark-button {
-  color:var(--gold);
-  background:#291d35;
-  border:1px solid #755a88;
-}
-
-.login-box,.reset-box {
-  display:none;
-  max-width:430px;
-  margin:20px auto;
-  padding:23px;
-  background:linear-gradient(145deg,#261a32,#17101f);
-  border:1px solid #80634288;
-  border-radius:17px;
-  box-shadow:0 15px 40px #0006;
-}
-
-.login-box h3,.reset-box h3 {
-  color:var(--gold);
-  font-family:Georgia,serif;
-  font-size:23px;
-  font-weight:normal;
-  margin:0 0 15px;
-}
-
-.login-box p,.reset-box p {
-  color:var(--muted);
-  font-size:13px;
-  line-height:1.6;
-}
-
-.field {
-  width:100%;
-  padding:14px;
-  margin:7px 0;
-  color:white;
-  background:#100b18;
-  border:1px solid #5d466d;
-  border-radius:9px;
-  outline:none;
-}
-
-.field:focus {
-  border-color:var(--gold);
-}
-
-.full-button { width:100%; margin-top:10px; }
-
-.owner-panel {
-  display:none;
-  padding:16px;
-  margin:18px 0;
-  border:1px solid #92744877;
-  border-radius:14px;
-  background:linear-gradient(135deg,#30203b,#19111f);
-}
-
-.owner-panel p {
-  color:var(--gold);
-  font-size:13px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 12px;
 }
 
 #status {
-  color:var(--muted);
-  font-size:12px;
-  margin:18px 0;
+  color: var(--gold);
+  font-size: 13px;
+  margin-top: 12px;
+  overflow-wrap: anywhere;
+}
+
+.gallery-title {
+  text-align: center;
+  margin: 35px 0 20px;
+  color: var(--gold);
+  font-size: 23px;
+  letter-spacing: 3px;
 }
 
 .gallery {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:17px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
 }
 
 .photo-card {
-  min-width:0;
-  overflow:hidden;
-  padding:7px;
-  border-radius:14px;
-  background:linear-gradient(145deg,#352441,#1b1325);
-  border:1px solid #ffffff17;
-  box-shadow:0 8px 25px #0004;
-  animation:appear .5s ease both;
-  transition:transform .25s,border-color .25s;
-}
-
-.photo-card:hover {
-  transform:translateY(-5px);
-  border-color:#c9a56c88;
+  background: var(--panel);
+  border: 1px solid #b18a5740;
+  border-radius: 14px;
+  overflow: hidden;
+  min-width: 0;
+  box-shadow: 0 8px 20px #0005;
 }
 
 .photo-card img {
-  width:100%;
-  aspect-ratio:4/5;
-  object-fit:cover;
-  display:block;
-  border-radius:9px;
-  cursor:zoom-in;
-  background:#21152b;
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  object-fit: cover;
+  cursor: pointer;
+  background: #241a2e;
 }
 
-.photo-info {
-  padding:10px 5px 4px;
-  color:var(--gold);
-  font-family:Georgia,serif;
-  font-size:13px;
+.photo-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 9px;
 }
 
-.delete-button {
-  width:100%;
-  padding:9px;
-  margin-top:8px;
-  border:1px solid #a85d6c;
-  border-radius:8px;
-  color:#ffdce1;
-  background:#542b3b;
-  font-size:11px;
+.photo-actions button,
+.photo-actions a {
+  width: 100%;
+}
+
+.filename {
+  color: var(--muted);
+  font-size: 11px;
+  padding: 0 9px;
+  overflow-wrap: anywhere;
 }
 
 .empty {
-  text-align:center;
-  padding:40px 15px;
-  color:var(--muted);
-  border:1px dashed #725b80;
-  border-radius:15px;
-  grid-column:1/-1;
-  line-height:1.8;
-}
-
-footer {
-  text-align:center;
-  padding:30px 15px;
-  border-top:1px solid #ffffff12;
-  color:#9e8da9;
-  font-size:11px;
-  letter-spacing:2px;
+  text-align: center;
+  color: var(--muted);
+  padding: 35px 10px;
+  grid-column: 1 / -1;
 }
 
 #viewer {
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:10;
-  background:#08050cee;
-  align-items:center;
-  justify-content:center;
-  padding:18px;
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: #000e;
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
 }
 
 #viewer img {
-  max-width:100%;
-  max-height:85vh;
-  object-fit:contain;
-  border-radius:12px;
-  box-shadow:0 10px 50px #000;
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 10px;
 }
 
-.close-viewer {
-  position:absolute;
-  top:18px;
-  right:18px;
-  border:1px solid #b89b6b;
-  border-radius:50%;
-  background:#291d35;
-  color:var(--gold);
-  width:43px;
-  height:43px;
-  font-size:23px;
+#viewer button {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  background: white;
+  color: black;
+  font-size: 20px;
 }
 
-@keyframes appear {
-  from { opacity:0; transform:translateY(12px); }
-  to { opacity:1; transform:translateY(0); }
+footer {
+  text-align: center;
+  color: #8f7c9a;
+  font-size: 12px;
+  padding: 25px;
 }
 
-@media(max-width:700px) {
-  .gallery { grid-template-columns:repeat(2,minmax(0,1fr)); gap:11px; }
-  main { padding-left:13px; padding-right:13px; }
-  .toolbar { align-items:flex-start; }
-  .brand { letter-spacing:5px; }
-}
-
-@media(max-width:360px) {
-  .gallery { gap:8px; }
-  .photo-card { padding:5px; }
+@media(max-width: 650px) {
+  .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  main { padding-left: 11px; padding-right: 11px; }
+  .panel { padding: 14px; }
 }
 </style>
 </head>
@@ -324,378 +229,383 @@ footer {
 <body>
 
 <header>
-  <h1 class="brand">ZEZE GALERI</h1>
-  <div class="tagline">A COLLECTION OF BEAUTIFUL MOMENTS</div>
-  <div class="gold-line"></div>
+  <div class="logo">ZEZE GALERI</div>
+  <div class="subtitle">A BEAUTIFUL PLACE FOR MEMORIES</div>
 </header>
 
 <main>
 
-  <section class="intro">
-    <h2>Welcome to My Gallery</h2>
-    <p>Setiap foto menyimpan cerita dan kenangan yang berharga.</p>
-  </section>
+  <section class="panel">
+    <h2>🔐 Login Pemilik</h2>
 
-  <div class="toolbar">
-    <div class="section-label">✦ Photo Collection</div>
-    <div class="actions">
-      <button class="button dark-button" id="loginToggle">LOGIN PEMILIK</button>
+    <div id="loginArea">
+      <input id="email" type="email"
+        placeholder="Email pemilik" autocomplete="username">
+
+      <input id="password" type="password"
+        placeholder="Password" autocomplete="current-password">
+
+      <div class="actions">
+        <button class="primary" id="loginBtn" onclick="login()">
+          MASUK
+        </button>
+      </div>
     </div>
-  </div>
 
-  <section class="login-box" id="loginBox">
-    <h3>Owner Login</h3>
-    <input class="field" id="email" type="email" placeholder="Email pemilik">
-    <input class="field" id="password" type="password" placeholder="Password">
-    <button class="button gold-button full-button" id="loginButton">MASUK</button>
-    <button class="button dark-button full-button" id="forgotButton">LUPA PASSWORD?</button>
-    <button class="button dark-button full-button" id="cancelLogin">BATAL</button>
+    <div id="ownerArea" hidden>
+      <p style="color:#e6c477">✓ Kamu sudah login sebagai pemilik.</p>
+
+      <input id="photoInput" type="file"
+        accept="image/*" multiple>
+
+      <div class="actions">
+        <button class="primary" id="uploadBtn" onclick="uploadPhotos()">
+          ⬆ UPLOAD FOTO
+        </button>
+
+        <button class="secondary" onclick="logout()">
+          KELUAR
+        </button>
+      </div>
+    </div>
+
+    <div id="status"></div>
   </section>
 
-  <section class="reset-box" id="forgotBox">
-    <h3>Reset Password</h3>
-    <p>Masukkan email pemilik untuk menerima tautan pemulihan password.</p>
-    <input class="field" id="resetEmail" type="email" placeholder="Email pemilik">
-    <button class="button gold-button full-button" id="sendResetButton">KIRIM EMAIL RESET</button>
-    <button class="button dark-button full-button" id="backLogin">KEMBALI</button>
+  <h2 class="gallery-title">✦ KOLEKSI FOTO ✦</h2>
+
+  <section id="gallery" class="gallery">
+    <div class="empty">Memuat galeri...</div>
   </section>
-
-  <section class="reset-box" id="newPasswordBox">
-    <h3>Create New Password</h3>
-    <p>Buat password baru untuk akun pemilik ZEZE GALERI.</p>
-    <input class="field" id="newPassword" type="password" placeholder="Password baru minimal 6 karakter">
-    <input class="field" id="confirmPassword" type="password" placeholder="Ulangi password baru">
-    <button class="button gold-button full-button" id="savePasswordButton">SIMPAN PASSWORD BARU</button>
-  </section>
-
-  <section class="owner-panel" id="ownerPanel">
-    <p>✦ Selamat datang, pemilik ZEZE GALERI!</p>
-    <input id="photoInput" type="file" accept="image/*" hidden>
-    <button class="button gold-button" id="uploadButton">＋ TAMBAH FOTO</button>
-    <button class="button dark-button" id="logoutButton">KELUAR</button>
-  </section>
-
-  <p id="status">Memuat koleksi foto...</p>
-
-  <div class="gallery" id="gallery"></div>
 
 </main>
 
 <footer>
-  <div class="gold-line"></div>
-  <p>ZEZE GALERI · EST. 2026</p>
-  <p>CAPTURING BEAUTIFUL MOMENTS</p>
+  ZEZE GALERI © 2026 · All Memories Are Precious
 </footer>
 
-<div id="viewer" onclick="closePhoto()">
-  <button class="close-viewer" onclick="closePhoto()">×</button>
-  <img id="largePhoto" alt="Foto diperbesar">
+<div id="viewer" onclick="closeViewer()">
+  <button onclick="closeViewer()">✕</button>
+  <img id="viewerImage" alt="Foto diperbesar">
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
-const SUPABASE_URL = 'https://dhjxyldtygcibrtnpjcd.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_daMV08AfTIex0whIdKdtsQ_wwsfghsp';
+const SUPABASE_URL =
+  "https://dhjxyldtygcibrtnpjcd.supabase.co";
 
-const OWNER_UID = 'd0a87020-4e24-4982-843a-f1d56f657267';
-const BUCKET = 'zeze-foto';
+const SUPABASE_KEY =
+  "sb_publishable_daMV08AfTIex0whIdKdtsQ_wwsfghsp";
+
+const BUCKET = "zeze-foto";
+
+const OWNER_UID =
+  "d0a87020-4e24-4982-843a-f1d56f657267";
 
 const db = window.supabase.createClient(
   SUPABASE_URL,
   SUPABASE_KEY
 );
 
-const gallery = document.getElementById('gallery');
-const statusText = document.getElementById('status');
-const ownerPanel = document.getElementById('ownerPanel');
+const gallery = document.getElementById("gallery");
+const statusBox = document.getElementById("status");
 
-let isOwner = false;
-let recoveryMode = false;
+let currentSession = null;
+let galleryPromise = null;
 
-function hideForms() {
-  document.getElementById('loginBox').style.display = 'none';
-  document.getElementById('forgotBox').style.display = 'none';
-  document.getElementById('newPasswordBox').style.display = 'none';
+function setStatus(message) {
+  statusBox.textContent = message;
 }
 
-document.getElementById('loginToggle').onclick = () => {
-  hideForms();
-  document.getElementById('loginBox').style.display = 'block';
-};
+function isOwner() {
+  return currentSession?.user?.id === OWNER_UID;
+}
 
-document.getElementById('cancelLogin').onclick = hideForms;
+function updateLoginUI() {
+  const owner = isOwner();
 
-document.getElementById('forgotButton').onclick = () => {
-  document.getElementById('resetEmail').value =
-    document.getElementById('email').value.trim();
-  hideForms();
-  document.getElementById('forgotBox').style.display = 'block';
-};
+  document.getElementById("loginArea").hidden = owner;
+  document.getElementById("ownerArea").hidden = !owner;
 
-document.getElementById('backLogin').onclick = () => {
-  hideForms();
-  document.getElementById('loginBox').style.display = 'block';
-};
-
-document.getElementById('sendResetButton').onclick = async () => {
-  const email = document.getElementById('resetEmail').value.trim();
-
-  if (!email) {
-    alert('Masukkan email terlebih dahulu.');
-    return;
-  }
-
-  const { error } = await db.auth.resetPasswordForEmail(email, {
-    redirectTo: 'https://zeze-galeri.github.io/'
-  });
-
-  if (error) {
-    alert('Gagal mengirim email: ' + error.message);
+  if (owner) {
+    setStatus("Login berhasil. Selamat datang!");
   } else {
-    alert('Email reset berhasil dikirim. Periksa email dan folder spam.');
-    hideForms();
+    setStatus("");
   }
-};
+}
 
-document.getElementById('savePasswordButton').onclick = async () => {
-  const password = document.getElementById('newPassword').value;
-  const confirmPassword = document.getElementById('confirmPassword').value;
-
-  if (password.length < 6) {
-    alert('Password minimal 6 karakter.');
-    return;
-  }
-
-  if (password !== confirmPassword) {
-    alert('Kedua password tidak sama.');
-    return;
-  }
-
-  const { data, error } = await db.auth.updateUser({
-    password: password
-  });
-
-  if (error) {
-    alert('Gagal mengubah password: ' + error.message);
-    return;
-  }
-
-  if (!data.user || data.user.id !== OWNER_UID) {
-    alert('Akun yang dipulihkan bukan akun pemilik galeri.');
-    await db.auth.signOut();
-    recoveryMode = false;
-    return;
-  }
-
-  recoveryMode = false;
-  document.getElementById('newPassword').value = '';
-  document.getElementById('confirmPassword').value = '';
-  hideForms();
-
-  await db.auth.signOut();
-  updateOwnerView(null);
-
-  alert('Password berhasil diganti! Silakan login dengan password baru.');
-};
-
-document.getElementById('loginButton').onclick = async () => {
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
+async function login() {
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const btn = document.getElementById("loginBtn");
 
   if (!email || !password) {
-    alert('Masukkan email dan password.');
+    setStatus("Masukkan email dan password terlebih dahulu.");
     return;
   }
 
-  const { data, error } = await db.auth.signInWithPassword({
-    email,
-    password
-  });
+  btn.disabled = true;
+  setStatus("Sedang masuk...");
 
-  if (error) {
-    alert('Login gagal: ' + error.message);
-    return;
+  try {
+    const { data, error } = await db.auth.signInWithPassword({
+      email,
+      password
+    });
+
+    if (error) throw error;
+
+    currentSession = data.session;
+    updateLoginUI();
+  } catch (error) {
+    setStatus("Login gagal: " + error.message);
+  } finally {
+    btn.disabled = false;
   }
-
-  if (data.user.id !== OWNER_UID) {
-    await db.auth.signOut();
-    alert('Akun ini bukan pemilik galeri.');
-    return;
-  }
-
-  document.getElementById('password').value = '';
-  hideForms();
-  updateOwnerView(data.user);
-  alert('Berhasil masuk ke ZEZE GALERI!');
-};
-
-function updateOwnerView(user) {
-  isOwner = !!user && user.id === OWNER_UID;
-
-  ownerPanel.style.display = isOwner ? 'block' : 'none';
-  document.getElementById('loginToggle').style.display =
-    isOwner || recoveryMode ? 'none' : 'inline-block';
-
-  loadPhotos();
 }
 
-document.getElementById('logoutButton').onclick = async () => {
-  await db.auth.signOut();
-  updateOwnerView(null);
-  alert('Kamu sudah keluar.');
-};
+async function logout() {
+  const { error } = await db.auth.signOut();
 
-document.getElementById('uploadButton').onclick = () => {
-  document.getElementById('photoInput').click();
-};
-
-document.getElementById('photoInput').onchange = async (event) => {
-  const file = event.target.files[0];
-
-  if (!file) return;
-
-  if (!isOwner) {
-    alert('Silakan login sebagai pemilik.');
+  if (error) {
+    setStatus("Gagal keluar: " + error.message);
     return;
   }
 
-  if (!file.type.startsWith('image/')) {
-    alert('Pilih file gambar.');
+  currentSession = null;
+  updateLoginUI();
+  await loadGallery();
+}
+
+async function uploadPhotos() {
+  if (!isOwner()) {
+    setStatus("Silakan login sebagai pemilik.");
     return;
   }
 
-  statusText.textContent = 'Sedang mengunggah foto...';
+  const input = document.getElementById("photoInput");
+  const files = Array.from(input.files || []);
 
-  const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
-  const filePath = Date.now() + '-' + safeName;
+  if (!files.length) {
+    setStatus("Pilih foto terlebih dahulu.");
+    return;
+  }
+
+  const btn = document.getElementById("uploadBtn");
+  btn.disabled = true;
+
+  let success = 0;
+
+  try {
+    for (const file of files) {
+      if (!file.type.startsWith("image/")) continue;
+
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+
+      const uniqueName =
+        Date.now() + "_" +
+        Math.random().toString(36).slice(2, 9) +
+        "_" + safeName;
+
+      const { error } = await db.storage
+        .from(BUCKET)
+        .upload(uniqueName, file, {
+          cacheControl: "3600",
+          upsert: false,
+          contentType: file.type
+        });
+
+      if (error) throw error;
+
+      success++;
+    }
+
+    input.value = "";
+    setStatus(success + " foto berhasil diupload.");
+
+    await loadGallery();
+  } catch (error) {
+    setStatus("Upload gagal: " + error.message);
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function deletePhoto(path) {
+  if (!isOwner()) return;
+
+  const confirmed = confirm("Yakin ingin menghapus foto ini?");
+  if (!confirmed) return;
+
+  setStatus("Menghapus foto...");
 
   const { error } = await db.storage
     .from(BUCKET)
-    .upload(filePath, file, {
-      cacheControl: '3600',
-      upsert: false
-    });
+    .remove([path]);
 
   if (error) {
-    alert('Upload gagal: ' + error.message);
-  } else {
-    alert('Foto berhasil ditambahkan!');
-    await loadPhotos();
-  }
-
-  event.target.value = '';
-};
-
-async function loadPhotos() {
-  gallery.innerHTML = '';
-  statusText.textContent = 'Memuat koleksi foto...';
-
-  const { data, error } = await db.storage
-    .from(BUCKET)
-    .list('', {
-      limit: 100,
-      sortBy: { column: 'created_at', order: 'desc' }
-    });
-
-  if (error) {
-    statusText.textContent = 'Gagal memuat foto: ' + error.message;
+    setStatus("Gagal menghapus: " + error.message);
     return;
   }
 
-  const photos = (data || []).filter(item =>
-    item.name && item.name !== '.emptyFolderPlaceholder'
-  );
+  setStatus("Foto berhasil dihapus.");
+  await loadGallery();
+}
 
-  if (photos.length === 0) {
-    statusText.textContent = 'Belum ada foto di galeri.';
-    gallery.innerHTML =
-      '<div class="empty">✦<br>Belum ada foto di galeri.<br>Foto kenanganmu akan tampil di sini.</div>';
-    return;
-  }
+function openViewer(url) {
+  document.getElementById("viewerImage").src = url;
+  document.getElementById("viewer").style.display = "flex";
+}
 
-  statusText.textContent = photos.length + ' FOTO DALAM KOLEKSI';
+function closeViewer() {
+  document.getElementById("viewer").style.display = "none";
+  document.getElementById("viewerImage").src = "";
+}
 
-  photos.forEach((item, index) => {
-    const { data: urlData } = db.storage
-      .from(BUCKET)
-      .getPublicUrl(item.name);
+function isImageFile(file) {
+  const mime = file.metadata?.mimetype || "";
+  return mime.startsWith("image/") ||
+    /\.(jpg|jpeg|png|gif|webp|avif|bmp)$/i.test(file.name);
+}
 
-    const card = document.createElement('div');
-    card.className = 'photo-card';
-    card.style.animationDelay = (index * 0.04) + 's';
+async function loadGallery() {
+  // Mencegah pemuatan galeri yang berjalan bersamaan.
+  if (galleryPromise) return galleryPromise;
 
-    const img = document.createElement('img');
-    img.src = urlData.publicUrl;
-    img.alt = 'Foto Zeze';
-    img.loading = 'lazy';
-    img.onclick = () => openPhoto(img.src);
+  galleryPromise = (async () => {
+    gallery.replaceChildren();
 
-    const info = document.createElement('div');
-    info.className = 'photo-info';
-    info.textContent = '✦ ZEZE COLLECTION';
+    const loading = document.createElement("div");
+    loading.className = "empty";
+    loading.textContent = "Memuat koleksi foto...";
+    gallery.appendChild(loading);
 
-    card.appendChild(img);
-    card.appendChild(info);
+    try {
+      const { data, error } = await db.storage
+        .from(BUCKET)
+        .list("", {
+          limit: 1000,
+          sortBy: { column: "created_at", order: "desc" }
+        });
 
-    if (isOwner) {
-      const deleteButton = document.createElement('button');
-      deleteButton.className = 'delete-button';
-      deleteButton.textContent = 'HAPUS FOTO';
+      if (error) throw error;
 
-      deleteButton.onclick = async () => {
-        if (!confirm('Yakin ingin menghapus foto ini?')) return;
+      // Hanya ambil file gambar, bukan folder.
+      // Set mencegah file yang sama ditampilkan dua kali.
+      const seen = new Set();
 
-        const { error: deleteError } = await db.storage
+      const photos = (data || []).filter(file => {
+        if (!file.id || !isImageFile(file)) return false;
+
+        const path = file.name;
+
+        if (seen.has(path)) return false;
+
+        seen.add(path);
+        return true;
+      });
+
+      gallery.replaceChildren();
+
+      if (!photos.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "Belum ada foto di galeri.";
+        gallery.appendChild(empty);
+        return;
+      }
+
+      for (const file of photos) {
+        const path = file.name;
+
+        const { data: publicData } = db.storage
           .from(BUCKET)
-          .remove([item.name]);
+          .getPublicUrl(path);
 
-        if (deleteError) {
-          alert('Gagal menghapus: ' + deleteError.message);
-        } else {
-          alert('Foto berhasil dihapus.');
-          await loadPhotos();
+        const url = publicData.publicUrl;
+
+        const card = document.createElement("article");
+        card.className = "photo-card";
+
+        const img = document.createElement("img");
+        img.src = url;
+        img.alt = file.name;
+        img.loading = "lazy";
+        img.onclick = () => openViewer(url);
+
+        const name = document.createElement("div");
+        name.className = "filename";
+        name.textContent = file.name;
+
+        const actions = document.createElement("div");
+        actions.className = "photo-actions";
+
+        const download = document.createElement("a");
+        download.className = "download primary";
+        download.textContent = "⬇ SIMPAN FOTO";
+
+        // Parameter download meminta Storage mengirim file
+        // sebagai unduhan, bukan sekadar menampilkan gambar.
+        download.href = db.storage
+          .from(BUCKET)
+          .getPublicUrl(path, { download: true })
+          .data.publicUrl;
+
+        download.setAttribute("download", file.name);
+
+        actions.appendChild(download);
+
+        if (isOwner()) {
+          const del = document.createElement("button");
+          del.className = "danger";
+          del.textContent = "🗑 HAPUS FOTO";
+          del.onclick = () => deletePhoto(path);
+          actions.appendChild(del);
         }
-      };
 
-      card.appendChild(deleteButton);
+        card.appendChild(img);
+        card.appendChild(name);
+        card.appendChild(actions);
+
+        gallery.appendChild(card);
+      }
+
+    } catch (error) {
+      gallery.replaceChildren();
+
+      const message = document.createElement("div");
+      message.className = "empty";
+      message.textContent = "Galeri gagal dimuat: " + error.message;
+      gallery.appendChild(message);
     }
+  })();
 
-    gallery.appendChild(card);
-  });
-}
-
-function openPhoto(src) {
-  document.getElementById('largePhoto').src = src;
-  document.getElementById('viewer').style.display = 'flex';
-}
-
-function closePhoto() {
-  document.getElementById('viewer').style.display = 'none';
-}
-
-db.auth.onAuthStateChange((event, session) => {
-  if (event === 'PASSWORD_RECOVERY') {
-    recoveryMode = true;
-    hideForms();
-    document.getElementById('newPasswordBox').style.display = 'block';
-    document.getElementById('loginToggle').style.display = 'none';
-    ownerPanel.style.display = 'none';
-    statusText.textContent = 'Silakan buat password baru.';
-  } else if (!recoveryMode) {
-    updateOwnerView(session ? session.user : null);
+  try {
+    await galleryPromise;
+  } finally {
+    galleryPromise = null;
   }
-});
+}
 
-async function checkLogin() {
+// Periksa sesi login saat website dibuka.
+async function initialize() {
   const { data } = await db.auth.getSession();
 
-  if (!recoveryMode) {
-    updateOwnerView(data.session ? data.session.user : null);
-  }
+  currentSession = data.session;
+  updateLoginUI();
+
+  await loadGallery();
 }
 
-checkLogin();
+// Perbarui tampilan ketika status login berubah.
+db.auth.onAuthStateChange((_event, session) => {
+  currentSession = session;
+  updateLoginUI();
+
+  // Tunggu callback auth selesai sebelum memuat ulang galeri.
+  setTimeout(() => loadGallery(), 0);
+});
+
+initialize();
 </script>
 
 </body>

@@ -1,167 +1,108 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Zeze Galeri</title>
-
+<title>ZEZE GALERI</title>
 <style>
-* { box-sizing: border-box; }
-
+* { box-sizing:border-box; }
 body {
-  margin: 0;
-  background: #100d17;
-  color: #fff;
-  font-family: Arial, sans-serif;
+  margin:0;
+  background:#100d17;
+  color:white;
+  font-family:Arial,sans-serif;
 }
-
 header {
-  text-align: center;
-  padding: 35px 15px;
-  background: linear-gradient(135deg,#21152f,#100d17);
-  border-bottom: 1px solid #49345e;
+  text-align:center;
+  padding:35px 15px;
+  background:linear-gradient(135deg,#21152f,#100d17);
+  border-bottom:1px solid #49345e;
 }
-
 h1 {
-  margin: 0;
-  color: #e6c68a;
-  letter-spacing: 5px;
-  font-size: 28px;
+  margin:0;
+  color:#e6c68a;
+  letter-spacing:5px;
+  font-size:28px;
 }
-
-header p {
-  color: #c4b5d3;
-  font-size: 13px;
-  letter-spacing: 2px;
-}
-
-main {
-  max-width: 900px;
-  margin: auto;
-  padding: 22px;
-}
-
-h2 {
-  color: #e6c68a;
-  font-size: 17px;
-  margin-bottom: 18px;
-}
-
+header p { color:#c4b5d3; font-size:13px; letter-spacing:2px; }
+main { max-width:900px; margin:auto; padding:22px; }
+h2 { color:#e6c68a; font-size:17px; }
 button {
-  cursor: pointer;
+  cursor:pointer;
+  border:0;
+  border-radius:10px;
+  padding:12px 16px;
+  margin:5px 5px 12px 0;
+  font-weight:bold;
 }
-
-.add-photo, .gold-button {
-  background: linear-gradient(135deg,#e6c68a,#b68a45);
-  color: #100d17;
-  border: none;
-  border-radius: 10px;
-  padding: 12px 18px;
-  font-weight: bold;
-  font-size: 14px;
-  margin: 5px 5px 15px 0;
+.gold-button,.add-photo {
+  background:linear-gradient(135deg,#e6c68a,#b68a45);
+  color:#100d17;
 }
-
 .dark-button {
-  background: #352440;
-  color: white;
-  border: 1px solid #765b8a;
-  border-radius: 10px;
-  padding: 11px 16px;
-  margin: 5px 5px 15px 0;
+  background:#352440;
+  color:white;
+  border:1px solid #765b8a;
 }
-
-.login-box {
-  display: none;
-  background: #21152f;
-  border: 1px solid #49345e;
-  border-radius: 12px;
-  padding: 16px;
-  margin-bottom: 18px;
+.login-box,.reset-box {
+  display:none;
+  background:#21152f;
+  border:1px solid #49345e;
+  border-radius:12px;
+  padding:16px;
+  margin-bottom:18px;
 }
-
-.login-box input {
-  width: 100%;
-  padding: 12px;
-  margin: 7px 0;
-  border-radius: 8px;
-  border: 1px solid #765b8a;
-  background: #100d17;
-  color: white;
+input {
+  width:100%;
+  padding:12px;
+  margin:7px 0;
+  border-radius:8px;
+  border:1px solid #765b8a;
+  background:#100d17;
+  color:white;
 }
-
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 13px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:13px;
 }
-
-.photo-card {
-  position: relative;
+.photo-card img {
+  width:100%;
+  display:block;
+  border-radius:13px;
+  border:1px solid #49345e;
+  cursor:pointer;
 }
-
-.gallery img {
-  width: 100%;
-  display: block;
-  border-radius: 13px;
-  border: 1px solid #49345e;
-  cursor: pointer;
-}
-
 .delete-button {
-  width: 100%;
-  margin-top: 6px;
-  padding: 8px;
-  background: #572c3b;
-  color: white;
-  border: 0;
-  border-radius: 8px;
+  width:100%;
+  margin-top:6px;
+  background:#572c3b;
+  color:white;
 }
-
-#status {
-  color: #c4b5d3;
-  font-size: 13px;
-  margin: 8px 0 16px;
-}
-
-footer {
-  text-align: center;
-  color: #887b94;
-  padding: 30px 10px;
-  font-size: 12px;
-}
-
+#status { color:#c4b5d3; font-size:13px; margin:12px 0; }
+footer { text-align:center; color:#887b94; padding:30px 10px; font-size:12px; }
 #viewer {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: #000e;
-  align-items: center;
-  justify-content: center;
-  padding: 15px;
-  z-index: 5;
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#000e;
+  align-items:center;
+  justify-content:center;
+  padding:15px;
+  z-index:5;
 }
-
-#viewer img {
-  max-width: 100%;
-  max-height: 85vh;
-  border-radius: 12px;
-}
-
+#viewer img { max-width:100%; max-height:85vh; border-radius:12px; }
 #viewer button {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background: #352440;
-  color: white;
-  border: 0;
-  border-radius: 50%;
-  padding: 12px 16px;
-  font-size: 20px;
+  position:absolute;
+  top:20px;
+  right:20px;
+  background:#352440;
+  color:white;
+  font-size:20px;
 }
 </style>
 </head>
-
 <body>
 
 <header>
@@ -172,16 +113,31 @@ footer {
 <main>
   <h2>✦ Koleksi Foto</h2>
 
-  <button class="dark-button" id="loginToggle">
-    LOGIN PEMILIK
-  </button>
+  <button class="dark-button" id="loginToggle">LOGIN PEMILIK</button>
 
   <section class="login-box" id="loginBox">
     <h3>Login Pemilik</h3>
     <input id="email" type="email" placeholder="Email pemilik">
     <input id="password" type="password" placeholder="Password">
     <button class="gold-button" id="loginButton">MASUK</button>
+    <button class="dark-button" id="forgotButton">LUPA PASSWORD?</button>
     <button class="dark-button" id="cancelLogin">BATAL</button>
+  </section>
+
+  <section class="reset-box" id="forgotBox">
+    <h3>Reset Password</h3>
+    <p>Masukkan email akun pemilik untuk menerima tautan reset password.</p>
+    <input id="resetEmail" type="email" placeholder="Email pemilik">
+    <button class="gold-button" id="sendResetButton">KIRIM EMAIL RESET</button>
+    <button class="dark-button" id="backLogin">KEMBALI</button>
+  </section>
+
+  <section class="reset-box" id="newPasswordBox">
+    <h3>Buat Password Baru</h3>
+    <p>Masukkan password baru untuk akun ZEZE GALERI.</p>
+    <input id="newPassword" type="password" placeholder="Password baru (minimal 6 karakter)">
+    <input id="confirmPassword" type="password" placeholder="Ulangi password baru">
+    <button class="gold-button" id="savePasswordButton">SIMPAN PASSWORD BARU</button>
   </section>
 
   <section id="ownerPanel" style="display:none">
@@ -192,7 +148,6 @@ footer {
   </section>
 
   <p id="status">Memuat koleksi foto...</p>
-
   <div class="gallery" id="gallery"></div>
 </main>
 
@@ -201,16 +156,12 @@ footer {
   <img id="largePhoto" alt="Foto diperbesar">
 </div>
 
-<footer>
-  © 2026 ZEZE GALERI
-</footer>
+<footer>© 2026 ZEZE GALERI</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
 const SUPABASE_URL = 'https://dhjxyldtygcibrtnpjcd.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_daMV08AfTIex0whIdKdtsQ_wwsfghsp';
-
 const OWNER_UID = 'd0a87020-4e24-4982-843a-f1d56f657267';
 const BUCKET = 'zeze-foto';
 
@@ -222,17 +173,89 @@ const supabaseClient = window.supabase.createClient(
 const gallery = document.getElementById('gallery');
 const statusText = document.getElementById('status');
 const loginBox = document.getElementById('loginBox');
+const forgotBox = document.getElementById('forgotBox');
+const newPasswordBox = document.getElementById('newPasswordBox');
 const ownerPanel = document.getElementById('ownerPanel');
 
 let isOwner = false;
+let recoveryMode = false;
 
 document.getElementById('loginToggle').onclick = () => {
-  loginBox.style.display =
-    loginBox.style.display === 'block' ? 'none' : 'block';
+  loginBox.style.display = 'block';
+  forgotBox.style.display = 'none';
 };
 
 document.getElementById('cancelLogin').onclick = () => {
   loginBox.style.display = 'none';
+};
+
+document.getElementById('forgotButton').onclick = () => {
+  const email = document.getElementById('email').value.trim();
+  document.getElementById('resetEmail').value = email;
+  loginBox.style.display = 'none';
+  forgotBox.style.display = 'block';
+};
+
+document.getElementById('backLogin').onclick = () => {
+  forgotBox.style.display = 'none';
+  loginBox.style.display = 'block';
+};
+
+document.getElementById('sendResetButton').onclick = async () => {
+  const email = document.getElementById('resetEmail').value.trim();
+
+  if (!email) {
+    alert('Masukkan email terlebih dahulu.');
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.resetPasswordForEmail(
+    email,
+    {
+      redirectTo: 'https://zeze-galeri.github.io/'
+    }
+  );
+
+  if (error) {
+    alert('Gagal mengirim email: ' + error.message);
+  } else {
+    alert('Email reset sudah dikirim. Periksa kotak masuk dan folder spam.');
+    forgotBox.style.display = 'none';
+  }
+};
+
+document.getElementById('savePasswordButton').onclick = async () => {
+  const password = document.getElementById('newPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+
+  if (password.length < 6) {
+    alert('Password minimal 6 karakter.');
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert('Kedua password tidak sama.');
+    return;
+  }
+
+  const { error } = await supabaseClient.auth.updateUser({
+    password: password
+  });
+
+  if (error) {
+    alert('Gagal mengubah password: ' + error.message);
+    return;
+  }
+
+  recoveryMode = false;
+  newPasswordBox.style.display = 'none';
+  document.getElementById('newPassword').value = '';
+  document.getElementById('confirmPassword').value = '';
+
+  await supabaseClient.auth.signOut();
+  updateOwnerView(null);
+
+  alert('Password berhasil diubah! Silakan login dengan password baru.');
 };
 
 function updateOwnerView(user) {
@@ -240,11 +263,9 @@ function updateOwnerView(user) {
 
   ownerPanel.style.display = isOwner ? 'block' : 'none';
   document.getElementById('loginToggle').style.display =
-    isOwner ? 'none' : 'inline-block';
+    isOwner || recoveryMode ? 'none' : 'inline-block';
 
-  if (!isOwner) {
-    loginBox.style.display = 'none';
-  }
+  if (!isOwner) loginBox.style.display = 'none';
 
   loadPhotos();
 }
@@ -254,15 +275,14 @@ document.getElementById('loginButton').onclick = async () => {
   const password = document.getElementById('password').value;
 
   if (!email || !password) {
-    alert('Masukkan email dan password terlebih dahulu.');
+    alert('Masukkan email dan password.');
     return;
   }
 
-  const { data, error } =
-    await supabaseClient.auth.signInWithPassword({
-      email,
-      password
-    });
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email,
+    password
+  });
 
   if (error) {
     alert('Login gagal: ' + error.message);
@@ -306,16 +326,12 @@ document.getElementById('photoInput').onchange = async (event) => {
   }
 
   statusText.textContent = 'Mengunggah foto...';
-
   const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
   const filePath = Date.now() + '-' + safeName;
 
   const { error } = await supabaseClient.storage
     .from(BUCKET)
-    .upload(filePath, file, {
-      cacheControl: '3600',
-      upsert: false
-    });
+    .upload(filePath, file, { cacheControl: '3600', upsert: false });
 
   if (error) {
     alert('Upload gagal: ' + error.message);
@@ -404,17 +420,29 @@ function closePhoto() {
   document.getElementById('viewer').style.display = 'none';
 }
 
+supabaseClient.auth.onAuthStateChange((event, session) => {
+  if (event === 'PASSWORD_RECOVERY') {
+    recoveryMode = true;
+    newPasswordBox.style.display = 'block';
+    loginBox.style.display = 'none';
+    forgotBox.style.display = 'none';
+    ownerPanel.style.display = 'none';
+    document.getElementById('loginToggle').style.display = 'none';
+    statusText.textContent = 'Silakan buat password baru.';
+  } else if (!recoveryMode) {
+    updateOwnerView(session ? session.user : null);
+  }
+});
+
 async function checkLogin() {
   const { data } = await supabaseClient.auth.getSession();
-  updateOwnerView(data.session ? data.session.user : null);
-}
 
-supabaseClient.auth.onAuthStateChange((_event, session) => {
-  updateOwnerView(session ? session.user : null);
-});
+  if (!recoveryMode) {
+    updateOwnerView(data.session ? data.session.user : null);
+  }
+}
 
 checkLogin();
 </script>
-
 </body>
 </html>

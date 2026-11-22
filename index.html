@@ -4,542 +4,845 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b0811">
-<title>ZEZE GALERI</title>
+<title>ZEZE GALERI | Black Gold Royal</title>
+
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <style>
 :root {
-  --bg:#0b0811;
-  --panel:#191321;
-  --panel2:#24192e;
-  --gold:#e5c477;
-  --gold2:#ad8544;
-  --purple:#8e65b5;
-  --text:#f8f1ff;
-  --muted:#b8aabd;
+  --gold: #d6b46a;
+  --gold-light: #f5dfa1;
+  --gold-dark: #927039;
+  --black: #080808;
+  --panel: #11100e;
 }
-* {box-sizing:border-box}
-body {
-  margin:0;
-  min-height:100vh;
-  color:var(--text);
-  font-family:Arial,Helvetica,sans-serif;
-  background:
-    radial-gradient(ellipse at 50% -15%,#49305c 0%,transparent 48%),
-    linear-gradient(145deg,#100b17,#09070d 75%);
-}
-header {
-  position:relative;
-  text-align:center;
-  padding:36px 65px 26px;
-  border-bottom:1px solid #b58b4b35;
-  background:linear-gradient(180deg,#1b1325aa,transparent);
-}
-.logo {
-  font-size:clamp(27px,7vw,45px);
-  font-weight:900;
-  letter-spacing:4px;
-  color:var(--gold);
-  text-shadow:0 0 22px #d9b45c45;
-}
-.subtitle {
-  margin-top:10px;
-  color:#c1afc9;
-  font-size:10px;
-  letter-spacing:3px;
-}
-.menu-button {
-  position:absolute;
-  top:31px;
-  right:17px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  border:1px solid #d4ae655c;
-  background:#251b30;
-  color:var(--gold);
-  font-size:25px;
-  cursor:pointer;
-  box-shadow:0 4px 16px #0007;
-}
-.menu-button:active {transform:scale(.94)}
-.menu-panel {
-  display:none;
-  position:absolute;
-  z-index:50;
-  top:82px;
-  right:14px;
-  width:min(310px,calc(100vw - 28px));
-  padding:19px;
-  text-align:left;
-  border:1px solid #c49a555e;
-  border-radius:17px;
-  background:linear-gradient(145deg,#291d36,#15101d);
-  box-shadow:0 18px 50px #000c;
-}
-.menu-panel.show {display:block}
-.menu-panel h3 {
-  color:var(--gold);
-  font-size:16px;
-  margin:0 0 13px;
-  letter-spacing:1px;
-}
-.menu-note {
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.5;
-  margin:8px 0;
-}
-input {
-  display:block;
-  width:100%;
-  padding:13px;
-  margin:8px 0;
-  border-radius:10px;
-  border:1px solid #75558b;
-  background:#100b17;
-  color:white;
-  font-size:14px;
-  outline:none;
-}
-input:focus {border-color:var(--gold)}
-button,.download {
-  border:0;
-  border-radius:10px;
-  padding:12px 15px;
-  font-size:13px;
-  font-weight:bold;
-  cursor:pointer;
-  text-decoration:none;
-  text-align:center;
-}
-.primary {
-  background:linear-gradient(135deg,#f0d99c,#c49a51);
-  color:#21152b;
-  box-shadow:0 4px 14px #d5ae5730;
-}
-.secondary {
-  background:linear-gradient(135deg,#65467d,#402b54);
-  color:white;
-}
-.danger {
-  background:#79394d;
-  color:white;
-}
-.menu-panel button {width:100%;margin-top:8px}
-button:disabled {opacity:.55;cursor:wait}
-#status {
-  color:var(--gold);
-  font-size:12px;
-  line-height:1.5;
-  margin-top:11px;
-  overflow-wrap:anywhere;
-}
-main {
-  max-width:1120px;
-  margin:auto;
-  padding:22px 15px 45px;
-}
-.gallery-heading {
-  text-align:center;
-  margin:12px 0 23px;
-}
-.gallery-heading h2 {
-  color:var(--gold);
-  font-size:21px;
-  letter-spacing:3px;
-  margin:0;
-}
-.gallery-heading p {
-  color:var(--muted);
-  font-size:11px;
-  letter-spacing:1px;
-  margin-top:9px;
-}
-.gallery {
-  display:grid;
-  grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:15px;
-}
-.photo-card {
-  min-width:0;
-  overflow:hidden;
-  border-radius:15px;
-  border:1px solid #c09a5a48;
-  background:linear-gradient(145deg,#241a30,#15101d);
-  box-shadow:0 9px 25px #0008;
-  transition:transform .2s,border-color .2s;
-}
-.photo-card:active {transform:scale(.985)}
-.photo-card img {
-  display:block;
-  width:100%;
-  aspect-ratio:1/1.15;
-  object-fit:cover;
-  cursor:pointer;
-  background:#21172a;
-}
-.filename {
-  padding:10px 10px 4px;
-  color:#c1b2ca;
-  font-size:11px;
-  overflow-wrap:anywhere;
-}
-.card-actions {padding:8px 10px 11px}
-.card-actions button {width:100%}
-.empty {
-  grid-column:1/-1;
-  text-align:center;
-  padding:45px 10px;
-  color:var(--muted);
-  border:1px dashed #8e6ba0;
-  border-radius:15px;
-  background:#19132188;
-}
-footer {
-  padding:25px 12px;
-  text-align:center;
-  color:#887891;
-  font-size:11px;
-  letter-spacing:1px;
-  border-top:1px solid #b58b4b25;
-}
-#viewer {
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:100;
-  padding:65px 15px 25px;
-  background:#050309f5;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  gap:17px;
-}
-#viewer.show {display:flex}
-#viewerImage {
-  max-width:100%;
-  max-height:72vh;
-  object-fit:contain;
-  border-radius:12px;
-  box-shadow:0 0 35px #9b72c933;
-}
-.viewer-close {
-  position:absolute;
-  top:17px;
-  right:17px;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:#292033;
-  border:1px solid #b58b4b;
-  color:var(--gold);
-  font-size:20px;
-}
-.viewer-save {
-  min-width:205px;
-  background:linear-gradient(135deg,#f0d99c,#bd9147);
-  color:#21152b;
-}
-#downloadStatus {
-  color:var(--gold);
-  text-align:center;
-  font-size:12px;
-  max-width:90%;
-}
-[hidden] {display:none!important}
 
-@media(max-width:650px) {
-  header {padding:31px 55px 23px}
-  .menu-button {top:27px;right:12px}
-  .gallery {grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
-  main {padding:18px 10px 35px}
-  .photo-card {border-radius:12px}
-  .gallery-heading h2 {font-size:19px}
+* {
+  box-sizing: border-box;
 }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: #eee5d1;
+  font-family: 'Poppins', sans-serif;
+  background:
+    radial-gradient(ellipse at 50% 0%, #302416 0%, transparent 40%),
+    radial-gradient(ellipse at 10% 50%, #17120d 0%, transparent 40%),
+    #080808;
+}
+
+button, input {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+header {
+  position: relative;
+  text-align: center;
+  padding: 38px 55px 28px;
+  border-bottom: 1px solid rgba(214,180,106,.25);
+  background: linear-gradient(180deg, rgba(0,0,0,.7), rgba(15,12,8,.35));
+}
+
+.header-ornament {
+  color: var(--gold);
+  font-size: 18px;
+  letter-spacing: 9px;
+  margin-bottom: 10px;
+}
+
+.logo-mark {
+  width: 43px;
+  height: 43px;
+  border: 1px solid var(--gold);
+  color: var(--gold-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+  font-family: 'Cinzel', serif;
+  font-size: 25px;
+  transform: rotate(45deg);
+  box-shadow: 0 0 18px rgba(214,180,106,.15);
+}
+
+.logo-mark span {
+  transform: rotate(-45deg);
+}
+
+.logo {
+  margin: 0;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(27px, 7vw, 43px);
+  font-weight: 600;
+  letter-spacing: 5px;
+  color: var(--gold-light);
+  text-shadow: 0 2px 16px rgba(214,180,106,.25);
+}
+
+.tagline {
+  color: #bca678;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: 2px;
+  margin-top: 8px;
+}
+
+.header-line {
+  width: 125px;
+  height: 1px;
+  margin: 17px auto 0;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.menu-button {
+  position: absolute;
+  top: 23px;
+  right: 19px;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(214,180,106,.45);
+  border-radius: 50%;
+  background: rgba(20,17,12,.85);
+  color: var(--gold-light);
+  font-size: 23px;
+  line-height: 1;
+}
+
+.menu-button:active {
+  background: #3a2b17;
+}
+
+.menu-panel {
+  display: none;
+  position: absolute;
+  z-index: 20;
+  top: 72px;
+  right: 18px;
+  width: min(300px, calc(100vw - 36px));
+  padding: 20px;
+  text-align: left;
+  border: 1px solid var(--gold-dark);
+  border-radius: 12px;
+  background: rgba(17,15,12,.98);
+  box-shadow: 0 15px 40px #000;
+}
+
+.menu-panel.show {
+  display: block;
+}
+
+.menu-title {
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.menu-panel input {
+  display: block;
+  width: 100%;
+  margin: 9px 0;
+  padding: 12px;
+  color: white;
+  background: #090909;
+  border: 1px solid #594625;
+  border-radius: 7px;
+  outline: none;
+}
+
+.gold-button {
+  width: 100%;
+  padding: 11px;
+  border: 1px solid var(--gold);
+  border-radius: 7px;
+  color: #160f06;
+  background: linear-gradient(135deg, #f1d99a, #b58b42);
+  font-weight: 600;
+}
+
+.dark-button {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #806536;
+  border-radius: 7px;
+  color: var(--gold-light);
+  background: #17130d;
+}
+
+.owner-area {
+  display: none;
+}
+
+.owner-area.show {
+  display: block;
+}
+
+.owner-label {
+  color: var(--gold);
+  font-size: 12px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.upload-label {
+  display: block;
+  text-align: center;
+  padding: 12px;
+  border: 1px dashed var(--gold);
+  border-radius: 8px;
+  color: var(--gold-light);
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.upload-label input {
+  display: none;
+}
+
+.status {
+  color: #c7b58c;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 10px;
+  min-height: 18px;
+  overflow-wrap: anywhere;
+}
+
+main {
+  max-width: 1250px;
+  padding: 28px 17px 60px;
+  margin: auto;
+}
+
+.gallery-heading {
+  text-align: center;
+  margin-bottom: 27px;
+}
+
+.gallery-heading h2 {
+  margin: 0;
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  letter-spacing: 3px;
+  font-weight: 500;
+}
+
+.gallery-heading p {
+  color: #9d8b6b;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+.gallery-heading .heading-line {
+  width: 75px;
+  height: 1px;
+  margin: 14px auto 0;
+  background: var(--gold-dark);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px 15px;
+  align-items: start;
+}
+
+.photo-card {
+  position: relative;
+  min-width: 0;
+  padding: 9px;
+  background: linear-gradient(145deg, #292014, #090909 55%, #302416);
+  box-shadow: 0 8px 22px rgba(0,0,0,.55);
+  cursor: pointer;
+  transition: transform .25s, box-shadow .25s;
+}
+
+.photo-card:active {
+  transform: scale(.98);
+}
+
+/* Variasi bingkai untuk setiap foto */
+.frame-0 {
+  border: 2px solid #c7a45c;
+  outline: 1px solid #5b4524;
+  outline-offset: -6px;
+  border-radius: 2px;
+}
+
+.frame-1 {
+  border: 1px solid #e0c47f;
+  border-radius: 12px;
+  padding: 11px;
+  box-shadow: inset 0 0 0 2px #3a2b17, 0 8px 22px #000;
+}
+
+.frame-2 {
+  border: 3px double #c8a45b;
+  border-radius: 2px;
+  padding: 7px;
+}
+
+.frame-3 {
+  border: 1px solid #a98645;
+  border-radius: 3px;
+  padding: 12px;
+  background:
+    linear-gradient(135deg, #49371d, #0b0a08 35%, #21180d);
+}
+
+.frame-4 {
+  border: 2px solid #b28c4a;
+  border-radius: 2px;
+  padding: 8px;
+  outline: 1px dashed rgba(239,211,147,.65);
+  outline-offset: -5px;
+}
+
+.frame-0::before,
+.frame-0::after,
+.frame-2::before,
+.frame-2::after {
+  content: "✦";
+  position: absolute;
+  color: #f0d28d;
+  z-index: 2;
+  font-size: 13px;
+  text-shadow: 0 0 8px #c49b4e;
+}
+
+.frame-0::before,
+.frame-2::before {
+  top: 2px;
+  left: 4px;
+}
+
+.frame-0::after,
+.frame-2::after {
+  bottom: 2px;
+  right: 4px;
+}
+
+.frame-1::before {
+  content: "❖";
+  position: absolute;
+  z-index: 2;
+  top: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold-light);
+  background: #15110b;
+  padding: 0 7px;
+}
+
+.frame-3::before {
+  content: "✧  ✧";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #e7c77e;
+  font-size: 11px;
+  z-index: 2;
+  letter-spacing: 7px;
+}
+
+.frame-4::after {
+  content: "❦";
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold-light);
+  background: #17120b;
+  padding: 0 7px;
+  z-index: 2;
+}
+
+.photo-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 430px;
+  object-fit: contain;
+  background: #080808;
+}
+
+.photo-name {
+  padding: 10px 3px 3px;
+  color: #d9c28e;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.delete-button {
+  display: block;
+  width: 100%;
+  margin-top: 8px;
+  padding: 7px;
+  color: #f2c8bd;
+  background: #26100d;
+  border: 1px solid #6e352b;
+  border-radius: 5px;
+  font-size: 11px;
+}
+
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 55px 15px;
+  border: 1px dashed #755a30;
+  color: #bda779;
+  font-family: 'Playfair Display', serif;
+}
+
+.empty-state .empty-symbol {
+  font-size: 35px;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+footer {
+  padding: 22px 10px 30px;
+  text-align: center;
+  color: #786748;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+/* Tampilan foto besar */
+.viewer {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(0,0,0,.97);
+  padding: 55px 15px 25px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.viewer.show {
+  display: flex;
+}
+
+.viewer-close {
+  position: absolute;
+  top: 12px;
+  right: 17px;
+  color: var(--gold-light);
+  background: transparent;
+  border: 0;
+  font-size: 34px;
+}
+
+.viewer-frame {
+  max-width: 95vw;
+  max-height: 75vh;
+  padding: 10px;
+  border: 2px solid var(--gold);
+  outline: 1px solid #74572a;
+  outline-offset: -6px;
+  box-shadow: 0 0 35px rgba(214,180,106,.15);
+  background: #100d08;
+}
+
+.viewer-frame img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(75vh - 25px);
+  object-fit: contain;
+}
+
+.viewer-name {
+  margin: 14px 0;
+  color: var(--gold-light);
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.save-button {
+  width: 190px;
+  padding: 12px;
+  border: 1px solid var(--gold);
+  border-radius: 30px;
+  background: linear-gradient(135deg, #f1d99a, #b58b42);
+  color: #170f04;
+  font-weight: 600;
+}
+
+.download-status {
+  color: #c9b78f;
+  font-size: 12px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+@media (min-width: 700px) {
+  .gallery {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 27px;
+  }
+  main {
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .gallery {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 </style>
 </head>
 
 <body>
-<header>
-  <button class="menu-button" id="menuButton"
-    aria-label="Menu pemilik" onclick="toggleMenu()">⋮</button>
 
-  <div class="logo">ZEZE GALERI</div>
-  <div class="subtitle">A BEAUTIFUL PLACE FOR MEMORIES</div>
+<header>
+  <button class="menu-button" onclick="toggleMenu()" aria-label="Menu">⋮</button>
+
+  <div class="header-ornament">✧ ───── ✧</div>
+  <div class="logo-mark"><span>Z</span></div>
+  <h1 class="logo">ZEZE GALERI</h1>
+  <div class="tagline">The Art of Memories</div>
+  <div class="header-line"></div>
 
   <div class="menu-panel" id="menuPanel">
-    <h3>✦ MENU PEMILIK</h3>
-
     <div id="loginArea">
-      <div class="menu-note">Masuk untuk mengelola koleksi galeri.</div>
-      <input id="email" type="email" placeholder="Email pemilik"
-        autocomplete="username">
-      <input id="password" type="password" placeholder="Password"
-        autocomplete="current-password">
-      <button class="primary" id="loginBtn" onclick="login()">
-        🔐 MASUK
-      </button>
+      <div class="menu-title">OWNER ACCESS</div>
+      <input id="email" type="email" placeholder="Email pemilik" autocomplete="username">
+      <input id="password" type="password" placeholder="Password" autocomplete="current-password">
+      <button class="gold-button" onclick="login()">MASUK</button>
     </div>
 
-    <div id="ownerArea" hidden>
-      <div class="menu-note">✓ Kamu sudah login sebagai pemilik.</div>
-      <input id="photoInput" type="file" accept="image/*" multiple>
-      <button class="primary" id="uploadBtn" onclick="uploadPhotos()">
-        ⬆ UPLOAD FOTO
-      </button>
-      <button class="secondary" onclick="logout()">KELUAR</button>
+    <div class="owner-area" id="ownerArea">
+      <div class="menu-title">✧ OWNER PANEL ✧</div>
+      <div class="owner-label">Kamu masuk sebagai pemilik galeri</div>
+
+      <label class="upload-label">
+        ＋ Pilih foto untuk diunggah
+        <input id="photoInput" type="file" accept="image/*" multiple onchange="uploadPhotos(event)">
+      </label>
+
+      <button class="dark-button" onclick="logout()">Keluar dari akun</button>
     </div>
 
-    <div id="status"></div>
+    <div class="status" id="status"></div>
   </div>
 </header>
 
 <main>
   <div class="gallery-heading">
-    <h2>✦ KOLEKSI FOTO ✦</h2>
-    <p>Setiap foto menyimpan cerita</p>
+    <h2>OUR COLLECTION</h2>
+    <p>A beautiful place for precious moments</p>
+    <div class="heading-line"></div>
   </div>
 
-  <section id="gallery" class="gallery">
-    <div class="empty">Memuat koleksi foto...</div>
-  </section>
+  <div class="gallery" id="gallery">
+    <div class="empty-state">
+      <div class="empty-symbol">✧</div>
+      Memuat koleksi foto...
+    </div>
+  </div>
 </main>
 
-<footer>ZEZE GALERI © 2026 · ALL MEMORIES ARE PRECIOUS</footer>
+<footer>
+  ✧ ZEZE GALERI · A Collection of Memories ✧
+</footer>
 
-<div id="viewer" onclick="closeViewer()">
-  <button class="viewer-close" onclick="closeViewer()">✕</button>
-  <img id="viewerImage" alt="Foto diperbesar"
-    onclick="event.stopPropagation()">
-  <button class="viewer-save" id="saveButton"
-    onclick="event.stopPropagation();saveCurrentPhoto()">
-    ⬇ SIMPAN FOTO
+<div class="viewer" id="viewer" onclick="closeViewer(event)">
+  <button class="viewer-close" onclick="closeViewer()">×</button>
+
+  <div class="viewer-frame" onclick="event.stopPropagation()">
+    <img id="viewerImage" src="" alt="Foto galeri">
+  </div>
+
+  <div class="viewer-name" id="viewerName"></div>
+
+  <button class="save-button" id="saveButton" onclick="saveCurrentPhoto(event)">
+    ↓ SIMPAN FOTO
   </button>
-  <div id="downloadStatus"></div>
+
+  <div class="download-status" id="downloadStatus"></div>
 </div>
 
 <script>
 const SUPABASE_URL =
   "https://dhjxyldtygcibrtnpjcd.supabase.co";
+
 const SUPABASE_KEY =
   "sb_publishable_daMV08AfTIex0whIdKdtsQ_wwsfghsp";
+
 const BUCKET = "zeze-foto";
+
 const OWNER_UID = "d0a87020-4e24-4982-843a-f1d56f657267";
 
-const db = window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+const db = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
-let currentSession = null;
+let currentUser = null;
+let currentPhoto = null;
 let galleryPromise = null;
-let selectedPhoto = null;
-
-const gallery = document.getElementById("gallery");
-const statusBox = document.getElementById("status");
+let galleryRequest = 0;
 
 function setStatus(message) {
-  statusBox.textContent = message;
+  document.getElementById("status").textContent = message || "";
 }
 
 function isOwner() {
-  return currentSession?.user?.id === OWNER_UID;
+  return currentUser && currentUser.id === OWNER_UID;
 }
 
 function toggleMenu() {
   document.getElementById("menuPanel").classList.toggle("show");
 }
 
-document.addEventListener("click",event => {
+document.addEventListener("click", function(event) {
   const panel = document.getElementById("menuPanel");
-  const button = document.getElementById("menuButton");
+  const button = document.querySelector(".menu-button");
+
   if (!panel.contains(event.target) && !button.contains(event.target)) {
     panel.classList.remove("show");
   }
 });
 
 function updateLoginUI() {
-  const owner = isOwner();
-  document.getElementById("loginArea").hidden = owner;
-  document.getElementById("ownerArea").hidden = !owner;
-  if (owner) setStatus("Login berhasil. Selamat datang!");
-  else setStatus("");
+  const loggedIn = isOwner();
+
+  document.getElementById("loginArea").style.display =
+    loggedIn ? "none" : "block";
+
+  document.getElementById("ownerArea").classList.toggle(
+    "show",
+    !!loggedIn
+  );
 }
 
 async function login() {
   const email = document.getElementById("email").value.trim();
   const password = document.getElementById("password").value;
-  const btn = document.getElementById("loginBtn");
 
   if (!email || !password) {
-    setStatus("Masukkan email dan password.");
+    setStatus("Isi email dan password terlebih dahulu.");
     return;
   }
 
-  btn.disabled = true;
   setStatus("Sedang masuk...");
 
-  try {
-    const {data,error} = await db.auth.signInWithPassword({
-      email,password
-    });
-    if (error) throw error;
+  const { data, error } = await db.auth.signInWithPassword({
+    email,
+    password
+  });
 
-    currentSession = data.session;
-    if (!isOwner()) {
-      await db.auth.signOut();
-      currentSession = null;
-      updateLoginUI();
-      setStatus("Akun ini bukan akun pemilik.");
-      return;
-    }
-    updateLoginUI();
-    await loadGallery();
-  } catch(error) {
-    setStatus("Login gagal: " + error.message);
-  } finally {
-    btn.disabled = false;
-  }
-}
-
-async function logout() {
-  const {error} = await db.auth.signOut();
   if (error) {
-    setStatus("Gagal keluar: " + error.message);
+    setStatus("Login gagal: " + error.message);
     return;
   }
-  currentSession = null;
+
+  if (data.user.id !== OWNER_UID) {
+    await db.auth.signOut();
+    currentUser = null;
+    updateLoginUI();
+    setStatus("Akun ini bukan akun pemilik galeri.");
+    return;
+  }
+
+  currentUser = data.user;
   updateLoginUI();
+  setStatus("Berhasil masuk!");
+
+  document.getElementById("password").value = "";
   await loadGallery();
 }
 
-async function uploadPhotos() {
+async function logout() {
+  await db.auth.signOut();
+  currentUser = null;
+  updateLoginUI();
+  setStatus("Kamu sudah keluar.");
+  await loadGallery();
+}
+
+function isImageFile(file) {
+  return file &&
+    file.name &&
+    file.metadata &&
+    file.metadata.mimetype &&
+    file.metadata.mimetype.startsWith("image/");
+}
+
+async function uploadPhotos(event) {
   if (!isOwner()) {
     setStatus("Silakan login sebagai pemilik.");
     return;
   }
 
-  const input = document.getElementById("photoInput");
-  const files = Array.from(input.files || []);
-  if (!files.length) {
-    setStatus("Pilih foto terlebih dahulu.");
-    return;
-  }
+  const files = Array.from(event.target.files || []);
 
-  const btn = document.getElementById("uploadBtn");
-  btn.disabled = true;
+  if (!files.length) return;
+
+  setStatus("Sedang mengunggah foto...");
+
   let success = 0;
+  let failed = 0;
 
-  try {
-    for (const file of files) {
-      if (!file.type.startsWith("image/")) continue;
-
-      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g,"_");
-      const uniqueName = Date.now() + "_" +
-        Math.random().toString(36).slice(2,9) + "_" + safeName;
-
-      const {error} = await db.storage.from(BUCKET).upload(
-        uniqueName,file,{
-          cacheControl:"3600",
-          upsert:false,
-          contentType:file.type
-        }
-      );
-      if (error) throw error;
-      success++;
+  for (const file of files) {
+    if (!file.type.startsWith("image/")) {
+      failed++;
+      continue;
     }
 
-    input.value = "";
-    setStatus(success + " foto berhasil diupload.");
-    await loadGallery();
-  } catch(error) {
-    setStatus("Upload gagal: " + error.message);
-  } finally {
-    btn.disabled = false;
-  }
-}
+    const extension = file.name.split(".").pop() || "jpg";
+    const safeName = file.name
+      .replace(/\.[^/.]+$/, "")
+      .replace(/[^a-zA-Z0-9_-]/g, "-")
+      .slice(0, 50);
 
-function isImageFile(file) {
-  const mime = file.metadata?.mimetype || "";
-  return mime.startsWith("image/") ||
-    /\.(jpg|jpeg|png|gif|webp|avif|bmp)$/i.test(file.name);
+    const uniqueName =
+      Date.now() + "-" +
+      Math.random().toString(36).slice(2, 9) +
+      "-" + safeName + "." + extension;
+
+    const { error } = await db.storage
+      .from(BUCKET)
+      .upload(uniqueName, file, {
+        cacheControl: "3600",
+        upsert: false,
+        contentType: file.type
+      });
+
+    if (error) {
+      console.error(error);
+      failed++;
+    } else {
+      success++;
+    }
+  }
+
+  event.target.value = "";
+
+  setStatus(
+    "Selesai! Berhasil: " + success +
+    (failed ? " · Gagal: " + failed : "")
+  );
+
+  await loadGallery();
 }
 
 async function loadGallery() {
-  if (galleryPromise) return galleryPromise;
+  if (galleryPromise) {
+    galleryRequest++;
+    return galleryPromise;
+  }
 
-  galleryPromise = (async () => {
-    gallery.replaceChildren();
-    const loading = document.createElement("div");
-    loading.className = "empty";
-    loading.textContent = "Memuat koleksi foto...";
-    gallery.appendChild(loading);
+  galleryPromise = (async function() {
+    const gallery = document.getElementById("gallery");
 
     try {
-      const {data,error} = await db.storage.from(BUCKET).list("",{
-        limit:1000,
-        sortBy:{column:"created_at",order:"desc"}
-      });
+      const { data, error } = await db.storage
+        .from(BUCKET)
+        .list("", {
+          limit: 1000,
+          sortBy: { column: "created_at", order: "desc" }
+        });
+
       if (error) throw error;
 
       const seen = new Set();
+
       const photos = (data || []).filter(file => {
-        if (!file.id || !isImageFile(file) || seen.has(file.name)) return false;
+        if (!file.name || file.name.startsWith(".")) return false;
+
+        const type = file.metadata?.mimetype || "";
+        const imageExtension = /\.(jpg|jpeg|png|gif|webp|bmp|avif|heic)$/i.test(file.name);
+
+        if (!type.startsWith("image/") && !imageExtension) return false;
+        if (seen.has(file.name)) return false;
+
         seen.add(file.name);
         return true;
       });
 
-      gallery.replaceChildren();
+      gallery.innerHTML = "";
 
       if (!photos.length) {
-        const empty = document.createElement("div");
-        empty.className = "empty";
-        empty.textContent = "Belum ada foto di galeri.";
-        gallery.appendChild(empty);
+        gallery.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-symbol">✧</div>
+            Belum ada foto di galeri.<br>
+            Koleksi kenanganmu akan tampil di sini.
+          </div>
+        `;
         return;
       }
 
-      for (const file of photos) {
-        const path = file.name;
-        const {data:publicData} = db.storage.from(BUCKET).getPublicUrl(path);
-        const url = publicData.publicUrl;
+      photos.forEach((photo, index) => {
+        const { data: publicData } = db.storage
+          .from(BUCKET)
+          .getPublicUrl(photo.name);
 
-        const card = document.createElement("article");
-        card.className = "photo-card";
+        const card = document.createElement("div");
+        card.className = "photo-card frame-" + (index % 5);
 
         const img = document.createElement("img");
-        img.src = url;
-        img.alt = file.name;
+        img.src = publicData.publicUrl;
+        img.alt = photo.name;
         img.loading = "lazy";
-        img.onclick = () => openViewer(path,url,file.name);
+        img.addEventListener("click", () => {
+          openViewer(publicData.publicUrl, photo.name);
+        });
 
         const name = document.createElement("div");
-        name.className = "filename";
-        name.textContent = file.name;
+        name.className = "photo-name";
+        name.textContent = photo.name;
 
         card.appendChild(img);
         card.appendChild(name);
 
         if (isOwner()) {
-          const actions = document.createElement("div");
-          actions.className = "card-actions";
-          const del = document.createElement("button");
-          del.className = "danger";
-          del.textContent = "🗑 HAPUS FOTO";
-          del.onclick = () => deletePhoto(path);
-          actions.appendChild(del);
-          card.appendChild(actions);
+          const deleteBtn = document.createElement("button");
+          deleteBtn.className = "delete-button";
+          deleteBtn.textContent = "Hapus foto";
+          deleteBtn.addEventListener("click", (event) => {
+            event.stopPropagation();
+            deletePhoto(photo.name);
+          });
+          card.appendChild(deleteBtn);
         }
+
         gallery.appendChild(card);
-      }
-    } catch(error) {
-      gallery.replaceChildren();
-      const message = document.createElement("div");
-      message.className = "empty";
-      message.textContent = "Galeri gagal dimuat: " + error.message;
-      gallery.appendChild(message);
+      });
+
+    } catch (error) {
+      console.error(error);
+      gallery.innerHTML = `
+        <div class="empty-state">
+          Gagal memuat galeri. Silakan muat ulang halaman.
+        </div>
+      `;
     }
   })();
 
@@ -550,81 +853,113 @@ async function loadGallery() {
   }
 }
 
-function openViewer(path,url,name) {
-  selectedPhoto = {path,url,name};
+function openViewer(url, name) {
+  currentPhoto = name;
+
   document.getElementById("viewerImage").src = url;
+  document.getElementById("viewerName").textContent = name;
   document.getElementById("downloadStatus").textContent = "";
-  document.getElementById("saveButton").disabled = false;
-  document.getElementById("saveButton").textContent = "⬇ SIMPAN FOTO";
+
   document.getElementById("viewer").classList.add("show");
+  document.body.style.overflow = "hidden";
 }
 
-function closeViewer() {
+function closeViewer(event) {
+  if (event && event.target !== document.getElementById("viewer")) {
+    return;
+  }
+
   document.getElementById("viewer").classList.remove("show");
-  document.getElementById("viewerImage").src = "";
-  selectedPhoto = null;
+  document.body.style.overflow = "";
 }
 
-async function saveCurrentPhoto() {
-  if (!selectedPhoto) return;
+async function saveCurrentPhoto(event) {
+  if (event) event.stopPropagation();
+  if (!currentPhoto) return;
 
-  const btn = document.getElementById("saveButton");
-  const info = document.getElementById("downloadStatus");
-  btn.disabled = true;
-  btn.textContent = "MENYIAPKAN FOTO...";
-  info.textContent = "";
+  const status = document.getElementById("downloadStatus");
+  status.textContent = "Menyiapkan foto...";
 
   try {
-    const {data,error} = await db.storage.from(BUCKET)
-      .download(selectedPhoto.path);
+    const { data, error } = await db.storage
+      .from(BUCKET)
+      .download(currentPhoto);
+
     if (error) throw error;
 
-    const objectUrl = URL.createObjectURL(data);
+    const blobUrl = URL.createObjectURL(data);
     const link = document.createElement("a");
-    link.href = objectUrl;
-    link.download = selectedPhoto.name;
+
+    link.href = blobUrl;
+    link.download = currentPhoto;
     document.body.appendChild(link);
     link.click();
     link.remove();
 
-    setTimeout(() => URL.revokeObjectURL(objectUrl),30000);
-    info.textContent = "Unduhan dimulai. Periksa folder Download HP kamu.";
-  } catch(error) {
-    info.textContent = "Gagal menyimpan: " + error.message;
-  } finally {
-    btn.disabled = false;
-    btn.textContent = "⬇ SIMPAN FOTO";
+    setTimeout(() => URL.revokeObjectURL(blobUrl), 2000);
+
+    status.textContent = "Foto berhasil disiapkan untuk disimpan.";
+  } catch (error) {
+    console.error(error);
+    status.textContent = "Gagal menyimpan foto. Coba lagi.";
   }
 }
 
-async function deletePhoto(path) {
+async function deletePhoto(name) {
   if (!isOwner()) return;
-  if (!confirm("Yakin ingin menghapus foto ini?")) return;
+
+  const confirmed = confirm(
+    "Yakin ingin menghapus foto ini dari galeri?"
+  );
+
+  if (!confirmed) return;
 
   setStatus("Menghapus foto...");
-  const {error} = await db.storage.from(BUCKET).remove([path]);
+
+  const { error } = await db.storage
+    .from(BUCKET)
+    .remove([name]);
+
   if (error) {
     setStatus("Gagal menghapus: " + error.message);
     return;
   }
+
   setStatus("Foto berhasil dihapus.");
   await loadGallery();
 }
 
 async function initialize() {
-  const {data} = await db.auth.getSession();
-  currentSession = data.session;
+  const { data } = await db.auth.getSession();
+
+  currentUser = data.session?.user || null;
+
+  if (currentUser && currentUser.id !== OWNER_UID) {
+    await db.auth.signOut();
+    currentUser = null;
+  }
+
   updateLoginUI();
   await loadGallery();
-}
 
-db.auth.onAuthStateChange((_event,session) => {
-  currentSession = session;
-  updateLoginUI();
-  setTimeout(() => loadGallery(),0);
-});
+  db.auth.onAuthStateChange((event, session) => {
+    currentUser = session?.user || null;
+
+    if (currentUser && currentUser.id !== OWNER_UID) {
+      currentUser = null;
+      db.auth.signOut();
+    }
+
+    updateLoginUI();
+
+    setTimeout(() => {
+      loadGallery();
+    }, 300);
+  });
+}
 
 initialize();
 </script>
+
 </body>
 </html>

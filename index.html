@@ -4,31 +4,39 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Website Pertamaku</title>
+<title>Zeze Galeri</title>
 <style>
 body {
-  background: #111827;
-  color: white;
+  margin: 0;
+  padding: 20px;
+  background: #f5f0f7;
   font-family: Arial, sans-serif;
-  text-align: center;
-  padding: 60px 15px;
+  color: #333;
 }
-h1 {
-  color: #38bdf8;
+h1 { text-align: center; }
+p { text-align: center; }
+.galeri {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  max-width: 800px;
+  margin: 25px auto;
 }
-button {
-  background: #38bdf8;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 8px;
+.galeri img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
 }
 </style>
 </head>
 <body>
-<h1>Halo Dunia!</h1>
-<p>Selamat datang di website pertamaku.</p>
-<button onclick="alert('Website berhasil dibuat!')">
-Klik Aku
-</button>
+
+<h1>Zeze Galeri</h1>
+<p>Kumpulan foto kesayangan</p>
+
+<div class="galeri">
+  <img src="https://dhjxyldtygcibrtnpjcd.supabase.co/storage/v1/object/public/zeze-foto/file_00000000bb2c8211821c1a24a519bcb8.png" alt="Foto galeri">
+</div>
+
 </body>
 </html>

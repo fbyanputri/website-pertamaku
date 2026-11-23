@@ -16,44 +16,73 @@
  --black:#080808;--panel:#11100e;--page:#080808;
  --text:#eee5d1;--muted:#bca678;--frame:#292014;
  --button-text:#160f06;--accent-bg:#17130d;
+ --scene:url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=2200&q=85");
 }
 [data-theme="purple"]{
  --gold:#b99aff;--gold-light:#e3d5ff;--gold-dark:#7656ad;
  --page:#100b1c;--panel:#1c1430;--text:#eee5ff;--muted:#b9a5d9;
  --frame:#291c40;--button-text:#180d29;--accent-bg:#211632;
+ --scene:url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2200&q=85");
 }
 [data-theme="emerald"]{
  --gold:#79d5ae;--gold-light:#c3f5df;--gold-dark:#397c62;
  --page:#071510;--panel:#10251c;--text:#e1f6eb;--muted:#91c2a9;
  --frame:#193a2b;--button-text:#092015;--accent-bg:#132c20;
+ --scene:url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2200&q=85");
 }
 [data-theme="ocean"]{
  --gold:#82c9f5;--gold-light:#d0edff;--gold-dark:#427fa7;
  --page:#07121e;--panel:#102337;--text:#e4f3ff;--muted:#9fc4df;
  --frame:#19334a;--button-text:#092033;--accent-bg:#142c40;
+ --scene:url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2200&q=85");
 }
 [data-theme="rose"]{
  --gold:#e3a9a2;--gold-light:#ffe0da;--gold-dark:#a96565;
  --page:#1a0d0d;--panel:#2a1718;--text:#fff0ed;--muted:#d7aaa3;
  --frame:#402222;--button-text:#2b1112;--accent-bg:#321c1d;
+ --scene:url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=2200&q=85");
 }
 [data-theme="cream"]{
  --gold:#a88b5e;--gold-light:#715632;--gold-dark:#b49a72;
  --page:#eee7d9;--panel:#fffaf0;--text:#382c1c;--muted:#806c4e;
  --frame:#e2d5bd;--button-text:#fffaf0;--accent-bg:#e9dfcc;
+ --scene:url("https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2200&q=85");
 }
+
 *{box-sizing:border-box}
+html{background:var(--page)}
 body{
  margin:0;min-height:100vh;color:var(--text);font-family:'Poppins',sans-serif;
- background:radial-gradient(ellipse at 50% 0%,var(--frame) 0%,transparent 40%),var(--page);
- transition:background .3s,color .3s;
+ background:transparent;position:relative;isolation:isolate;
+ transition:color .3s;
 }
-button,input{font-family:inherit}button{cursor:pointer}
+body:before{
+ content:"";position:fixed;inset:0;z-index:-2;
+ background-image:var(--scene);
+ background-size:cover;background-position:center;
+ background-repeat:no-repeat;
+ opacity:.40;
+ transform:scale(1.02);
+}
+body:after{
+ content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+ background:
+ linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.48) 40%,rgba(0,0,0,.78) 100%),
+ linear-gradient(90deg,rgba(0,0,0,.22),transparent 50%,rgba(0,0,0,.22));
+}
+[data-theme="cream"] body:after{
+ background:linear-gradient(180deg,rgba(238,231,217,.70),rgba(238,231,217,.48) 45%,rgba(238,231,217,.78));
+}
+button,input{font-family:inherit}
+button{cursor:pointer}
+
 header{
  position:relative;text-align:center;padding:38px 55px 28px;
  border-bottom:1px solid color-mix(in srgb,var(--gold) 35%,transparent);
- background:linear-gradient(180deg,rgba(0,0,0,.35),transparent);
+ background:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.10));
+ backdrop-filter:blur(3px);
 }
+[data-theme="cream"] header{background:rgba(255,250,240,.62)}
 .header-ornament{color:var(--gold);font-size:18px;letter-spacing:9px;margin-bottom:10px}
 .logo-mark{
  width:43px;height:43px;border:1px solid var(--gold);color:var(--gold-light);
@@ -124,19 +153,23 @@ header{
 .theme-choice .theme-symbol{font-size:25px;display:block;margin-bottom:5px}
 .theme-choice.selected{outline:2px solid var(--gold);background:var(--frame)}
 .theme-choice small{display:block;color:var(--muted);margin-top:4px}
+
 main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 .gallery-heading{text-align:center;margin-bottom:27px}
 .gallery-heading h2,.private-heading h2{
  margin:0;color:var(--gold-light);font-family:'Cinzel',serif;
  font-size:20px;letter-spacing:3px;font-weight:500;
+ text-shadow:0 2px 12px #0009;
 }
 .gallery-heading p,.private-heading p{
  color:var(--muted);font-family:'Playfair Display',serif;font-style:italic;font-size:13px;margin:8px 0 0;
+ text-shadow:0 1px 8px #0009;
 }
 .heading-line{width:75px;height:1px;margin:14px auto 0;background:var(--gold-dark)}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 15px;align-items:start}
 .photo-card{
- position:relative;min-width:0;padding:9px;background:linear-gradient(145deg,var(--frame),var(--page));
+ position:relative;min-width:0;padding:9px;
+ background:linear-gradient(145deg,var(--frame),var(--page));
  box-shadow:0 8px 22px #0008;cursor:pointer;transition:transform .25s;
 }
 .photo-card:active{transform:scale(.98)}
@@ -159,10 +192,10 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
  display:block;width:100%;margin-top:8px;padding:7px;color:#f2c8bd;
  background:#26100d;border:1px solid #6e352b;border-radius:5px;font-size:11px;
 }
-.empty-state{grid-column:1/-1;text-align:center;padding:45px 15px;border:1px dashed var(--gold-dark);color:var(--muted);font-family:'Playfair Display',serif}
+.empty-state{grid-column:1/-1;text-align:center;padding:45px 15px;border:1px dashed var(--gold-dark);color:var(--muted);font-family:'Playfair Display',serif;background:rgba(0,0,0,.35);backdrop-filter:blur(5px)}
 .empty-symbol{font-size:35px;color:var(--gold);margin-bottom:12px}
 
-/* PRIVATE COLLECTION: di atas galeri */
+/* PRIVATE COLLECTION */
 .private-section{display:none;margin-bottom:48px}
 .private-section.show{display:block}
 .private-heading{text-align:center;margin-bottom:25px}
@@ -187,6 +220,7 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 .private-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px}
 .private-status{color:var(--muted);text-align:center;font-size:12px;min-height:20px;margin:12px 0}
 .private-lock-note{text-align:center;color:var(--muted);font-size:11px;margin-top:17px}
+
 .viewer{
  display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.97);
  padding:55px 15px 25px;align-items:center;justify-content:center;flex-direction:column;
@@ -201,7 +235,8 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
  background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--button-text);font-weight:600;
 }
 .download-status{color:var(--muted);font-size:12px;margin-top:10px;text-align:center}
-footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'Playfair Display',serif;font-style:italic;font-size:12px;letter-spacing:1px}
+footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'Playfair Display',serif;font-style:italic;font-size:12px;letter-spacing:1px;text-shadow:0 1px 8px #0009}
+
 @media(min-width:700px){
  .gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:27px}
  .private-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -262,20 +297,19 @@ footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'
    <button class="back-menu" onclick="showMenuView('mainMenu')">← Kembali ke menu</button>
    <div class="menu-title">✧ PILIH TEMA ✧</div>
    <div class="theme-grid">
-    <button class="theme-choice" data-theme-choice="gold" onclick="setTheme('gold')"><span class="theme-symbol">👑</span>Black Gold<small>Royal elegance</small></button>
-    <button class="theme-choice" data-theme-choice="purple" onclick="setTheme('purple')"><span class="theme-symbol">💎</span>Royal Purple<small>Elegant purple</small></button>
-    <button class="theme-choice" data-theme-choice="emerald" onclick="setTheme('emerald')"><span class="theme-symbol">🌿</span>Emerald<small>Forest green</small></button>
-    <button class="theme-choice" data-theme-choice="ocean" onclick="setTheme('ocean')"><span class="theme-symbol">🌊</span>Ocean Blue<small>Deep blue</small></button>
-    <button class="theme-choice" data-theme-choice="rose" onclick="setTheme('rose')"><span class="theme-symbol">🌹</span>Rose<small>Soft romantic</small></button>
-    <button class="theme-choice" data-theme-choice="cream" onclick="setTheme('cream')"><span class="theme-symbol">☀️</span>Royal Cream<small>Warm bright</small></button>
+    <button class="theme-choice" data-theme-choice="gold" onclick="setTheme('gold')"><span class="theme-symbol">👑</span>Black Gold<small>Taman istana malam</small></button>
+    <button class="theme-choice" data-theme-choice="purple" onclick="setTheme('purple')"><span class="theme-symbol">💎</span>Royal Purple<small>Langit malam ungu</small></button>
+    <button class="theme-choice" data-theme-choice="emerald" onclick="setTheme('emerald')"><span class="theme-symbol">🌿</span>Emerald<small>Hutan hijau</small></button>
+    <button class="theme-choice" data-theme-choice="ocean" onclick="setTheme('ocean')"><span class="theme-symbol">🌊</span>Ocean Blue<small>Pantai biru</small></button>
+    <button class="theme-choice" data-theme-choice="rose" onclick="setTheme('rose')"><span class="theme-symbol">🌹</span>Rose<small>Taman bunga</small></button>
+    <button class="theme-choice" data-theme-choice="cream" onclick="setTheme('cream')"><span class="theme-symbol">☀️</span>Royal Cream<small>Suasana hangat</small></button>
    </div>
-   <div class="status">Pilih warna, tampilan galeri langsung berubah.</div>
+   <div class="status">Pilih tema, warna dan pemandangan langsung berubah.</div>
   </div>
  </div>
 </header>
 
 <main>
- <!-- Folder pribadi sekarang berada di atas galeri -->
  <section class="private-section" id="privateSection">
   <div class="private-heading">
    <h2>✧ PRIVATE COLLECTION ✧</h2>

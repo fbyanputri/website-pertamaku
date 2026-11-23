@@ -9,366 +9,201 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 <style>
 :root{
- --gold:#d6b46a;--gold-light:#f5dfa1;--gold-dark:#927039;
- --black:#080808;--panel:#11100e;--page:#080808;
- --text:#eee5d1;--muted:#bca678;--frame:#292014;
- --button-text:#160f06;--accent-bg:#17130d;
- --scene:url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=2200&q=85");
+ --gold:#ed9fba;--gold-light:#ffe3ef;--gold-dark:#d47d9f;
+ --page:#fff0f6;--panel:rgba(255,255,255,.20);
+ --text:#392638;--muted:#704e69;--frame:rgba(255,255,255,.22);
+ --button-text:#54223e;--accent-bg:rgba(255,255,255,.20);
+ --scene:url("anime-nezuko.jpg");
 }
-[data-theme="purple"]{
- --gold:#b99aff;--gold-light:#e3d5ff;--gold-dark:#7656ad;
- --page:#100b1c;--panel:#1c1430;--text:#eee5ff;--muted:#b9a5d9;
- --frame:#291c40;--button-text:#180d29;--accent-bg:#211632;
- --scene:url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2200&q=85");
+[data-theme="tanjiro"]{
+ --gold:#55c9b4;--gold-light:#d5fff5;--gold-dark:#398f83;
+ --page:#e9fffa;--panel:rgba(255,255,255,.20);--text:#183c3a;--muted:#426e68;
+ --frame:rgba(255,255,255,.22);--button-text:#16463e;--accent-bg:rgba(255,255,255,.20);
+ --scene:url("anime-tanjiro.jpg");
 }
-[data-theme="emerald"]{
- --gold:#79d5ae;--gold-light:#c3f5df;--gold-dark:#397c62;
- --page:#071510;--panel:#10251c;--text:#e1f6eb;--muted:#91c2a9;
- --frame:#193a2b;--button-text:#092015;--accent-bg:#132c20;
- --scene:url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2200&q=85");
+[data-theme="zenitsu"]{
+ --gold:#edbd42;--gold-light:#fff3bd;--gold-dark:#c99728;
+ --page:#fff9df;--panel:rgba(255,255,255,.20);--text:#493719;--muted:#80652f;
+ --frame:rgba(255,255,255,.22);--button-text:#60420b;--accent-bg:rgba(255,255,255,.20);
+ --scene:url("anime-zenitsu.jpg");
 }
-[data-theme="ocean"]{
- --gold:#82c9f5;--gold-light:#d0edff;--gold-dark:#427fa7;
- --page:#07121e;--panel:#102337;--text:#e4f3ff;--muted:#9fc4df;
- --frame:#19334a;--button-text:#092033;--accent-bg:#142c40;
- --scene:url("https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=2200&q=85");
+[data-theme="inosuke"]{
+ --gold:#70bce9;--gold-light:#e0f5ff;--gold-dark:#438bb9;
+ --page:#eaf7ff;--panel:rgba(255,255,255,.20);--text:#20394e;--muted:#55758d;
+ --frame:rgba(255,255,255,.22);--button-text:#173d5a;--accent-bg:rgba(255,255,255,.20);
+ --scene:url("anime-inosuke.jpg");
 }
-[data-theme="rose"]{
- --gold:#e3a9a2;--gold-light:#ffe0da;--gold-dark:#a96565;
- --page:#1a0d0d;--panel:#2a1718;--text:#fff0ed;--muted:#d7aaa3;
- --frame:#402222;--button-text:#2b1112;--accent-bg:#321c1d;
- --scene:url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=2200&q=85");
-}
-[data-theme="cream"]{
- --gold:#a88b5e;--gold-light:#715632;--gold-dark:#b49a72;
- --page:#eee7d9;--panel:#fffaf0;--text:#382c1c;--muted:#806c4e;
- --frame:#e2d5bd;--button-text:#fffaf0;--accent-bg:#e9dfcc;
- --scene:url("https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2200&q=85");
-}
-
-/* TEMA TAMBAHAN */
-[data-theme="romantic"]{
- --gold:#ed9fba;--gold-light:#ffd8e7;--gold-dark:#a85d79;
- --page:#1b0b14;--panel:#2b1421;--text:#fff0f5;--muted:#d5a3b8;
- --frame:#452238;--button-text:#351323;--accent-bg:#321a29;
- --scene:url("https://images.unsplash.com/photo-1490750967868-88aa4486c946?auto=format&fit=crop&w=2200&q=85");
-}
-[data-theme="burgundy"]{
- --gold:#e3b56e;--gold-light:#f8dfaa;--gold-dark:#986a39;
- --page:#1b080d;--panel:#2c1019;--text:#fff0e6;--muted:#d0a68f;
- --frame:#461d29;--button-text:#2b1112;--accent-bg:#351620;
- --scene:url("https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=2200&q=85");
-}
-[data-theme="lavender"]{
- --gold:#c3a5ed;--gold-light:#eadbff;--gold-dark:#8064a8;
- --page:#130d20;--panel:#211733;--text:#f4edff;--muted:#bca9d8;
- --frame:#302144;--button-text:#21142e;--accent-bg:#281b39;
- --scene:url("https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?auto=format&fit=crop&w=2200&q=85");
-}
-[data-theme="midnight"]{
- --gold:#91b9e8;--gold-light:#d8eaff;--gold-dark:#5276a5;
- --page:#070d1b;--panel:#101a30;--text:#eaf2ff;--muted:#9eb5d6;
- --frame:#1b2945;--button-text:#0b1830;--accent-bg:#17243b;
- --scene:url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=2200&q=85");
-}
-[data-theme="ivory"]{
- --gold:#b69a69;--gold-light:#80643b;--gold-dark:#c2a77a;
- --page:#f2eadc;--panel:#fffaf0;--text:#40311f;--muted:#8b7657;
- --frame:#e8dbc4;--button-text:#fffaf0;--accent-bg:#eee3d0;
- --scene:url("https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=2200&q=85");
-}
-[data-theme="forest"]{
- --gold:#b5c98a;--gold-light:#e1edbd;--gold-dark:#718c4d;
- --page:#0a160d;--panel:#172719;--text:#edf5e5;--muted:#b0c49a;
- --frame:#263b28;--button-text:#172313;--accent-bg:#1c3020;
- --scene:url("https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=2200&q=85");
-}
-
 *{box-sizing:border-box}
-html{background:var(--page)}
+html{background:var(--page);scroll-behavior:smooth}
 body{
  margin:0;min-height:100vh;color:var(--text);font-family:'Poppins',sans-serif;
- background:transparent;position:relative;isolation:isolate;
- transition:color .3s;
+ background:transparent;position:relative;isolation:isolate;transition:color .3s;
 }
 body:before{
- content:"";position:fixed;inset:0;z-index:-2;
- background-image:var(--scene);
- background-size:cover;background-position:center;
- background-repeat:no-repeat;opacity:.40;transform:scale(1.02);
+ content:"";position:fixed;inset:0;z-index:-2;background-image:var(--scene);
+ background-size:cover;background-position:center;background-repeat:no-repeat;
+ opacity:1;transform:scale(1.01);
 }
 body:after{
  content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
- background:
- linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.48) 40%,rgba(0,0,0,.78) 100%),
- linear-gradient(90deg,rgba(0,0,0,.22),transparent 50%,rgba(0,0,0,.22));
+ background:rgba(255,255,255,.08);
 }
-[data-theme="cream"] body:after,
-[data-theme="ivory"] body:after{
- background:linear-gradient(180deg,rgba(238,231,217,.70),rgba(238,231,217,.48) 45%,rgba(238,231,217,.78));
-}
-button,input{font-family:inherit}
-button{cursor:pointer}
-
+button,input{font-family:inherit}button{cursor:pointer}
 header{
- position:relative;text-align:center;padding:38px 55px 28px;
- border-bottom:1px solid color-mix(in srgb,var(--gold) 35%,transparent);
- background:linear-gradient(180deg,rgba(0,0,0,.42),rgba(0,0,0,.10));
- backdrop-filter:blur(3px);
+ position:relative;text-align:center;padding:34px 55px 25px;
+ border-bottom:1px solid rgba(255,255,255,.55);
+ background:rgba(255,255,255,.12);
+ backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
 }
-[data-theme="cream"] header,[data-theme="ivory"] header{background:rgba(255,250,240,.62)}
-
-.header-ornament{
- display:flex;align-items:center;justify-content:center;gap:12px;
- color:var(--gold-light);margin:0 auto 12px;
- filter:drop-shadow(0 0 8px color-mix(in srgb,var(--gold) 40%,transparent));
-}
-.header-ornament:before,.header-ornament:after{
- content:"";width:48px;height:1px;
- background:linear-gradient(90deg,transparent,var(--gold));
-}
+.header-ornament{display:flex;align-items:center;justify-content:center;gap:12px;color:var(--gold-light);margin:0 auto 10px}
+.header-ornament:before,.header-ornament:after{content:"";width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
 .header-ornament:after{transform:scaleX(-1)}
-.header-ornament svg{width:42px;height:30px;display:block}
-
-.logo-mark{
- width:64px;height:58px;display:flex;align-items:center;justify-content:center;
- margin:0 auto 10px;color:var(--gold-light);
- filter:drop-shadow(0 0 12px color-mix(in srgb,var(--gold) 35%,transparent));
-}
-.logo-mark svg{width:64px;height:58px;display:block}
-.logo{
- margin:0;font-family:'Cinzel',serif;font-size:clamp(27px,7vw,43px);
- font-weight:600;letter-spacing:5px;color:var(--gold-light);
- text-shadow:0 2px 16px color-mix(in srgb,var(--gold) 30%,transparent);
-}
-.tagline{color:var(--muted);font-family:'Playfair Display',serif;font-style:italic;font-size:13px;letter-spacing:2px;margin-top:8px}
+.header-ornament svg{width:42px;height:30px}
+.logo-mark{width:58px;height:54px;display:flex;align-items:center;justify-content:center;margin:0 auto 8px;color:var(--gold-light)}
+.logo-mark svg{width:60px;height:55px}
+.logo{margin:0;font-family:'Cinzel',serif;font-size:clamp(27px,7vw,43px);font-weight:600;letter-spacing:5px;color:#fff;text-shadow:0 2px 12px rgba(30,20,40,.65)}
+.tagline{color:#fff;font-family:'Playfair Display',serif;font-style:italic;font-size:13px;letter-spacing:2px;margin-top:8px;text-shadow:0 1px 8px #333}
 .header-line{width:125px;height:1px;margin:17px auto 0;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-
 .menu-button{
- position:absolute;top:23px;right:19px;width:42px;height:42px;
- border:1px solid color-mix(in srgb,var(--gold) 55%,transparent);border-radius:50%;
- background:var(--panel);color:var(--gold-light);font-size:23px;line-height:1;
+ position:absolute;top:22px;right:18px;width:42px;height:42px;border:1px solid rgba(255,255,255,.75);
+ border-radius:50%;background:rgba(255,255,255,.25);color:#fff;font-size:23px;line-height:1;
+ backdrop-filter:blur(4px);
 }
 .menu-panel{
- display:none;position:absolute;z-index:30;top:72px;right:18px;
- width:min(330px,calc(100vw - 36px));max-height:78vh;overflow-y:auto;
- padding:18px;text-align:left;border:1px solid var(--gold-dark);
- border-radius:14px;background:var(--panel);box-shadow:0 15px 40px #0009;
+ display:none;position:absolute;z-index:30;top:72px;right:18px;width:min(330px,calc(100vw - 36px));
+ max-height:78vh;overflow-y:auto;padding:18px;text-align:left;border:1px solid rgba(255,255,255,.75);
+ border-radius:14px;background:rgba(255,255,255,.30);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+ box-shadow:0 15px 40px rgba(40,30,70,.18);
 }
 .menu-panel.show{display:block}
-.menu-title{color:var(--gold-light);font-family:'Cinzel',serif;font-size:15px;text-align:center;margin-bottom:15px}
+.menu-title{color:var(--text);font-family:'Cinzel',serif;font-size:15px;text-align:center;margin-bottom:15px;text-shadow:0 1px 5px #fff}
 .menu-option{
  width:100%;display:flex;align-items:center;gap:13px;padding:13px 12px;
- border:1px solid color-mix(in srgb,var(--gold) 25%,transparent);
- border-radius:9px;background:var(--accent-bg);color:var(--text);
- text-align:left;margin:8px 0;font-size:13px;
+ border:1px solid rgba(255,255,255,.8);border-radius:9px;background:rgba(255,255,255,.34);
+ color:var(--text);text-align:left;margin:8px 0;font-size:13px;backdrop-filter:blur(4px);
 }
-.menu-option .menu-icon{font-size:21px;width:27px;text-align:center;color:var(--gold)}
+.menu-option .menu-icon{font-size:21px;width:27px;text-align:center;color:var(--gold-dark)}
 .menu-option:active{transform:scale(.98)}
-.menu-view{display:none}
-.menu-view.active{display:block}
-.back-menu{background:transparent;border:0;color:var(--gold);padding:5px 0 12px;font-size:12px}
+.menu-view{display:none}.menu-view.active{display:block}
+.back-menu{background:transparent;border:0;color:var(--text);padding:5px 0 12px;font-size:12px}
 .menu-panel input{
  display:block;width:100%;margin:9px 0;padding:12px;color:var(--text);
- background:var(--page);border:1px solid var(--gold-dark);border-radius:7px;outline:none;
+ background:rgba(255,255,255,.55);border:1px solid var(--gold-dark);border-radius:7px;outline:none;
 }
 .gold-button{
  width:100%;padding:11px;border:1px solid var(--gold);border-radius:7px;
  color:var(--button-text);background:linear-gradient(135deg,var(--gold-light),var(--gold));font-weight:600;
 }
-.dark-button{
- padding:10px;border:1px solid var(--gold-dark);border-radius:7px;
- color:var(--gold-light);background:var(--accent-bg);
-}
-.owner-area{display:none}
-.owner-area.show{display:block}
-.owner-label{color:var(--gold);font-size:12px;text-align:center;margin-bottom:12px}
+.dark-button{padding:10px;border:1px solid var(--gold-dark);border-radius:7px;color:var(--text);background:rgba(255,255,255,.40)}
+.owner-area{display:none}.owner-area.show{display:block}
+.owner-label{color:var(--text);font-size:12px;text-align:center;margin-bottom:12px}
 .upload-label{
- display:block;text-align:center;padding:12px;border:1px dashed var(--gold);
- border-radius:8px;color:var(--gold-light);cursor:pointer;margin-bottom:10px;
+ display:block;text-align:center;padding:12px;border:1px dashed var(--gold-dark);
+ border-radius:8px;color:var(--text);cursor:pointer;margin-bottom:10px;background:rgba(255,255,255,.30);
 }
 .upload-label input{display:none}
-.status{color:var(--muted);font-size:12px;text-align:center;margin-top:10px;min-height:18px;overflow-wrap:anywhere}
-
+.status{color:var(--text);font-size:12px;text-align:center;margin-top:10px;min-height:18px;overflow-wrap:anywhere}
 .theme-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
 .theme-choice{
- border:1px solid var(--gold-dark);border-radius:10px;padding:12px 7px;
- background:var(--accent-bg);color:var(--text);text-align:center;font-size:11px;
+ border:1px solid rgba(255,255,255,.8);border-radius:10px;padding:12px 7px;
+ background:rgba(255,255,255,.32);color:var(--text);text-align:center;font-size:11px;
+ backdrop-filter:blur(4px);
 }
 .theme-choice .theme-symbol{font-size:25px;display:block;margin-bottom:5px}
-.theme-choice.selected{outline:2px solid var(--gold);background:var(--frame)}
+.theme-choice.selected{outline:2px solid var(--gold-dark);background:rgba(255,255,255,.58)}
 .theme-choice small{display:block;color:var(--muted);margin-top:4px}
-
 main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 .gallery-heading{text-align:center;margin-bottom:27px}
 .gallery-heading h2,.private-heading h2{
- margin:0;color:var(--gold-light);font-family:'Cinzel',serif;
- font-size:20px;letter-spacing:3px;font-weight:500;text-shadow:0 2px 12px #0009;
+ margin:0;color:#fff;font-family:'Cinzel',serif;font-size:20px;letter-spacing:3px;font-weight:500;
+ text-shadow:0 2px 12px rgba(0,0,0,.65);
 }
 .gallery-heading p,.private-heading p{
- color:var(--muted);font-family:'Playfair Display',serif;font-style:italic;
- font-size:13px;margin:8px 0 0;text-shadow:0 1px 8px #0009;
+ color:#fff;font-family:'Playfair Display',serif;font-style:italic;font-size:13px;margin:8px 0 0;
+ text-shadow:0 1px 8px rgba(0,0,0,.65);
 }
-.heading-line{width:75px;height:1px;margin:14px auto 0;background:var(--gold-dark)}
+.heading-line{width:75px;height:1px;margin:14px auto 0;background:var(--gold-light)}
 .gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 15px;align-items:start}
-
-/* SATU FRAME LOVE UNTUK SEMUA FOTO */
 .photo-card{
  position:relative;min-width:0;padding:27px 9px 9px;
- background:linear-gradient(145deg,var(--frame),var(--page));
- border:2px solid var(--gold);
- border-radius:12px;
- box-shadow:inset 0 0 0 2px color-mix(in srgb,var(--gold-dark) 70%,transparent),0 8px 22px #0008;
- cursor:pointer;transition:transform .25s;
+ background:rgba(255,255,255,.23);border:2px solid rgba(255,255,255,.78);
+ border-radius:12px;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);
+ box-shadow:0 8px 22px rgba(30,20,40,.16);cursor:pointer;transition:transform .25s;
 }
-.photo-card:before{
- content:"♡  ♥  ♡  ♥  ♡";
- position:absolute;top:4px;left:0;right:0;
- text-align:center;color:var(--gold-light);
- font-family:serif;font-size:15px;letter-spacing:5px;
- text-shadow:0 0 8px color-mix(in srgb,var(--gold) 55%,transparent);
- pointer-events:none;
-}
-.photo-card:after{
- content:"";position:absolute;top:24px;left:12px;right:12px;
- height:1px;background:linear-gradient(90deg,transparent,var(--gold-dark),transparent);
- pointer-events:none;
-}
+.photo-card:before{content:"♡  ♥  ♡  ♥  ♡";position:absolute;top:4px;left:0;right:0;text-align:center;color:var(--gold-light);font-family:serif;font-size:15px;letter-spacing:5px;pointer-events:none;text-shadow:0 1px 5px #555}
+.photo-card:after{content:"";position:absolute;top:24px;left:12px;right:12px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-light),transparent);pointer-events:none}
 .photo-card:active{transform:scale(.98)}
-.photo-card img{
- display:block;width:100%;height:auto;max-height:430px;
- object-fit:contain;background:var(--page);border-radius:4px;
-}
-.delete-button{
- display:block;width:100%;margin-top:8px;padding:7px;color:#f2c8bd;
- background:#26100d;border:1px solid #6e352b;border-radius:5px;font-size:11px;
-}
+.photo-card img{display:block;width:100%;height:auto;max-height:430px;object-fit:contain;background:rgba(255,255,255,.18);border-radius:4px}
+.delete-button{display:block;width:100%;margin-top:8px;padding:7px;color:#762f35;background:rgba(255,235,235,.78);border:1px solid #d58d91;border-radius:5px;font-size:11px}
 .empty-state{
- grid-column:1/-1;text-align:center;padding:45px 15px;
- border:1px dashed var(--gold-dark);color:var(--muted);
- font-family:'Playfair Display',serif;background:rgba(0,0,0,.35);backdrop-filter:blur(5px);
+ grid-column:1/-1;text-align:center;padding:45px 15px;border:1px dashed rgba(255,255,255,.9);
+ color:#fff;font-family:'Playfair Display',serif;background:rgba(255,255,255,.22);
+ backdrop-filter:blur(3px);text-shadow:0 1px 5px #333;
 }
-.empty-symbol{font-size:35px;color:var(--gold);margin-bottom:12px}
-
-/* PRIVATE COLLECTION */
-.private-section{display:none;margin-bottom:48px}
-.private-section.show{display:block}
+.empty-symbol{font-size:35px;color:var(--gold-light);margin-bottom:12px}
+.private-section{display:none;margin-bottom:48px}.private-section.show{display:block}
 .private-heading{text-align:center;margin-bottom:25px}
 .private-folder-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
 .folder-card{
- min-height:155px;padding:20px 10px;border:1px solid var(--gold-dark);
- border-radius:10px;background:linear-gradient(145deg,var(--frame),var(--page));
- color:var(--gold-light);text-align:center;box-shadow:0 8px 22px #0008;
+ min-height:155px;padding:20px 10px;border:1px solid rgba(255,255,255,.8);border-radius:10px;
+ background:rgba(255,255,255,.24);color:#fff;text-align:center;backdrop-filter:blur(3px);
+ box-shadow:0 8px 22px rgba(30,20,40,.16);
 }
-.folder-letter{
- width:58px;height:58px;margin:0 auto 12px;border:1px solid var(--gold);
- display:flex;align-items:center;justify-content:center;
- font-family:'Cinzel',serif;font-size:31px;color:var(--gold-light);
-}
+.folder-letter{width:58px;height:58px;margin:0 auto 12px;border:1px solid var(--gold-light);display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:31px;color:#fff}
 .folder-card strong{display:block;font-family:'Cinzel',serif;letter-spacing:2px;font-size:13px}
-.folder-card small{display:block;color:var(--muted);margin-top:6px;font-size:10px}
-.private-content{display:none}
-.private-content.show{display:block}
+.folder-card small{display:block;color:#fff;margin-top:6px;font-size:10px}
+.private-content{display:none}.private-content.show{display:block}
 .private-toolbar{display:flex;gap:10px;align-items:center;margin-bottom:20px}
-.private-toolbar .upload-label{flex:1;margin:0}
-.private-toolbar button{flex:1}
+.private-toolbar .upload-label{flex:1;margin:0}.private-toolbar button{flex:1}
 .private-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px 14px}
-.private-status{color:var(--muted);text-align:center;font-size:12px;min-height:20px;margin:12px 0}
-.private-lock-note{text-align:center;color:var(--muted);font-size:11px;margin-top:17px}
-
+.private-status{color:#fff;text-align:center;font-size:12px;min-height:20px;margin:12px 0;text-shadow:0 1px 5px #333}
+.private-lock-note{text-align:center;color:#fff;font-size:11px;margin-top:17px;text-shadow:0 1px 5px #333}
 .viewer{
- display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.97);
+ display:none;position:fixed;inset:0;z-index:100;background:rgba(15,12,22,.88);
  padding:55px 15px 25px;align-items:center;justify-content:center;flex-direction:column;
 }
 .viewer.show{display:flex}
-.viewer-close{position:absolute;top:12px;right:17px;color:var(--gold-light);background:transparent;border:0;font-size:34px}
-.viewer-frame{
- position:relative;max-width:95vw;max-height:75vh;
- padding:29px 10px 10px;border:2px solid var(--gold);
- border-radius:12px;outline:1px solid var(--gold-dark);outline-offset:-6px;background:var(--panel);
-}
-.viewer-frame:before{
- content:"♡  ♥  ♡  ♥  ♡";position:absolute;top:4px;left:0;right:0;
- text-align:center;color:var(--gold-light);font-family:serif;font-size:15px;letter-spacing:5px;
-}
-.viewer-frame:after{
- content:"";position:absolute;top:24px;left:12px;right:12px;height:1px;
- background:linear-gradient(90deg,transparent,var(--gold-dark),transparent);
-}
-.viewer-frame img{
- display:block;max-width:100%;max-height:calc(75vh - 45px);
- object-fit:contain;border-radius:4px;
-}
+.viewer-close{position:absolute;top:12px;right:17px;color:#fff;background:transparent;border:0;font-size:34px}
+.viewer-frame{position:relative;max-width:95vw;max-height:75vh;padding:29px 10px 10px;border:2px solid var(--gold-light);border-radius:12px;outline:1px solid var(--gold-dark);outline-offset:-6px;background:rgba(255,255,255,.22);backdrop-filter:blur(4px)}
+.viewer-frame:before{content:"♡  ♥  ♡  ♥  ♡";position:absolute;top:4px;left:0;right:0;text-align:center;color:#fff;font-family:serif;font-size:15px;letter-spacing:5px}
+.viewer-frame:after{content:"";position:absolute;top:24px;left:12px;right:12px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-light),transparent)}
+.viewer-frame img{display:block;max-width:100%;max-height:calc(75vh - 45px);object-fit:contain;border-radius:4px}
 .viewer-name{display:none}
-.save-button{
- width:190px;padding:12px;border:1px solid var(--gold);border-radius:30px;
- background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--button-text);font-weight:600;
-}
-.download-status{color:var(--muted);font-size:12px;margin-top:10px;text-align:center}
-footer{
- padding:22px 10px 30px;text-align:center;color:var(--muted);
- font-family:'Playfair Display',serif;font-style:italic;font-size:12px;
- letter-spacing:1px;text-shadow:0 1px 8px #0009;
-}
-
-@media(min-width:700px){
- .gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:27px}
- .private-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}
- main{padding-left:28px;padding-right:28px}
-}
-@media(min-width:1000px){
- .gallery{grid-template-columns:repeat(4,minmax(0,1fr))}
- .private-gallery{grid-template-columns:repeat(4,minmax(0,1fr))}
-}
+.save-button{width:190px;padding:12px;border:1px solid var(--gold-light);border-radius:30px;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:var(--button-text);font-weight:600;margin-top:15px}
+.download-status{color:#fff;font-size:12px;margin-top:10px;text-align:center}
+footer{padding:22px 10px 30px;text-align:center;color:#fff;font-family:'Playfair Display',serif;font-style:italic;font-size:12px;letter-spacing:1px;text-shadow:0 1px 8px #333}
+@media(min-width:700px){.gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:27px}.private-gallery{grid-template-columns:repeat(3,minmax(0,1fr))}main{padding-left:28px;padding-right:28px}}
+@media(min-width:1000px){.gallery{grid-template-columns:repeat(4,minmax(0,1fr))}.private-gallery{grid-template-columns:repeat(4,minmax(0,1fr))}}
 </style>
 </head>
-
 <body>
 <header>
  <button class="menu-button" onclick="toggleMenu()" aria-label="Menu">⋮</button>
-
  <div class="header-ornament">
   <svg viewBox="0 0 100 65" xmlns="http://www.w3.org/2000/svg" aria-label="Mahkota">
-   <path d="M8 49 L15 17 L34 35 L50 7 L66 35 L85 17 L92 49 Z"
-    fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
+   <path d="M8 49 L15 17 L34 35 L50 7 L66 35 L85 17 L92 49 Z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"/>
    <path d="M12 55 H88 M17 49 H83" fill="none" stroke="currentColor" stroke-width="2"/>
-   <circle cx="15" cy="14" r="4" fill="currentColor"/>
-   <circle cx="50" cy="5" r="4" fill="currentColor"/>
-   <circle cx="85" cy="14" r="4" fill="currentColor"/>
+   <circle cx="15" cy="14" r="4" fill="currentColor"/><circle cx="50" cy="5" r="4" fill="currentColor"/><circle cx="85" cy="14" r="4" fill="currentColor"/>
   </svg>
  </div>
-
  <div class="logo-mark">
   <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg">
-   <path d="M60 99 C48 87 8 59 8 32 C8 13 32 5 60 30 C88 5 112 13 112 32 C112 59 72 87 60 99Z"
-    fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>
-   <text x="60" y="57" text-anchor="middle" dominant-baseline="middle"
-    fill="currentColor" font-family="Cinzel,serif" font-size="27" font-weight="bold">AZ</text>
+   <path d="M60 99 C48 87 8 59 8 32 C8 13 32 5 60 30 C88 5 112 13 112 32 C112 59 72 87 60 99Z" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>
+   <text x="60" y="57" text-anchor="middle" dominant-baseline="middle" fill="currentColor" font-family="Cinzel,serif" font-size="27" font-weight="bold">AZ</text>
   </svg>
  </div>
-
  <h1 class="logo">AILIN ZEZE</h1>
- <div class="tagline">The Art of Memories</div>
- <div class="header-line"></div>
-
+ <div class="tagline">The Art of Memories</div><div class="header-line"></div>
  <div class="menu-panel" id="menuPanel">
   <div id="mainMenu" class="menu-view active">
    <div class="menu-title">✧ MENU GALERI ✧</div>
-   <button class="menu-option" onclick="showMenuView('loginView')">
-    <span class="menu-icon">♙</span> Login Pemilik
-   </button>
-   <button class="menu-option" onclick="showMenuView('themeView')">
-    <span class="menu-icon">🎨</span> Pilih Tema
-   </button>
-   <button class="menu-option" onclick="openCollections()">
-    <span class="menu-icon">▣</span> Koleksi Lain
-   </button>
+   <button class="menu-option" onclick="showMenuView('loginView')"><span class="menu-icon">♙</span> Login Pemilik</button>
+   <button class="menu-option" onclick="showMenuView('themeView')"><span class="menu-icon">🎨</span> Pilih Tema Anime</button>
+   <button class="menu-option" onclick="openCollections()"><span class="menu-icon">▣</span> Koleksi Lain</button>
    <div class="status" id="status"></div>
   </div>
-
   <div id="loginView" class="menu-view">
    <button class="back-menu" onclick="showMenuView('mainMenu')">← Kembali ke menu</button>
    <div id="loginArea">
@@ -378,94 +213,53 @@ footer{
     <button class="gold-button" onclick="login()">MASUK</button>
    </div>
    <div class="owner-area" id="ownerArea">
-    <div class="menu-title">✧ OWNER PANEL ✧</div>
-    <div class="owner-label">Kamu masuk sebagai pemilik galeri</div>
-    <label class="upload-label">
-     ＋ Pilih foto untuk diunggah
-     <input id="photoInput" type="file" accept="image/*" multiple onchange="uploadPhotos(event)">
-    </label>
+    <div class="menu-title">✧ OWNER PANEL ✧</div><div class="owner-label">Kamu masuk sebagai pemilik galeri</div>
+    <label class="upload-label">＋ Pilih foto untuk diunggah<input id="photoInput" type="file" accept="image/*" multiple onchange="uploadPhotos(event)"></label>
     <button class="dark-button" style="width:100%" onclick="logout()">Keluar dari akun</button>
    </div>
    <div class="status" id="loginStatus"></div>
   </div>
-
   <div id="themeView" class="menu-view">
    <button class="back-menu" onclick="showMenuView('mainMenu')">← Kembali ke menu</button>
-   <div class="menu-title">✧ PILIH TEMA ✧</div>
+   <div class="menu-title">✧ PILIH TEMA DEMON SLAYER ✧</div>
    <div class="theme-grid">
-    <button class="theme-choice" data-theme-choice="gold" onclick="setTheme('gold')"><span class="theme-symbol">👑</span>Black Gold<small>Taman istana malam</small></button>
-    <button class="theme-choice" data-theme-choice="purple" onclick="setTheme('purple')"><span class="theme-symbol">💎</span>Royal Purple<small>Langit malam ungu</small></button>
-    <button class="theme-choice" data-theme-choice="emerald" onclick="setTheme('emerald')"><span class="theme-symbol">🌿</span>Emerald<small>Hutan hijau</small></button>
-    <button class="theme-choice" data-theme-choice="ocean" onclick="setTheme('ocean')"><span class="theme-symbol">🌊</span>Ocean Blue<small>Pantai biru</small></button>
-    <button class="theme-choice" data-theme-choice="rose" onclick="setTheme('rose')"><span class="theme-symbol">🌹</span>Rose<small>Taman bunga</small></button>
-    <button class="theme-choice" data-theme-choice="cream" onclick="setTheme('cream')"><span class="theme-symbol">☀️</span>Royal Cream<small>Suasana hangat</small></button>
-
-    <button class="theme-choice" data-theme-choice="romantic" onclick="setTheme('romantic')"><span class="theme-symbol">🌸</span>Romantic Pink<small>Pink dan bunga</small></button>
-    <button class="theme-choice" data-theme-choice="burgundy" onclick="setTheme('burgundy')"><span class="theme-symbol">👑</span>Royal Burgundy<small>Marun dan emas</small></button>
-    <button class="theme-choice" data-theme-choice="lavender" onclick="setTheme('lavender')"><span class="theme-symbol">💜</span>Lavender Dream<small>Ungu lembut</small></button>
-    <button class="theme-choice" data-theme-choice="midnight" onclick="setTheme('midnight')"><span class="theme-symbol">🌙</span>Midnight Sky<small>Biru malam berbintang</small></button>
-    <button class="theme-choice" data-theme-choice="ivory" onclick="setTheme('ivory')"><span class="theme-symbol">🤍</span>Ivory Palace<small>Putih gading</small></button>
-    <button class="theme-choice" data-theme-choice="forest" onclick="setTheme('forest')"><span class="theme-symbol">🌳</span>Enchanted Forest<small>Hutan zamrud</small></button>
+    <button class="theme-choice" data-theme-choice="nezuko" onclick="setTheme('nezuko')"><span class="theme-symbol">🌸</span>Nezuko Sakura<small>Pink · Bunga sakura</small></button>
+    <button class="theme-choice" data-theme-choice="tanjiro" onclick="setTheme('tanjiro')"><span class="theme-symbol">🌊</span>Tanjiro Water<small>Hijau · Aliran air</small></button>
+    <button class="theme-choice" data-theme-choice="zenitsu" onclick="setTheme('zenitsu')"><span class="theme-symbol">⚡</span>Zenitsu Thunder<small>Emas · Petir</small></button>
+    <button class="theme-choice" data-theme-choice="inosuke" onclick="setTheme('inosuke')"><span class="theme-symbol">🐗</span>Inosuke Beast<small>Biru · Angin</small></button>
    </div>
-   <div class="status">Pilih tema, warna dan pemandangan langsung berubah.</div>
+   <div class="status">Pilih karakter, background dan warna langsung berubah.</div>
   </div>
  </div>
 </header>
-
 <main>
  <section class="private-section" id="privateSection">
-  <div class="private-heading">
-   <h2>✧ PRIVATE COLLECTION ✧</h2>
-   <p>Your personal memories, kept private</p>
-   <div class="heading-line"></div>
-  </div>
+  <div class="private-heading"><h2>✧ PRIVATE COLLECTION ✧</h2><p>Your personal memories, kept private</p><div class="heading-line"></div></div>
   <div class="private-folder-grid" id="privateFolderGrid">
-   <button class="folder-card" onclick="openPrivateFolder('A')">
-    <span class="folder-letter">A</span><strong>FOLDER A</strong><small>Private Collection</small>
-   </button>
-   <button class="folder-card" onclick="openPrivateFolder('Z')">
-    <span class="folder-letter">Z</span><strong>FOLDER Z</strong><small>Private Collection</small>
-   </button>
+   <button class="folder-card" onclick="openPrivateFolder('A')"><span class="folder-letter">A</span><strong>FOLDER A</strong><small>Private Collection</small></button>
+   <button class="folder-card" onclick="openPrivateFolder('Z')"><span class="folder-letter">Z</span><strong>FOLDER Z</strong><small>Private Collection</small></button>
   </div>
   <div class="private-content" id="privateContent">
-   <div class="gallery-heading">
-    <h2 id="privateFolderTitle">FOLDER A</h2>
-    <p>Private memories</p><div class="heading-line"></div>
-   </div>
+   <div class="gallery-heading"><h2 id="privateFolderTitle">FOLDER A</h2><p>Private memories</p><div class="heading-line"></div></div>
    <div class="private-toolbar">
-    <label class="upload-label">＋ Unggah foto
-     <input id="privatePhotoInput" type="file" accept="image/*" multiple onchange="uploadPrivatePhotos(event)">
-    </label>
+    <label class="upload-label">＋ Unggah foto<input id="privatePhotoInput" type="file" accept="image/*" multiple onchange="uploadPrivatePhotos(event)"></label>
     <button class="dark-button" onclick="backToPrivateFolders()">Kembali</button>
    </div>
-   <div class="private-status" id="privateStatus"></div>
-   <div class="private-gallery" id="privateGallery"></div>
+   <div class="private-status" id="privateStatus"></div><div class="private-gallery" id="privateGallery"></div>
   </div>
   <div class="private-lock-note">✧ Area pribadi pemilik AILIN ZEZE ✧</div>
  </section>
-
- <div class="gallery-heading">
-  <h2>OUR COLLECTION</h2>
-  <p>A beautiful place for precious moments</p>
-  <div class="heading-line"></div>
- </div>
- <div class="gallery" id="gallery">
-  <div class="empty-state"><div class="empty-symbol">✧</div>Memuat koleksi foto...</div>
- </div>
+ <div class="gallery-heading"><h2>OUR COLLECTION</h2><p>A beautiful place for precious moments</p><div class="heading-line"></div></div>
+ <div class="gallery" id="gallery"><div class="empty-state"><div class="empty-symbol">✧</div>Memuat koleksi foto...</div></div>
 </main>
-
 <footer>✧ AILIN ZEZE · A Collection of Memories ✧</footer>
-
 <div class="viewer" id="viewer" onclick="closeViewer(event)">
  <button class="viewer-close" onclick="closeViewer()">×</button>
- <div class="viewer-frame" onclick="event.stopPropagation()">
-  <img id="viewerImage" src="" alt="Foto galeri">
- </div>
+ <div class="viewer-frame" onclick="event.stopPropagation()"><img id="viewerImage" src="" alt="Foto galeri"></div>
  <div class="viewer-name" id="viewerName"></div>
  <button class="save-button" onclick="saveCurrentPhoto(event)">↓ SIMPAN FOTO</button>
  <div class="download-status" id="downloadStatus"></div>
 </div>
-
 <script>
 const SUPABASE_URL="https://dhjxyldtygcibrtnpjcd.supabase.co";
 const SUPABASE_KEY="sb_publishable_daMV08AfTIex0whIdKdtsQ_wwsfghsp";
@@ -473,51 +267,41 @@ const BUCKET="zeze-foto";
 const PRIVATE_BUCKET="zeze-private";
 const OWNER_UID="d0a87020-4e24-4982-843a-f1d56f657267";
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-
-let currentUser=null,currentPhoto=null,currentPrivatePath=null;
-let activePrivateFolder=null,galleryPromise=null;
+let currentUser=null,currentPhoto=null,currentPrivatePath=null,activePrivateFolder=null,galleryPromise=null;
 
 function isOwner(){return currentUser&&currentUser.id===OWNER_UID}
-function setStatus(message,id="status"){
- document.getElementById(id).textContent=message||"";
-}
+function setStatus(message,id="status"){document.getElementById(id).textContent=message||""}
 function setPrivateStatus(message){setStatus(message,"privateStatus")}
-
 function toggleMenu(){document.getElementById("menuPanel").classList.toggle("show")}
 function showMenuView(id){
  document.querySelectorAll(".menu-view").forEach(v=>v.classList.remove("active"));
  document.getElementById(id).classList.add("active");
 }
 document.addEventListener("click",event=>{
- const panel=document.getElementById("menuPanel");
- const button=document.querySelector(".menu-button");
+ const panel=document.getElementById("menuPanel"),button=document.querySelector(".menu-button");
  if(!panel.contains(event.target)&&!button.contains(event.target))panel.classList.remove("show");
 });
 
 function setTheme(theme){
- const allowed=[
-  "gold","purple","emerald","ocean","rose","cream",
-  "romantic","burgundy","lavender","midnight","ivory","forest"
- ];
- if(!allowed.includes(theme))theme="gold";
- if(theme==="gold")document.documentElement.removeAttribute("data-theme");
+ const allowed=["nezuko","tanjiro","zenitsu","inosuke"];
+ if(!allowed.includes(theme))theme="nezuko";
+ if(theme==="nezuko")document.documentElement.removeAttribute("data-theme");
  else document.documentElement.setAttribute("data-theme",theme);
  try{localStorage.setItem("zezeGalleryTheme",theme)}catch(e){}
  updateThemeChoices();
 }
 function updateThemeChoices(){
- let current="gold";
- try{current=localStorage.getItem("zezeGalleryTheme")||"gold"}catch(e){}
+ let current="nezuko";
+ try{current=localStorage.getItem("zezeGalleryTheme")||"nezuko"}catch(e){}
  document.querySelectorAll("[data-theme-choice]").forEach(button=>{
   button.classList.toggle("selected",button.dataset.themeChoice===current);
  });
 }
 function loadSavedTheme(){
- let theme="gold";
- try{theme=localStorage.getItem("zezeGalleryTheme")||"gold"}catch(e){}
+ let theme="nezuko";
+ try{theme=localStorage.getItem("zezeGalleryTheme")||"nezuko"}catch(e){}
  setTheme(theme);
 }
-
 function updateLoginUI(){
  const loggedIn=!!isOwner();
  document.getElementById("loginArea").style.display=loggedIn?"none":"block";
@@ -531,21 +315,14 @@ function updateLoginUI(){
   setPrivateStatus("");
  }
 }
-
 function openCollections(){
- if(!isOwner()){
-  setStatus("Login sebagai pemilik terlebih dahulu.");
-  showMenuView("loginView");
-  return;
- }
+ if(!isOwner()){setStatus("Login sebagai pemilik terlebih dahulu.");showMenuView("loginView");return}
  document.getElementById("menuPanel").classList.remove("show");
  backToPrivateFolders();
  document.getElementById("privateSection").scrollIntoView({behavior:"smooth",block:"start"});
 }
-
 async function login(){
- const email=document.getElementById("email").value.trim();
- const password=document.getElementById("password").value;
+ const email=document.getElementById("email").value.trim(),password=document.getElementById("password").value;
  if(!email||!password){setStatus("Isi email dan password terlebih dahulu.","loginStatus");return}
  setStatus("Sedang masuk...","loginStatus");
  const {data,error}=await db.auth.signInWithPassword({email,password});
@@ -554,37 +331,29 @@ async function login(){
   await db.auth.signOut();currentUser=null;updateLoginUI();
   setStatus("Akun ini bukan akun pemilik galeri.","loginStatus");return;
  }
- currentUser=data.user;updateLoginUI();
- setStatus("Berhasil masuk!","loginStatus");
- document.getElementById("password").value="";
- showMenuView("mainMenu");
- await loadGallery();
+ currentUser=data.user;updateLoginUI();setStatus("Berhasil masuk!","loginStatus");
+ document.getElementById("password").value="";showMenuView("mainMenu");await loadGallery();
 }
 async function logout(){
- await db.auth.signOut();currentUser=null;updateLoginUI();
- setStatus("Kamu sudah keluar.");
- showMenuView("mainMenu");
- await loadGallery();
+ await db.auth.signOut();currentUser=null;updateLoginUI();setStatus("Kamu sudah keluar.");
+ showMenuView("mainMenu");await loadGallery();
 }
-
+function makeUniqueName(file){
+ const extension=file.name.split(".").pop()||"jpg";
+ const safeName=file.name.replace(/\.[^/.]+$/,"").replace(/[^a-zA-Z0-9_-]/g,"-").slice(0,50);
+ return Date.now()+"-"+Math.random().toString(36).slice(2,9)+"-"+safeName+"."+extension;
+}
 async function uploadPhotos(event){
  if(!isOwner()){setStatus("Silakan login sebagai pemilik.");return}
  const files=Array.from(event.target.files||[]);if(!files.length)return;
- setStatus("Sedang mengunggah foto...");
- let success=0,failed=0;
+ setStatus("Sedang mengunggah foto...");let success=0,failed=0;
  for(const file of files){
   if(!file.type.startsWith("image/")){failed++;continue}
-  const extension=file.name.split(".").pop()||"jpg";
-  const safeName=file.name.replace(/\.[^/.]+$/,"").replace(/[^a-zA-Z0-9_-]/g,"-").slice(0,50);
-  const uniqueName=Date.now()+"-"+Math.random().toString(36).slice(2,9)+"-"+safeName+"."+extension;
-  const {error}=await db.storage.from(BUCKET).upload(uniqueName,file,{cacheControl:"3600",upsert:false,contentType:file.type});
+  const {error}=await db.storage.from(BUCKET).upload(makeUniqueName(file),file,{cacheControl:"3600",upsert:false,contentType:file.type});
   if(error){console.error(error);failed++}else success++;
  }
- event.target.value="";
- setStatus("Selesai! Berhasil: "+success+(failed?" · Gagal: "+failed:""));
- await loadGallery();
+ event.target.value="";setStatus("Selesai! Berhasil: "+success+(failed?" · Gagal: "+failed:""));await loadGallery();
 }
-
 async function loadGallery(){
  if(galleryPromise)return galleryPromise;
  galleryPromise=(async()=>{
@@ -595,98 +364,71 @@ async function loadGallery(){
    const seen=new Set();
    const photos=(data||[]).filter(file=>{
     if(!file.name||file.name.startsWith("."))return false;
-    const type=file.metadata?.mimetype||"";
-    const ext=/\.(jpg|jpeg|png|gif|webp|bmp|avif|heic)$/i.test(file.name);
+    const type=file.metadata?.mimetype||"",ext=/\.(jpg|jpeg|png|gif|webp|bmp|avif|heic)$/i.test(file.name);
     if(!type.startsWith("image/")&&!ext)return false;
-    if(seen.has(file.name))return false;
-    seen.add(file.name);return true;
+    if(seen.has(file.name))return false;seen.add(file.name);return true;
    });
    gallery.innerHTML="";
-   if(!photos.length){
-    gallery.innerHTML='<div class="empty-state"><div class="empty-symbol">✧</div>Belum ada foto di galeri.<br>Koleksi kenanganmu akan tampil di sini.</div>';return;
-   }
-   photos.forEach((photo,index)=>{
+   if(!photos.length){gallery.innerHTML='<div class="empty-state"><div class="empty-symbol">✧</div>Belum ada foto di galeri.<br>Koleksi kenanganmu akan tampil di sini.</div>';return}
+   photos.forEach(photo=>{
     const {data:publicData}=db.storage.from(BUCKET).getPublicUrl(photo.name);
     const card=document.createElement("div");card.className="photo-card";
     const img=document.createElement("img");img.src=publicData.publicUrl;img.alt="Foto galeri";img.loading="lazy";
-    img.addEventListener("click",()=>openViewer(publicData.publicUrl,photo.name));
-    card.append(img);
+    img.addEventListener("click",()=>openViewer(publicData.publicUrl,photo.name));card.append(img);
     if(isOwner()){
      const del=document.createElement("button");del.className="delete-button";del.textContent="Hapus foto";
-     del.addEventListener("click",e=>{e.stopPropagation();deletePhoto(photo.name)});
-     card.appendChild(del);
+     del.addEventListener("click",e=>{e.stopPropagation();deletePhoto(photo.name)});card.appendChild(del);
     }
     gallery.appendChild(card);
    });
-  }catch(error){
-   console.error(error);gallery.innerHTML='<div class="empty-state">Gagal memuat galeri. Silakan muat ulang halaman.</div>';
-  }
+  }catch(error){console.error(error);gallery.innerHTML='<div class="empty-state">Gagal memuat galeri. Silakan muat ulang halaman.</div>'}
  })();
  try{await galleryPromise}finally{galleryPromise=null}
 }
-
 function openViewer(url,name){
- currentPhoto=name;currentPrivatePath=null;
- document.getElementById("viewerImage").src=url;
- document.getElementById("viewerName").textContent="";
- document.getElementById("downloadStatus").textContent="";
- document.getElementById("viewer").classList.add("show");
- document.body.style.overflow="hidden";
+ currentPhoto=name;currentPrivatePath=null;document.getElementById("viewerImage").src=url;
+ document.getElementById("viewerName").textContent="";document.getElementById("downloadStatus").textContent="";
+ document.getElementById("viewer").classList.add("show");document.body.style.overflow="hidden";
 }
 function openPrivateViewer(url,path,name){
  if(!isOwner())return;
- currentPhoto=name;currentPrivatePath=path;
- document.getElementById("viewerImage").src=url;
- document.getElementById("viewerName").textContent="";
- document.getElementById("downloadStatus").textContent="";
- document.getElementById("viewer").classList.add("show");
- document.body.style.overflow="hidden";
+ currentPhoto=name;currentPrivatePath=path;document.getElementById("viewerImage").src=url;
+ document.getElementById("viewerName").textContent="";document.getElementById("downloadStatus").textContent="";
+ document.getElementById("viewer").classList.add("show");document.body.style.overflow="hidden";
 }
 function closeViewer(event){
  if(event&&event.target!==document.getElementById("viewer"))return;
- document.getElementById("viewer").classList.remove("show");
- document.getElementById("viewerImage").src="";
+ document.getElementById("viewer").classList.remove("show");document.getElementById("viewerImage").src="";
  document.body.style.overflow="";
 }
 async function saveCurrentPhoto(event){
- if(event)event.stopPropagation();
- if(!currentPhoto)return;
+ if(event)event.stopPropagation();if(!currentPhoto)return;
  const status=document.getElementById("downloadStatus");status.textContent="Menyiapkan foto...";
  try{
-  const bucket=currentPrivatePath?PRIVATE_BUCKET:BUCKET;
-  const path=currentPrivatePath||currentPhoto;
-  const {data,error}=await db.storage.from(bucket).download(path);
-  if(error)throw error;
-  const blobUrl=URL.createObjectURL(data);
-  const link=document.createElement("a");link.href=blobUrl;link.download=currentPhoto;
-  document.body.appendChild(link);link.click();link.remove();
-  setTimeout(()=>URL.revokeObjectURL(blobUrl),2000);
-  status.textContent="Foto berhasil disiapkan untuk disimpan.";
+  const bucket=currentPrivatePath?PRIVATE_BUCKET:BUCKET,path=currentPrivatePath||currentPhoto;
+  const {data,error}=await db.storage.from(bucket).download(path);if(error)throw error;
+  const blobUrl=URL.createObjectURL(data),link=document.createElement("a");
+  link.href=blobUrl;link.download=currentPhoto;document.body.appendChild(link);link.click();link.remove();
+  setTimeout(()=>URL.revokeObjectURL(blobUrl),2000);status.textContent="Foto berhasil disiapkan untuk disimpan.";
  }catch(error){console.error(error);status.textContent="Gagal menyimpan foto. Coba lagi."}
 }
 async function deletePhoto(name){
  if(!isOwner()||!confirm("Yakin ingin menghapus foto ini dari galeri?"))return;
- setStatus("Menghapus foto...");
- const {error}=await db.storage.from(BUCKET).remove([name]);
+ setStatus("Menghapus foto...");const {error}=await db.storage.from(BUCKET).remove([name]);
  if(error){setStatus("Gagal menghapus: "+error.message);return}
  setStatus("Foto berhasil dihapus.");await loadGallery();
 }
-
-/* FOLDER A DAN Z */
 async function openPrivateFolder(folder){
- if(!isOwner())return;
- activePrivateFolder=folder;
+ if(!isOwner())return;activePrivateFolder=folder;
  document.getElementById("privateFolderGrid").style.display="none";
  document.getElementById("privateContent").classList.add("show");
  document.getElementById("privateFolderTitle").textContent="FOLDER "+folder;
  await loadPrivatePhotos();
 }
 function backToPrivateFolders(){
- activePrivateFolder=null;
- document.getElementById("privateFolderGrid").style.display="grid";
+ activePrivateFolder=null;document.getElementById("privateFolderGrid").style.display="grid";
  document.getElementById("privateContent").classList.remove("show");
- document.getElementById("privateGallery").innerHTML="";
- setPrivateStatus("");
+ document.getElementById("privateGallery").innerHTML="";setPrivateStatus("");
 }
 function escapeText(value){
  return String(value).replace(/[&<>"']/g,char=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
@@ -704,11 +446,9 @@ async function loadPrivatePhotos(){
    return type.startsWith("image/")||/\.(jpg|jpeg|png|gif|webp|bmp|avif|heic)$/i.test(file.name);
   });
   gallery.innerHTML="";
-  if(!photos.length){
-   gallery.innerHTML='<div class="empty-state"><div class="empty-symbol">✧</div>Folder ini masih kosong.<br>Unggah foto pertamamu di sini.</div>';return;
-  }
-  for(let index=0;index<photos.length;index++){
-   const photo=photos[index],path=folder+"/"+photo.name;
+  if(!photos.length){gallery.innerHTML='<div class="empty-state"><div class="empty-symbol">✧</div>Folder ini masih kosong.<br>Unggah foto pertamamu di sini.</div>';return}
+  for(const photo of photos){
+   const path=folder+"/"+photo.name;
    const {data:signedData,error:signedError}=await db.storage.from(PRIVATE_BUCKET).createSignedUrl(path,3600);
    if(signedError){console.error(signedError);continue}
    const card=document.createElement("div");card.className="photo-card";
@@ -719,41 +459,29 @@ async function loadPrivatePhotos(){
    card.append(img,del);gallery.appendChild(card);
   }
   if(!gallery.children.length)gallery.innerHTML='<div class="empty-state">Foto belum bisa ditampilkan. Coba muat ulang.</div>';
- }catch(error){
-  console.error(error);
-  gallery.innerHTML='<div class="empty-state">Gagal memuat folder pribadi: '+escapeText(error.message)+'</div>';
- }
+ }catch(error){console.error(error);gallery.innerHTML='<div class="empty-state">Gagal memuat folder pribadi: '+escapeText(error.message)+'</div>'}
 }
 async function uploadPrivatePhotos(event){
  if(!isOwner()||!activePrivateFolder)return;
  const files=Array.from(event.target.files||[]);if(!files.length)return;
- const folder=activePrivateFolder;setPrivateStatus("Sedang mengunggah foto...");
- let success=0,failed=0;
+ const folder=activePrivateFolder;setPrivateStatus("Sedang mengunggah foto...");let success=0,failed=0;
  for(const file of files){
   if(!file.type.startsWith("image/")){failed++;continue}
-  const extension=file.name.split(".").pop()||"jpg";
-  const safeName=file.name.replace(/\.[^/.]+$/,"").replace(/[^a-zA-Z0-9_-]/g,"-").slice(0,50);
-  const uniqueName=Date.now()+"-"+Math.random().toString(36).slice(2,9)+"-"+safeName+"."+extension;
-  const {error}=await db.storage.from(PRIVATE_BUCKET).upload(folder+"/"+uniqueName,file,{cacheControl:"3600",upsert:false,contentType:file.type});
+  const {error}=await db.storage.from(PRIVATE_BUCKET).upload(folder+"/"+makeUniqueName(file),file,{cacheControl:"3600",upsert:false,contentType:file.type});
   if(error){console.error(error);failed++}else success++;
  }
- event.target.value="";
- setPrivateStatus("Selesai! Berhasil: "+success+(failed?" · Gagal: "+failed:""));
- await loadPrivatePhotos();
+ event.target.value="";setPrivateStatus("Selesai! Berhasil: "+success+(failed?" · Gagal: "+failed:""));await loadPrivatePhotos();
 }
 async function deletePrivatePhoto(path){
  if(!isOwner()||!confirm("Yakin ingin menghapus foto pribadi ini?"))return;
- setPrivateStatus("Menghapus foto...");
- const {error}=await db.storage.from(PRIVATE_BUCKET).remove([path]);
+ setPrivateStatus("Menghapus foto...");const {error}=await db.storage.from(PRIVATE_BUCKET).remove([path]);
  if(error){setPrivateStatus("Gagal menghapus: "+error.message);return}
  if(currentPrivatePath===path){closeViewer();currentPrivatePath=null}
  setPrivateStatus("Foto berhasil dihapus.");await loadPrivatePhotos();
 }
-
 async function initialize(){
  loadSavedTheme();
- const {data}=await db.auth.getSession();
- currentUser=data.session?.user||null;
+ const {data}=await db.auth.getSession();currentUser=data.session?.user||null;
  if(currentUser&&currentUser.id!==OWNER_UID){await db.auth.signOut();currentUser=null}
  updateLoginUI();await loadGallery();
  db.auth.onAuthStateChange((event,session)=>{

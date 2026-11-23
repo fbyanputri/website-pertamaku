@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ZEZE GALERI</title>
+<title>AILIN ZEZE</title>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,12 +85,13 @@ header{
 [data-theme="cream"] header{background:rgba(255,250,240,.62)}
 .header-ornament{color:var(--gold);font-size:18px;letter-spacing:9px;margin-bottom:10px}
 .logo-mark{
- width:43px;height:43px;border:1px solid var(--gold);color:var(--gold-light);
- display:flex;align-items:center;justify-content:center;margin:0 auto 10px;
- font-family:'Cinzel',serif;font-size:25px;transform:rotate(45deg);
- box-shadow:0 0 18px color-mix(in srgb,var(--gold) 20%,transparent);
+ width:64px;height:58px;
+ display:flex;align-items:center;justify-content:center;
+ margin:0 auto 10px;
+ color:var(--gold-light);
+ filter:drop-shadow(0 0 12px color-mix(in srgb,var(--gold) 35%,transparent));
 }
-.logo-mark span{transform:rotate(-45deg)}
+.logo-mark svg{width:64px;height:58px;display:block}
 .logo{
  margin:0;font-family:'Cinzel',serif;font-size:clamp(27px,7vw,43px);
  font-weight:600;letter-spacing:5px;color:var(--gold-light);
@@ -253,8 +254,17 @@ footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'
 <header>
  <button class="menu-button" onclick="toggleMenu()" aria-label="Menu">⋮</button>
  <div class="header-ornament">✧ ───── ✧</div>
- <div class="logo-mark"><span>Z</span></div>
- <h1 class="logo">ZEZE GALERI</h1>
+
+ <div class="logo-mark">
+  <svg viewBox="0 0 120 110" xmlns="http://www.w3.org/2000/svg">
+   <path d="M60 99 C48 87 8 59 8 32 C8 13 32 5 60 30 C88 5 112 13 112 32 C112 59 72 87 60 99Z"
+    fill="none" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/>
+   <text x="60" y="57" text-anchor="middle" dominant-baseline="middle"
+    fill="currentColor" font-family="Cinzel,serif" font-size="27" font-weight="bold">AZ</text>
+  </svg>
+ </div>
+
+ <h1 class="logo">AILIN ZEZE</h1>
  <div class="tagline">The Art of Memories</div>
  <div class="header-line"></div>
 
@@ -338,7 +348,7 @@ footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'
    <div class="private-status" id="privateStatus"></div>
    <div class="private-gallery" id="privateGallery"></div>
   </div>
-  <div class="private-lock-note">✧ Area pribadi pemilik ZEZE GALERI ✧</div>
+  <div class="private-lock-note">✧ Area pribadi pemilik AILIN ZEZE ✧</div>
  </section>
 
  <div class="gallery-heading">
@@ -351,7 +361,7 @@ footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'
  </div>
 </main>
 
-<footer>✧ ZEZE GALERI · A Collection of Memories ✧</footer>
+<footer>✧ AILIN ZEZE · A Collection of Memories ✧</footer>
 
 <div class="viewer" id="viewer" onclick="closeViewer(event)">
  <button class="viewer-close" onclick="closeViewer()">×</button>

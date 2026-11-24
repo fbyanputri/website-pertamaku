@@ -239,14 +239,25 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 }
 .music-heading p{color:var(--muted);font-family:'Playfair Display',serif;font-style:italic;font-size:13px;margin:7px 0}
 .music-panel{
- position:relative;overflow:visible;padding:20px 16px 15px;
+ position:relative;overflow:visible;padding:16px;
  border:1px solid var(--gold-dark);border-radius:16px;
  background:linear-gradient(145deg,var(--panel),var(--accent-bg));
  box-shadow:0 12px 30px #0008,inset 0 0 22px color-mix(in srgb,var(--gold) 8%,transparent);
+
+ /* Layout dua kolom */
+ display:grid;
+ grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+ grid-template-areas:
+  "top playlist-title"
+  "progress playlist"
+  "controls playlist"
+  "status playlist";
+ column-gap:18px;
+ align-items:start;
 }
-.music-top{display:flex;align-items:center;gap:17px}
+.music-top{grid-area:top;display:flex;align-items:center;gap:12px}
 .album-wrap{
- width:112px;height:112px;flex:0 0 112px;border-radius:50%;
+ width:88px;height:88px;flex:0 0 88px;border-radius:50%;
  display:flex;align-items:center;justify-content:center;
  background:conic-gradient(from 0deg,var(--gold-dark),var(--gold-light),var(--gold),var(--gold-dark),var(--gold-light),var(--gold-dark));
  padding:5px;box-shadow:0 0 18px color-mix(in srgb,var(--gold) 25%,transparent);
@@ -274,11 +285,11 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 .music-info{min-width:0;flex:1}
 .music-kicker{color:var(--gold);font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:7px}
 .music-title{
- color:var(--gold-light);font-family:'Cinzel',serif;font-size:15px;
+ color:var(--gold-light);font-family:'Cinzel',serif;font-size:13px;
  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:6px;
 }
-.music-subtitle{color:var(--muted);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.music-progress{margin-top:20px}
+.music-subtitle{color:var(--muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music-progress{grid-area:progress;margin-top:15px}
 .music-seek{
  width:100%;height:5px;border-radius:10px;appearance:none;outline:none;
  background:var(--frame);accent-color:var(--gold);cursor:pointer;
@@ -292,26 +303,35 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
  width:10px;height:10px;border-radius:50%;background:var(--gold-light);border:2px solid var(--gold-dark);
 }
 .music-times{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-top:5px}
-.music-controls{display:flex;align-items:center;justify-content:center;gap:22px;margin:15px 0 17px}
+.music-controls{
+ grid-area:controls;display:flex;align-items:center;justify-content:center;
+ gap:16px;margin:13px 0 5px;
+}
 .music-control{
- width:37px;height:37px;border-radius:50%;border:1px solid var(--gold-dark);
- background:var(--accent-bg);color:var(--gold-light);font-size:17px;
+ width:33px;height:33px;border-radius:50%;border:1px solid var(--gold-dark);
+ background:var(--accent-bg);color:var(--gold-light);font-size:15px;
  display:flex;align-items:center;justify-content:center;
 }
 .music-control.play{
- width:49px;height:49px;font-size:19px;
+ width:43px;height:43px;font-size:17px;
  border:1px solid var(--gold);
  background:linear-gradient(145deg,var(--gold-light),var(--gold));
  color:var(--button-text);box-shadow:0 0 15px color-mix(in srgb,var(--gold) 25%,transparent);
 }
 .music-control:active{transform:scale(.94)}
 .playlist-title{
+ grid-area:playlist-title;
  display:flex;align-items:center;justify-content:space-between;
  color:var(--gold-light);font-family:'Cinzel',serif;font-size:11px;
- letter-spacing:1.5px;padding:11px 2px 8px;border-top:1px solid color-mix(in srgb,var(--gold) 25%,transparent);
+ letter-spacing:1.5px;padding:5px 2px 9px;
+ border-bottom:1px solid color-mix(in srgb,var(--gold) 25%,transparent);
+ min-height:35px;
 }
 .playlist-count{font-family:'Poppins',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0}
-.playlist{display:flex;flex-direction:column;gap:5px;max-height:220px;overflow-y:auto}
+.playlist{
+ grid-area:playlist;display:flex;flex-direction:column;gap:5px;
+ max-height:230px;overflow-y:auto;padding-right:3px;
+}
 .track-row{
  position:relative;display:flex;align-items:center;gap:9px;
  min-width:0;padding:9px 7px;border:1px solid transparent;border-radius:8px;
@@ -341,8 +361,38 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
  padding:17px 8px;text-align:center;color:var(--muted);
  font-family:'Playfair Display',serif;font-size:12px;
 }
-.music-status{text-align:center;color:var(--muted);font-size:10px;min-height:15px;margin-top:8px}
+.music-status{grid-area:status;text-align:center;color:var(--muted);font-size:10px;min-height:15px;margin-top:8px}
 .audio-hidden{display:none}
+
+/* TAMPILAN HP */
+@media(max-width:480px){
+ .music-panel{
+  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+  column-gap:10px;
+  padding:12px 9px;
+ }
+ .music-top{
+  flex-direction:column;
+  text-align:center;
+  gap:8px;
+ }
+ .album-wrap{
+  width:76px;
+  height:76px;
+  flex-basis:76px;
+ }
+ .music-kicker{font-size:8px;letter-spacing:1px}
+ .music-title{font-size:11px}
+ .music-subtitle{font-size:9px}
+ .music-controls{gap:9px}
+ .music-control{width:29px;height:29px;font-size:12px}
+ .music-control.play{width:38px;height:38px;font-size:15px}
+ .track-row{gap:5px;padding:8px 4px}
+ .track-number{width:16px;flex-basis:16px;font-size:9px}
+ .track-name{font-size:10px}
+ .track-menu-button{width:25px;height:25px;font-size:16px}
+ .playlist{max-height:210px}
+}
 
 /* PRIVATE COLLECTION */
 .private-section{display:none;margin-bottom:48px}
@@ -398,12 +448,6 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 footer{
  padding:22px 10px 30px;text-align:center;color:var(--muted);
  font-family:'Playfair Display',serif;font-style:italic;font-size:12px;letter-spacing:1px;text-shadow:0 1px 8px #0009;
-}
-@media(max-width:420px){
- .music-panel{padding:16px 12px}
- .album-wrap{width:94px;height:94px;flex-basis:94px}
- .music-top{gap:13px}
- .music-title{font-size:13px}
 }
 @media(min-width:700px){
  .gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:27px}
@@ -489,7 +533,6 @@ footer{
 </header>
 
 <main>
- <!-- PEMUTAR MP3 TERPISAH DARI GALERI FOTO -->
  <section class="music-section">
   <div class="music-heading">
    <h2>✧ MUSIC COLLECTION ✧</h2>
@@ -671,7 +714,7 @@ async function logout(){
  await Promise.all([loadGallery(),loadMusic()]);
 }
 
-/* UPLOAD FOTO DAN MP3 DALAM SATU BUCKET */
+/* UPLOAD FOTO DAN MP3 */
 function isMp3(file){
  return /\.mp3$/i.test(file.name)||file.type==="audio/mpeg"||file.type==="audio/mp3";
 }
@@ -703,7 +746,7 @@ async function uploadPhotos(event){
  await Promise.all([loadGallery(),loadMusic()]);
 }
 
-/* GALERI FOTO - FILE MP3 TIDAK DITAMPILKAN DI SINI */
+/* GALERI FOTO */
 async function loadGallery(){
  if(galleryPromise)return galleryPromise;
  galleryPromise=(async()=>{

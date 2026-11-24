@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -230,7 +229,7 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 }
 .empty-symbol{font-size:35px;color:var(--gold);margin-bottom:12px}
 
-/* MUSIC PLAYER COMPACT */
+/* MUSIC PLAYER */
 .music-section{margin:0 auto 38px;max-width:850px}
 .music-heading{text-align:center;margin-bottom:17px}
 .music-heading h2{
@@ -313,36 +312,23 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
  display:flex;align-items:center;justify-content:center;
  line-height:1;position:relative;transform:none;
 }
-
-/* IKON PREVIOUS DAN NEXT YANG SIMETRIS */
 .music-control.prev,.music-control.next{
- font-size:0;
- gap:2px;
+ font-size:0;gap:2px;
 }
 .music-control.prev::before{
- content:"";
- width:0;height:0;
- border-top:7px solid transparent;
- border-bottom:7px solid transparent;
+ content:"";width:0;height:0;
+ border-top:7px solid transparent;border-bottom:7px solid transparent;
  border-right:9px solid var(--gold-light);
 }
 .music-control.prev::after{
- content:"";
- width:2px;height:14px;
- border-radius:2px;
- background:var(--gold-light);
+ content:"";width:2px;height:14px;border-radius:2px;background:var(--gold-light);
 }
 .music-control.next::before{
- content:"";
- width:2px;height:14px;
- border-radius:2px;
- background:var(--gold-light);
+ content:"";width:2px;height:14px;border-radius:2px;background:var(--gold-light);
 }
 .music-control.next::after{
- content:"";
- width:0;height:0;
- border-top:7px solid transparent;
- border-bottom:7px solid transparent;
+ content:"";width:0;height:0;
+ border-top:7px solid transparent;border-bottom:7px solid transparent;
  border-left:9px solid var(--gold-light);
 }
 .music-control.play{
@@ -393,7 +379,7 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
  100%{height:75%}
 }
 
-/* DAFTAR LAGU */
+/* DAFTAR LAGU - TINGGI TETAP, 3 LAGU TERLIHAT */
 .playlist-title{
  grid-area:playlist-title;
  display:flex;align-items:center;justify-content:space-between;
@@ -403,17 +389,39 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
  min-width:0;
 }
 .playlist-count{font-family:'Poppins',sans-serif;font-size:9px;color:var(--muted);letter-spacing:0}
+
 .playlist{
- grid-area:playlist;display:flex;flex-direction:column;gap:6px;
- max-height:260px;min-height:145px;overflow-y:auto;padding:2px 3px 3px 2px;
- scrollbar-width:thin;scrollbar-color:var(--gold-dark) var(--accent-bg);
+ grid-area:playlist;
+ display:flex;
+ flex-direction:column;
+ gap:5px;
+ height:145px;
+ min-height:0;
+ max-height:145px;
+ overflow-y:auto;
+ overflow-x:hidden;
+ padding:2px 4px 3px 2px;
+ scrollbar-width:thin;
+ scrollbar-color:var(--gold-dark) var(--accent-bg);
+ overscroll-behavior:contain;
 }
 .playlist::-webkit-scrollbar{width:4px}
+.playlist::-webkit-scrollbar-track{background:var(--accent-bg);border-radius:10px}
 .playlist::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:10px}
+
 .track-row{
- position:relative;display:flex;align-items:center;gap:7px;
- min-width:0;padding:9px 6px;border:1px solid color-mix(in srgb,var(--gold) 12%,transparent);
- border-radius:8px;background:color-mix(in srgb,var(--accent-bg) 85%,transparent);
+ position:relative;
+ display:flex;
+ align-items:center;
+ gap:7px;
+ flex:0 0 42px;
+ min-width:0;
+ min-height:42px;
+ height:42px;
+ padding:5px 6px;
+ border:1px solid color-mix(in srgb,var(--gold) 12%,transparent);
+ border-radius:8px;
+ background:color-mix(in srgb,var(--accent-bg) 85%,transparent);
  transition:background .2s,border .2s;
 }
 .track-row.active{
@@ -453,7 +461,10 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 /* TAMPILAN HP */
 @media(max-width:480px){
  main{padding:22px 10px 50px}
- .music-panel{padding:9px;gap:9px 8px;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr)}
+ .music-panel{
+  padding:9px;gap:9px 8px;
+  grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);
+ }
  .music-top{gap:7px}
  .album-wrap{width:57px;height:57px;flex-basis:57px;padding:3px}
  .album-center{width:26px;height:26px;font-size:9px}
@@ -473,8 +484,19 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
  .visualizer{height:48px;gap:2px;padding:6px 4px}
  .playlist-title{font-size:9px;letter-spacing:.5px;padding:7px 2px}
  .playlist-count{font-size:8px}
- .playlist{max-height:245px;min-height:135px;gap:5px}
- .track-row{gap:4px;padding:8px 4px}
+ .playlist{
+  height:130px;
+  min-height:0;
+  max-height:130px;
+  gap:5px;
+ }
+ .track-row{
+  flex-basis:38px;
+  height:38px;
+  min-height:38px;
+  gap:4px;
+  padding:4px;
+ }
  .track-number{width:15px;flex-basis:15px;font-size:9px}
  .track-name{font-size:9px}
  .track-menu-button{width:24px;height:24px;font-size:15px}

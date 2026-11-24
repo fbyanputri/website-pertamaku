@@ -307,12 +307,46 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
  gap:13px;margin:0;
 }
 .music-control{
- width:32px;height:32px;border-radius:50%;border:1px solid var(--gold-dark);
+ width:32px;height:32px;flex:0 0 32px;padding:0;
+ border-radius:50%;border:1px solid var(--gold-dark);
  background:var(--accent-bg);color:var(--gold-light);font-size:13px;
  display:flex;align-items:center;justify-content:center;
+ line-height:1;position:relative;transform:none;
+}
+
+/* IKON PREVIOUS DAN NEXT YANG SIMETRIS */
+.music-control.prev,.music-control.next{
+ font-size:0;
+ gap:2px;
+}
+.music-control.prev::before{
+ content:"";
+ width:0;height:0;
+ border-top:7px solid transparent;
+ border-bottom:7px solid transparent;
+ border-right:9px solid var(--gold-light);
+}
+.music-control.prev::after{
+ content:"";
+ width:2px;height:14px;
+ border-radius:2px;
+ background:var(--gold-light);
+}
+.music-control.next::before{
+ content:"";
+ width:2px;height:14px;
+ border-radius:2px;
+ background:var(--gold-light);
+}
+.music-control.next::after{
+ content:"";
+ width:0;height:0;
+ border-top:7px solid transparent;
+ border-bottom:7px solid transparent;
+ border-left:9px solid var(--gold-light);
 }
 .music-control.play{
- width:42px;height:42px;font-size:17px;
+ width:42px;height:42px;flex:0 0 42px;font-size:17px;
  border:1px solid var(--gold);
  background:linear-gradient(145deg,var(--gold-light),var(--gold));
  color:var(--button-text);box-shadow:0 0 15px color-mix(in srgb,var(--gold) 25%,transparent);
@@ -427,8 +461,15 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
  .music-title{font-size:10px}
  .music-subtitle{font-size:8px}
  .music-controls{gap:8px}
- .music-control{width:27px;height:27px;font-size:11px}
- .music-control.play{width:36px;height:36px;font-size:15px}
+ .music-control{width:27px;height:27px;flex-basis:27px;font-size:11px}
+ .music-control.prev::before,.music-control.next::after{
+  border-top-width:6px;border-bottom-width:6px;
+  border-right-width:8px;border-left-width:8px;
+ }
+ .music-control.prev::after,.music-control.next::before{
+  width:2px;height:12px;
+ }
+ .music-control.play{width:36px;height:36px;flex-basis:36px;font-size:15px}
  .visualizer{height:48px;gap:2px;padding:6px 4px}
  .playlist-title{font-size:9px;letter-spacing:.5px;padding:7px 2px}
  .playlist-count{font-size:8px}
@@ -610,9 +651,9 @@ footer{
    </div>
 
    <div class="music-controls">
-    <button class="music-control" onclick="previousTrack()" aria-label="Lagu sebelumnya">|◀</button>
+    <button class="music-control prev" onclick="previousTrack()" aria-label="Lagu sebelumnya"></button>
     <button class="music-control play" id="playButton" onclick="togglePlayback()" aria-label="Putar atau jeda">▶</button>
-    <button class="music-control" onclick="nextTrack()" aria-label="Lagu berikutnya">▶|</button>
+    <button class="music-control next" onclick="nextTrack()" aria-label="Lagu berikutnya"></button>
    </div>
 
    <div class="visualizer" id="visualizer" aria-label="Music equalizer">

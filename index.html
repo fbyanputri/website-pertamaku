@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -230,7 +229,7 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 }
 .empty-symbol{font-size:35px;color:var(--gold);margin-bottom:12px}
 
-/* PEMUTAR MUSIK */
+/* PEMUTAR MUSIK - LAYOUT BARU */
 .music-section{margin:0 auto 38px;max-width:850px}
 .music-heading{text-align:center;margin-bottom:17px}
 .music-heading h2{
@@ -239,21 +238,25 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 }
 .music-heading p{color:var(--muted);font-family:'Playfair Display',serif;font-style:italic;font-size:13px;margin:7px 0}
 .music-panel{
- position:relative;overflow:visible;padding:16px;
+ position:relative;overflow:visible;padding:17px;
  border:1px solid var(--gold-dark);border-radius:16px;
  background:linear-gradient(145deg,var(--panel),var(--accent-bg));
  box-shadow:0 12px 30px #0008,inset 0 0 22px color-mix(in srgb,var(--gold) 8%,transparent);
  display:grid;
- grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);
+ grid-template-columns:1fr;
  grid-template-areas:
-  "top dance"
-  "progress playlist-title"
-  "controls playlist"
-  "status playlist";
- column-gap:18px;
- align-items:start;
+  "top"
+  "dance"
+  "progress"
+  "controls"
+  "visualizer"
+  "status"
+  "playlist-title"
+  "playlist";
+ gap:13px;
+ align-items:stretch;
 }
-.music-top{grid-area:top;display:flex;align-items:center;gap:12px}
+.music-top{grid-area:top;display:flex;align-items:center;gap:15px}
 .album-wrap{
  width:88px;height:88px;flex:0 0 88px;border-radius:50%;
  display:flex;align-items:center;justify-content:center;
@@ -283,191 +286,242 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 .music-info{min-width:0;flex:1}
 .music-kicker{color:var(--gold);font-size:9px;letter-spacing:2px;text-transform:uppercase;margin-bottom:7px}
 .music-title{
- color:var(--gold-light);font-family:'Cinzel',serif;font-size:13px;
+ color:var(--gold-light);font-family:'Cinzel',serif;font-size:15px;
  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:6px;
 }
-.music-subtitle{color:var(--muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.music-progress{grid-area:progress;margin-top:15px}
+.music-subtitle{color:var(--muted);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.music-progress{grid-area:progress;margin-top:2px}
 .music-seek{
- width:100%;height:5px;border-radius:10px;appearance:none;outline:none;
+ width:100%;height:6px;border-radius:10px;appearance:none;outline:none;
  background:var(--frame);accent-color:var(--gold);cursor:pointer;
 }
 .music-seek::-webkit-slider-thumb{
- appearance:none;width:12px;height:12px;border-radius:50%;
+ appearance:none;width:14px;height:14px;border-radius:50%;
  background:var(--gold-light);border:2px solid var(--gold-dark);
  box-shadow:0 0 8px var(--gold);
 }
 .music-seek::-moz-range-thumb{
- width:10px;height:10px;border-radius:50%;background:var(--gold-light);border:2px solid var(--gold-dark);
+ width:12px;height:12px;border-radius:50%;background:var(--gold-light);border:2px solid var(--gold-dark);
 }
-.music-times{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;margin-top:5px}
+.music-times{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:6px}
 .music-controls{
  grid-area:controls;display:flex;align-items:center;justify-content:center;
- gap:16px;margin:13px 0 5px;
+ gap:22px;margin:0;
 }
 .music-control{
- width:33px;height:33px;border-radius:50%;border:1px solid var(--gold-dark);
- background:var(--accent-bg);color:var(--gold-light);font-size:15px;
+ width:38px;height:38px;border-radius:50%;border:1px solid var(--gold-dark);
+ background:var(--accent-bg);color:var(--gold-light);font-size:16px;
  display:flex;align-items:center;justify-content:center;
 }
 .music-control.play{
- width:43px;height:43px;font-size:17px;
+ width:49px;height:49px;font-size:19px;
  border:1px solid var(--gold);
  background:linear-gradient(145deg,var(--gold-light),var(--gold));
  color:var(--button-text);box-shadow:0 0 15px color-mix(in srgb,var(--gold) 25%,transparent);
 }
 .music-control:active{transform:scale(.94)}
 
-/* ANIMASI PASANGAN MENARI */
+/* PASANGAN BERDANSA */
 .dance-stage{
- grid-area:dance;
- height:112px;
- width:100%;
- position:relative;
- overflow:hidden;
- display:flex;
- align-items:center;
- justify-content:center;
- border:1px solid color-mix(in srgb,var(--gold) 25%,transparent);
- border-radius:12px;
+ grid-area:dance;height:190px;width:100%;position:relative;overflow:hidden;
+ display:flex;align-items:center;justify-content:center;
+ border:1px solid color-mix(in srgb,var(--gold) 30%,transparent);
+ border-radius:13px;
  background:
-  radial-gradient(ellipse at 50% 100%,color-mix(in srgb,var(--gold) 15%,transparent),transparent 70%),
+  radial-gradient(ellipse at 50% 90%,color-mix(in srgb,var(--gold) 20%,transparent),transparent 65%),
   linear-gradient(145deg,color-mix(in srgb,var(--panel) 90%,transparent),color-mix(in srgb,var(--accent-bg) 90%,transparent));
 }
 .dance-stage:before{
- content:"";position:absolute;left:10%;right:10%;bottom:14px;height:1px;
+ content:"";position:absolute;left:8%;right:8%;bottom:22px;height:1px;
  background:linear-gradient(90deg,transparent,var(--gold),transparent);
- box-shadow:0 0 12px var(--gold);
+ box-shadow:0 0 14px var(--gold);
 }
 .dance-stage:after{
- content:"";position:absolute;width:115px;height:75px;bottom:8px;
- border-radius:50%;background:var(--gold);filter:blur(35px);opacity:.12;
+ content:"";position:absolute;width:180px;height:90px;bottom:0;
+ border-radius:50%;background:var(--gold);filter:blur(45px);opacity:.13;
 }
 .dance-caption{
- position:absolute;top:7px;left:0;right:0;text-align:center;
- color:var(--gold-light);font-family:'Cinzel',serif;font-size:8px;
- letter-spacing:2px;opacity:.8;z-index:2;
+ position:absolute;top:10px;left:0;right:0;text-align:center;
+ color:var(--gold-light);font-family:'Cinzel',serif;font-size:9px;
+ letter-spacing:2.5px;opacity:.9;z-index:3;
 }
-.dance-svg{
- width:min(100%,260px);height:100px;position:relative;z-index:1;
- overflow:visible;
-}
-.dance-shadow{fill:var(--gold);opacity:.12}
-.dancer{transform-box:fill-box;transform-origin:center bottom}
-.dancer-left{transform-origin:75px 112px}
-.dancer-right{transform-origin:225px 112px}
-.dance-head{fill:var(--gold-light);stroke:var(--gold-dark);stroke-width:1}
+.dance-svg{width:min(100%,390px);height:165px;position:relative;z-index:2;overflow:visible}
+.dance-shadow{fill:var(--gold);opacity:.17}
+.dancer{transform-box:view-box}
+.dancer-left{transform-origin:105px 115px}
+.dancer-right{transform-origin:195px 115px}
+.dance-head{fill:var(--gold-light);stroke:var(--gold-dark);stroke-width:1.5}
 .dance-body{fill:var(--gold);stroke:var(--gold-light);stroke-width:1.2;stroke-linejoin:round}
 .dance-limb{
- fill:none;stroke:var(--gold-light);stroke-width:5;
+ fill:none;stroke:var(--gold-light);stroke-width:5.5;
  stroke-linecap:round;stroke-linejoin:round;
 }
 .dance-detail{fill:none;stroke:var(--gold-dark);stroke-width:1.5;stroke-linecap:round}
-.dance-spark{fill:var(--gold-light);opacity:.65}
-.dance-stage.is-dancing .dancer-left{animation:danceSwayLeft 1.25s ease-in-out infinite}
-.dance-stage.is-dancing .dancer-right{animation:danceSwayRight 1.25s ease-in-out infinite}
-.dance-stage.is-dancing .left-arm{transform-origin:85px 42px;animation:leftArmDance 1.25s ease-in-out infinite}
-.dance-stage.is-dancing .right-arm{transform-origin:215px 42px;animation:rightArmDance 1.25s ease-in-out infinite}
-.dance-stage.is-dancing .left-leg{transform-origin:75px 88px;animation:leftLegDance .62s ease-in-out infinite alternate}
-.dance-stage.is-dancing .right-leg{transform-origin:225px 88px;animation:rightLegDance .62s ease-in-out infinite alternate}
-.dance-stage.is-dancing .dance-spark{animation:sparkDance 1s ease-in-out infinite alternate}
-.dance-stage.is-dancing .spark-two{animation-delay:.35s}
-.dance-stage.is-dancing .spark-three{animation-delay:.7s}
-@keyframes danceSwayLeft{
- 0%,100%{transform:rotate(-8deg) translateY(0)}
- 50%{transform:rotate(9deg) translateY(-5px)}
+.dance-spark{fill:var(--gold-light);opacity:.65;transform-box:fill-box;transform-origin:center}
+.dance-stage.is-dancing .dancer-left{animation:leadDance 2.2s ease-in-out infinite}
+.dance-stage.is-dancing .dancer-right{animation:followDance 2.2s ease-in-out infinite}
+.dance-stage.is-dancing .left-arm{transform-origin:90px 48px;animation:armLead 1.1s ease-in-out infinite alternate}
+.dance-stage.is-dancing .right-arm{transform-origin:210px 48px;animation:armFollow 1.1s ease-in-out infinite alternate}
+.dance-stage.is-dancing .left-leg{transform-origin:95px 100px;animation:legLead 1.1s ease-in-out infinite alternate}
+.dance-stage.is-dancing .right-leg{transform-origin:205px 100px;animation:legFollow 1.1s ease-in-out infinite alternate}
+.dance-stage.is-dancing .dance-spark{animation:sparkDance 1.2s ease-in-out infinite alternate}
+.dance-stage.is-dancing .spark-two{animation-delay:.4s}
+.dance-stage.is-dancing .spark-three{animation-delay:.8s}
+@keyframes leadDance{
+ 0%,100%{transform:translate(0,0) rotate(-5deg)}
+ 25%{transform:translate(8px,-5px) rotate(7deg)}
+ 50%{transform:translate(15px,0) rotate(3deg)}
+ 75%{transform:translate(5px,-4px) rotate(-8deg)}
 }
-@keyframes danceSwayRight{
- 0%,100%{transform:rotate(8deg) translateY(-3px)}
- 50%{transform:rotate(-9deg) translateY(2px)}
+@keyframes followDance{
+ 0%,100%{transform:translate(0,0) rotate(5deg)}
+ 25%{transform:translate(-8px,-4px) rotate(-7deg)}
+ 50%{transform:translate(-15px,0) rotate(-3deg)}
+ 75%{transform:translate(-5px,-5px) rotate(8deg)}
 }
-@keyframes leftArmDance{
- 0%,100%{transform:rotate(-15deg)}
- 50%{transform:rotate(18deg)}
+@keyframes armLead{
+ from{transform:rotate(-18deg)}
+ to{transform:rotate(22deg)}
 }
-@keyframes rightArmDance{
- 0%,100%{transform:rotate(15deg)}
- 50%{transform:rotate(-18deg)}
+@keyframes armFollow{
+ from{transform:rotate(18deg)}
+ to{transform:rotate(-22deg)}
 }
-@keyframes leftLegDance{
- from{transform:rotate(-12deg)}
- to{transform:rotate(15deg)}
+@keyframes legLead{
+ from{transform:rotate(-14deg)}
+ to{transform:rotate(18deg)}
 }
-@keyframes rightLegDance{
- from{transform:rotate(12deg)}
- to{transform:rotate(-15deg)}
+@keyframes legFollow{
+ from{transform:rotate(14deg)}
+ to{transform:rotate(-18deg)}
 }
 @keyframes sparkDance{
- from{opacity:.2;transform:scale(.7)}
- to{opacity:1;transform:scale(1.35)}
+ from{opacity:.2;transform:scale(.7) rotate(0)}
+ to{opacity:1;transform:scale(1.4) rotate(35deg)}
 }
+
+/* EQUALIZER */
+.visualizer{
+ grid-area:visualizer;height:76px;width:100%;display:flex;
+ align-items:flex-end;justify-content:center;gap:4px;
+ padding:10px 9px 7px;overflow:hidden;
+ border-radius:10px;
+ border:1px solid color-mix(in srgb,var(--gold) 20%,transparent);
+ background:linear-gradient(180deg,color-mix(in srgb,var(--accent-bg) 90%,transparent),color-mix(in srgb,var(--panel) 95%,transparent));
+}
+.visualizer span{
+ flex:1;max-width:10px;min-width:3px;height:12%;
+ border-radius:5px 5px 2px 2px;
+ background:linear-gradient(180deg,var(--gold-light),var(--gold),var(--gold-dark));
+ box-shadow:0 0 8px color-mix(in srgb,var(--gold) 55%,transparent);
+ transform-origin:bottom;
+}
+.visualizer.is-playing span{animation:equalizerDance .65s ease-in-out infinite alternate}
+.visualizer.is-playing span:nth-child(3n){animation-duration:.48s}
+.visualizer.is-playing span:nth-child(4n){animation-duration:.82s}
+.visualizer.is-playing span:nth-child(5n){animation-duration:.57s}
+.visualizer.is-playing span:nth-child(1){animation-delay:-.2s}
+.visualizer.is-playing span:nth-child(2){animation-delay:-.5s}
+.visualizer.is-playing span:nth-child(3){animation-delay:-.1s}
+.visualizer.is-playing span:nth-child(4){animation-delay:-.4s}
+.visualizer.is-playing span:nth-child(5){animation-delay:-.3s}
+.visualizer.is-playing span:nth-child(6){animation-delay:-.6s}
+.visualizer.is-playing span:nth-child(7){animation-delay:-.15s}
+.visualizer.is-playing span:nth-child(8){animation-delay:-.45s}
+.visualizer.is-playing span:nth-child(9){animation-delay:-.25s}
+.visualizer.is-playing span:nth-child(10){animation-delay:-.55s}
+.visualizer.is-playing span:nth-child(11){animation-delay:-.35s}
+.visualizer.is-playing span:nth-child(12){animation-delay:-.12s}
+@keyframes equalizerDance{
+ 0%{height:12%}
+ 20%{height:42%}
+ 45%{height:95%}
+ 70%{height:30%}
+ 100%{height:75%}
+}
+
+/* DAFTAR LAGU */
 .playlist-title{
  grid-area:playlist-title;
  display:flex;align-items:center;justify-content:space-between;
- color:var(--gold-light);font-family:'Cinzel',serif;font-size:11px;
- letter-spacing:1.5px;padding:5px 2px 9px;
- border-bottom:1px solid color-mix(in srgb,var(--gold) 25%,transparent);
- min-height:35px;
+ color:var(--gold-light);font-family:'Cinzel',serif;font-size:14px;
+ letter-spacing:2px;padding:12px 5px 11px;
+ border-bottom:1px solid color-mix(in srgb,var(--gold) 35%,transparent);
 }
-.playlist-count{font-family:'Poppins',sans-serif;font-size:10px;color:var(--muted);letter-spacing:0}
+.playlist-count{font-family:'Poppins',sans-serif;font-size:11px;color:var(--muted);letter-spacing:0}
 .playlist{
- grid-area:playlist;display:flex;flex-direction:column;gap:5px;
- max-height:230px;overflow-y:auto;padding-right:3px;
+ grid-area:playlist;display:flex;flex-direction:column;gap:7px;
+ max-height:370px;overflow-y:auto;padding:2px 4px 3px 2px;
+ scrollbar-width:thin;scrollbar-color:var(--gold-dark) var(--accent-bg);
 }
+.playlist::-webkit-scrollbar{width:5px}
+.playlist::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:10px}
 .track-row{
- position:relative;display:flex;align-items:center;gap:9px;
- min-width:0;padding:9px 7px;border:1px solid transparent;border-radius:8px;
- background:color-mix(in srgb,var(--accent-bg) 75%,transparent);
+ position:relative;display:flex;align-items:center;gap:12px;
+ min-width:0;padding:13px 11px;border:1px solid color-mix(in srgb,var(--gold) 12%,transparent);
+ border-radius:9px;background:color-mix(in srgb,var(--accent-bg) 85%,transparent);
+ transition:background .2s,border .2s;
 }
-.track-row.active{border-color:var(--gold-dark);background:var(--frame)}
-.track-number{width:20px;text-align:center;color:var(--muted);font-size:11px;flex:0 0 20px}
-.track-name{flex:1;min-width:0;color:var(--text);font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track-row.active{
+ border-color:var(--gold-dark);
+ background:color-mix(in srgb,var(--frame) 85%,var(--gold) 8%);
+ box-shadow:inset 3px 0 var(--gold),0 3px 12px #0003;
+}
+.track-number{
+ width:28px;text-align:center;color:var(--muted);
+ font-size:12px;flex:0 0 28px;
+}
+.track-name{
+ flex:1;min-width:0;color:var(--text);font-size:13px;
+ white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
 .track-row.active .track-name{color:var(--gold-light)}
-.track-playing{font-size:10px;color:var(--gold);margin-right:3px}
+.track-playing{font-size:15px;color:var(--gold);margin-right:5px}
 .track-menu-wrap{position:relative;flex:0 0 auto}
 .track-menu-button{
- width:30px;height:30px;border:1px solid var(--gold-dark);border-radius:50%;
- color:var(--gold-light);background:var(--panel);font-size:19px;line-height:1;
+ width:34px;height:34px;border:1px solid var(--gold-dark);border-radius:50%;
+ color:var(--gold-light);background:var(--panel);font-size:20px;line-height:1;
 }
 .track-menu{
- display:none;position:absolute;right:0;top:34px;z-index:25;
- min-width:105px;padding:5px;border:1px solid var(--gold-dark);
+ display:none;position:absolute;right:0;top:38px;z-index:25;
+ min-width:115px;padding:5px;border:1px solid var(--gold-dark);
  border-radius:8px;background:var(--panel);box-shadow:0 8px 20px #0009;
 }
 .track-menu.show{display:block}
 .track-delete{
- width:100%;padding:9px;border:0;border-radius:5px;
- background:#321715;color:#ffc9bf;text-align:left;font-size:11px;
+ width:100%;padding:10px;border:0;border-radius:5px;
+ background:#321715;color:#ffc9bf;text-align:left;font-size:12px;
 }
 .music-empty{
- padding:17px 8px;text-align:center;color:var(--muted);
- font-family:'Playfair Display',serif;font-size:12px;
+ padding:22px 10px;text-align:center;color:var(--muted);
+ font-family:'Playfair Display',serif;font-size:13px;
 }
-.music-status{grid-area:status;text-align:center;color:var(--muted);font-size:10px;min-height:15px;margin-top:8px}
+.music-status{grid-area:status;text-align:center;color:var(--muted);font-size:11px;min-height:16px}
 .audio-hidden{display:none}
 
 /* TAMPILAN HP */
 @media(max-width:480px){
- .music-panel{
-  grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
-  column-gap:10px;padding:12px 9px;
- }
- .music-top{flex-direction:column;text-align:center;gap:8px}
- .album-wrap{width:76px;height:76px;flex-basis:76px}
+ main{padding:22px 12px 50px}
+ .music-panel{padding:12px;gap:11px}
+ .music-top{gap:11px}
+ .album-wrap{width:75px;height:75px;flex-basis:75px}
  .music-kicker{font-size:8px;letter-spacing:1px}
- .music-title{font-size:11px}
+ .music-title{font-size:12px}
  .music-subtitle{font-size:9px}
- .music-controls{gap:9px}
- .music-control{width:29px;height:29px;font-size:12px}
- .music-control.play{width:38px;height:38px;font-size:15px}
- .track-row{gap:5px;padding:8px 4px}
- .track-number{width:16px;flex-basis:16px;font-size:9px}
- .track-name{font-size:10px}
- .track-menu-button{width:25px;height:25px;font-size:16px}
- .playlist{max-height:210px}
- .dance-stage{height:95px}
- .dance-svg{height:88px}
- .dance-caption{font-size:7px;letter-spacing:1px}
+ .dance-stage{height:155px}
+ .dance-svg{height:135px}
+ .dance-caption{font-size:8px}
+ .visualizer{height:65px;gap:3px;padding:8px 6px}
+ .music-controls{gap:17px}
+ .music-control{width:34px;height:34px;font-size:14px}
+ .music-control.play{width:45px;height:45px;font-size:17px}
+ .playlist-title{font-size:12px;padding:10px 3px}
+ .playlist-count{font-size:10px}
+ .playlist{max-height:340px;gap:6px}
+ .track-row{gap:8px;padding:12px 7px}
+ .track-number{width:23px;flex-basis:23px;font-size:11px}
+ .track-name{font-size:11px}
+ .track-menu-button{width:30px;height:30px;font-size:18px}
 }
 
 /* PRIVATE COLLECTION */
@@ -541,7 +595,8 @@ footer{
  .dance-stage.is-dancing .right-arm,
  .dance-stage.is-dancing .left-leg,
  .dance-stage.is-dancing .right-leg,
- .dance-stage.is-dancing .dance-spark{animation:none}
+ .dance-stage.is-dancing .dance-spark,
+ .visualizer.is-playing span{animation:none}
 }
 </style>
 </head>
@@ -624,6 +679,7 @@ footer{
    <p>Listen to your favorite memories</p>
    <div class="heading-line"></div>
   </div>
+
   <div class="music-panel">
    <div class="music-top">
     <div class="album-wrap" id="albumWrap">
@@ -636,40 +692,38 @@ footer{
     </div>
    </div>
 
-   <!-- ANIMASI PASANGAN BERDANSA -->
    <div class="dance-stage" id="danceStage">
     <div class="dance-caption">✧ DANCE WITH THE MUSIC ✧</div>
-    <svg class="dance-svg" viewBox="0 0 300 125" xmlns="http://www.w3.org/2000/svg" aria-label="Animasi pasangan sedang berdansa">
-     <ellipse class="dance-shadow" cx="150" cy="113" rx="83" ry="7"/>
+    <svg class="dance-svg" viewBox="0 0 300 145" xmlns="http://www.w3.org/2000/svg" aria-label="Animasi pasangan sedang berdansa">
+     <ellipse class="dance-shadow" cx="150" cy="128" rx="88" ry="8"/>
 
      <!-- Penari kiri -->
      <g class="dancer dancer-left">
-      <circle class="dance-head" cx="75" cy="25" r="10"/>
-      <path class="dance-body" d="M65 39 Q75 34 85 39 L91 68 Q75 77 59 68Z"/>
-      <path class="dance-body" d="M63 67 Q75 72 87 67 L99 104 Q75 111 51 104Z"/>
-      <path class="dance-limb left-arm" d="M64 43 Q49 49 55 65 Q60 71 72 65"/>
-      <path class="dance-limb" d="M84 43 Q102 32 116 43 Q126 49 135 45"/>
-      <path class="dance-limb left-leg" d="M63 103 L58 119"/>
-      <path class="dance-limb" d="M84 103 L91 118"/>
-      <path class="dance-detail" d="M60 72 Q75 79 90 72"/>
+      <circle class="dance-head" cx="95" cy="29" r="11"/>
+      <path class="dance-body" d="M84 43 Q95 37 106 43 L111 76 Q95 84 79 76Z"/>
+      <path class="dance-body" d="M82 74 Q95 81 108 74 L117 111 Q95 119 73 111Z"/>
+      <path class="dance-limb left-arm" d="M85 47 Q67 52 72 69 Q76 76 89 67"/>
+      <path class="dance-limb" d="M105 47 Q124 32 139 48 Q146 55 151 55"/>
+      <path class="dance-limb left-leg" d="M84 111 Q78 123 69 132"/>
+      <path class="dance-limb" d="M105 111 Q113 122 119 132"/>
+      <path class="dance-detail" d="M79 78 Q95 87 111 78"/>
      </g>
 
      <!-- Penari kanan -->
      <g class="dancer dancer-right">
-      <circle class="dance-head" cx="225" cy="25" r="10"/>
-      <path class="dance-body" d="M215 39 Q225 34 235 39 L241 68 Q225 77 209 68Z"/>
-      <path class="dance-body" d="M213 67 Q225 72 237 67 L249 104 Q225 111 201 104Z"/>
-      <path class="dance-limb" d="M216 43 Q198 32 184 43 Q174 49 165 45"/>
-      <path class="dance-limb right-arm" d="M236 43 Q251 49 245 65 Q240 71 228 65"/>
-      <path class="dance-limb" d="M213 103 L207 118"/>
-      <path class="dance-limb right-leg" d="M234 103 L242 119"/>
-      <path class="dance-detail" d="M210 72 Q225 79 240 72"/>
+      <circle class="dance-head" cx="205" cy="29" r="11"/>
+      <path class="dance-body" d="M194 43 Q205 37 216 43 L221 76 Q205 84 189 76Z"/>
+      <path class="dance-body" d="M192 74 Q205 81 218 74 L227 111 Q205 119 183 111Z"/>
+      <path class="dance-limb" d="M195 47 Q176 32 161 48 Q154 55 149 55"/>
+      <path class="dance-limb right-arm" d="M215 47 Q233 52 228 69 Q224 76 211 67"/>
+      <path class="dance-limb" d="M194 111 Q187 122 181 132"/>
+      <path class="dance-limb right-leg" d="M215 111 Q222 123 231 132"/>
+      <path class="dance-detail" d="M189 78 Q205 87 221 78"/>
      </g>
 
-     <!-- Kilau musik -->
-     <path class="dance-spark" d="M145 20 L148 27 L155 30 L148 33 L145 40 L142 33 L135 30 L142 27Z"/>
-     <path class="dance-spark spark-two" d="M105 17 L107 22 L112 24 L107 26 L105 31 L103 26 L98 24 L103 22Z"/>
-     <path class="dance-spark spark-three" d="M194 17 L196 22 L201 24 L196 26 L194 31 L192 26 L187 24 L192 22Z"/>
+     <path class="dance-spark" d="M150 17 L154 26 L163 30 L154 34 L150 43 L146 34 L137 30 L146 26Z"/>
+     <path class="dance-spark spark-two" d="M55 32 L58 39 L65 42 L58 45 L55 52 L52 45 L45 42 L52 39Z"/>
+     <path class="dance-spark spark-three" d="M245 32 L248 39 L255 42 L248 45 L245 52 L242 45 L235 42 L242 39Z"/>
     </svg>
    </div>
 
@@ -677,19 +731,35 @@ footer{
     <input class="music-seek" id="musicSeek" type="range" min="0" max="100" value="0">
     <div class="music-times"><span id="currentTime">0:00</span><span id="totalTime">0:00</span></div>
    </div>
+
    <div class="music-controls">
     <button class="music-control" onclick="previousTrack()" aria-label="Lagu sebelumnya">|◀</button>
     <button class="music-control play" id="playButton" onclick="togglePlayback()" aria-label="Putar atau jeda">▶</button>
     <button class="music-control" onclick="nextTrack()" aria-label="Lagu berikutnya">▶|</button>
    </div>
+
+   <div class="visualizer" id="visualizer" aria-label="Music equalizer">
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span>
+   </div>
+
+   <div class="music-status" id="musicStatus"></div>
+
    <div class="playlist-title">
-    <span>DAFTAR PUTAR</span>
+    <span>♫ DAFTAR LAGU</span>
     <span class="playlist-count" id="playlistCount">0 LAGU</span>
    </div>
+
    <div class="playlist" id="playlist">
     <div class="music-empty">Belum ada musik. Pemilik dapat mengunggah MP3 melalui Login Pemilik.</div>
    </div>
-   <div class="music-status" id="musicStatus"></div>
+
    <audio id="audioPlayer" class="audio-hidden" preload="metadata"></audio>
   </div>
  </section>
@@ -922,6 +992,7 @@ function updateAlbumAnimation(){
  const playing=!audio.paused&&!audio.ended;
  document.getElementById("albumWrap").classList.toggle("spinning",playing);
  document.getElementById("danceStage").classList.toggle("is-dancing",playing);
+ document.getElementById("visualizer").classList.toggle("is-playing",playing);
  document.getElementById("playButton").textContent=audio.paused?"▶":"Ⅱ";
 }
 function updateMusicProgress(){

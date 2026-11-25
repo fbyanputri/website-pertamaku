@@ -516,8 +516,8 @@ footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'
    <div class="owner-area" id="ownerArea">
     <div class="menu-title">✧ OWNER PANEL ✧</div>
     <div class="owner-label">Kamu masuk sebagai pemilik galeri</div>
-    <label class="upload-label">＋ Pilih foto atau MP3 untuk diunggah
-     <input id="photoInput" type="file" accept="image/*,.mp3,audio/mpeg,audio/mp3" multiple onchange="uploadPhotos(event)">
+    <label class="upload-label">＋ Upload foto ke galeri
+     <input id="photoInput" type="file" accept="image/*" multiple onchange="uploadPhotos(event)">
     </label>
    </div>
    <div class="status" id="loginStatus"></div>
@@ -559,7 +559,7 @@ footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'
    </div>
    <div class="music-status" id="musicStatus"></div>
    <div class="playlist-title"><span>♫ DAFTAR LAGU</span><span class="playlist-count" id="playlistCount">0 LAGU</span></div>
-   <div class="playlist" id="playlist"><div class="music-empty">Belum ada musik. Pemilik dapat mengunggah MP3 melalui Login Admin.</div></div>
+   <div class="playlist" id="playlist"><div class="music-empty">Belum ada musik. Tambahkan file MP3 langsung ke bucket Supabase Storage.</div></div>
    <audio id="audioPlayer" class="audio-hidden" preload="metadata"></audio>
   </div>
  </section>
@@ -1151,8 +1151,7 @@ async function logout(){
  await Promise.all([loadGallery(),loadMusic()]);
 }
 
-/* UPLOAD FOTO DAN MP3 */
-function isMp3(file){return /\.mp3$/i.test(file.name)||file.type==="audio/mpeg"||file.type==="audio/mp3"}
+/* UPLOAD FOTO SAJA */
 function makeSafeFileName(file){
  const extension=file.name.split(".").pop()||"file";
  const base=file.name.replace(/\.[^/.]+$/,"").replace(/[^a-zA-Z0-9_-]/g,"-").slice(0,50);
@@ -1162,20 +1161,18 @@ async function uploadPhotos(event){
  if(!isOwner()){setStatus("Silakan login sebagai pemilik.");return}
  const files=Array.from(event.target.files||[]);
  if(!files.length)return;
- setStatus("Sedang mengunggah foto dan musik...");
- let photoSuccess=0,musicSuccess=0,failed=0;
+ setStatus("Sedang mengunggah foto...");
+ let photoSuccess=0,failed=0;
  for(const file of files){
-  const mp3=isMp3(file);
-  if(!mp3&&!file.type.startsWith("image/")){failed++;continue}
+  if(!file.type.startsWith("image/")){failed++;continue}
   const uniqueName=makeSafeFileName(file);
-  const contentType=mp3?"audio/mpeg":file.type;
-  const {error}=await db.storage.from(BUCKET).upload(uniqueName,file,{cacheControl:"3600",upsert:false,contentType});
+  const {error}=await db.storage.from(BUCKET).upload(uniqueName,file,{cacheControl:"3600",upsert:false,contentType:file.type});
   if(error){console.error(error);failed++}
-  else if(mp3)musicSuccess++;else photoSuccess++;
+  else photoSuccess++;
  }
  event.target.value="";
- setStatus("Selesai! Foto: "+photoSuccess+" · MP3: "+musicSuccess+(failed?" · Gagal: "+failed:""));
- await Promise.all([loadGallery(),loadMusic()]);
+ setStatus("Selesai! Foto: "+photoSuccess+(failed?" · Gagal: "+failed:""));
+ await loadGallery();
 }
 
 /* GALERI FOTO */
@@ -1244,7 +1241,7 @@ function renderPlaylist(){
  document.getElementById("playlistCount").textContent=musicTracks.length+" LAGU";
  playlist.innerHTML="";
  if(!musicTracks.length){
-  playlist.innerHTML='<div class="music-empty">Belum ada musik. Pemilik dapat mengunggah MP3 melalui Login Admin.</div>';return;
+  playlist.innerHTML='<div class="music-empty">Belum ada musik. Tambahkan file MP3 langsung ke bucket Supabase Storage.</div>';return;
  }
  musicTracks.forEach((track,index)=>{
   const row=document.createElement("div");
@@ -1498,4 +1495,4 @@ window.addEventListener("resize",()=>{
 });
 </script>
 </body>
-     </html>
+</html>

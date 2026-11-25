@@ -159,7 +159,7 @@ header{
 .owner-area.show{display:block}
 .owner-label{color:var(--gold);font-size:11px;text-align:center;margin-bottom:10px}
 .upload-label{
- display:block;text-align:center;padding:10px;border:1px dashed var(--gold;
+ display:block;text-align:center;padding:10px;border:1px dashed var(--gold);
  border-radius:9px;color:var(--gold-light);cursor:pointer;margin-bottom:9px;font-size:11px;
 }
 .upload-label input{display:none}
@@ -244,7 +244,7 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 .music-subtitle{color:var(--muted);font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .music-progress{grid-area:progress;min-width:0}
 .music-seek{width:100%;height:5px;border-radius:10px;appearance:none;outline:none;background:var(--frame);accent-color:var(--gold);cursor:pointer}
-.music-seek::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:var(--gold-light);border:2px solid var(--gold-dark);box-shadow:0 0 8px var(--gold}
+.music-seek::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:var(--gold-light);border:2px solid var(--gold-dark);box-shadow:0 0 8px var(--gold)}
 .music-seek::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:var(--gold-light);border:2px solid var(--gold-dark)}
 .music-times{display:flex;justify-content:space-between;color:var(--muted);font-size:9px;margin-top:5px}
 .music-controls{grid-area:controls;display:flex;align-items:center;justify-content:center;gap:13px;margin:0}
@@ -257,7 +257,7 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 .music-control.prev::before{content:"";width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-right:9px solid var(--gold-light)}
 .music-control.prev::after{content:"";width:2px;height:14px;border-radius:2px;background:var(--gold-light)}
 .music-control.next::before{content:"";width:2px;height:14px;border-radius:2px;background:var(--gold-light)}
-.music-control.next::after{content:"";width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:9px solid var(--gold-light}
+.music-control.next::after{content:"";width:0;height:0;border-top:7px solid transparent;border-bottom:7px solid transparent;border-left:9px solid var(--gold-light)}
 .music-control.play{
  width:42px;height:42px;flex:0 0 42px;font-size:17px;border:1px solid var(--gold);
  background:linear-gradient(145deg,var(--gold-light),var(--gold));color:var(--button-text);
@@ -326,7 +326,7 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 .photo-editor{display:none;position:fixed;inset:0;z-index:300;overflow-y:auto;background:rgba(5,5,7,.98);color:var(--text);padding:15px 13px 30px}
 .photo-editor.show{display:block}
 .editor-inner{width:100%;max-width:650px;margin:0 auto}
-.editor-header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:5px 0 15px;border-bottom:1px solid var(--gold-dark}
+.editor-header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:5px 0 15px;border-bottom:1px solid var(--gold-dark)}
 .editor-heading{font-family:'Cinzel',serif;color:var(--gold-light);font-size:17px;letter-spacing:2px}
 .editor-close{width:35px;height:35px;border:1px solid var(--gold-dark);border-radius:50%;background:var(--accent-bg);color:var(--gold-light);font-size:23px}
 .editor-preview{
@@ -359,6 +359,7 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 .editor-tools{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
 .editor-tool{min-width:0;min-height:55px;padding:7px 3px;border:1px solid var(--gold-dark);border-radius:9px;background:var(--accent-bg);color:var(--text);font-size:9px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px}
 .editor-tool span{font-size:19px;color:var(--gold-light)}
+.editor-tool:active,.editor-tool.selected{background:var(--frame);border-color:var(--gold)}
 .editor-ratio{width:100%;padding:10px;border-radius:8px;background:var(--page);border:1px solid var(--gold-dark);color:var(--gold-light);font-size:11px;outline:none}
 .editor-slider{margin:12px 0}
 .editor-slider-top{display:flex;justify-content:space-between;gap:10px;font-size:10px;color:var(--text);margin-bottom:7px}
@@ -512,16 +513,12 @@ footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'
     <input id="password" type="password" placeholder="Password" autocomplete="current-password">
     <button class="gold-button" onclick="login()">MASUK</button>
    </div>
-
    <div class="owner-area" id="ownerArea">
     <div class="menu-title">✧ OWNER PANEL ✧</div>
     <div class="owner-label">Kamu masuk sebagai pemilik galeri</div>
-
     <label class="upload-label">＋ Pilih foto atau MP3 untuk diunggah
      <input id="photoInput" type="file" accept="image/*,.mp3,audio/mpeg,audio/mp3" multiple onchange="uploadPhotos(event)">
     </label>
-
-    <button class="gold-button" onclick="logout()">KELUAR / LOGOUT</button>
    </div>
    <div class="status" id="loginStatus"></div>
   </div>
@@ -701,7 +698,7 @@ footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'
 
 <script>
 const SUPABASE_URL="https://dhjxyldtygcibrtnpjcd.supabase.co";
-const SUPABASE_KEY="sb_publishable_daMV08AfTIex0whIdKdts_Q_wwsfghsp";
+const SUPABASE_KEY="sb_publishable_daMV08AfTIex0whIdKdtsQ_wwsfghsp";
 const BUCKET="zeze-foto";
 const PRIVATE_BUCKET="zeze-private";
 const OWNER_UID="d0a87020-4e24-4982-843a-f1d56f657267";
@@ -747,23 +744,15 @@ function showMenuView(id){
  document.querySelectorAll(".menu-view").forEach(v=>v.classList.remove("active"));
  document.getElementById(id).classList.add("active");
 }
-
-/* PERBAIKAN ADMIN:
-   Jika sudah login, tombol Admin membuka Owner Panel.
-   Logout dilakukan dari tombol di dalam Owner Panel. */
 function handleAdminMenu(){
- if(isOwner()){
-  showMenuView("loginView");
-  setStatus("Panel pemilik terbuka.","loginStatus");
- }else{
-  showMenuView("loginView");
- }
+ if(isOwner())logout();
+ else showMenuView("loginView");
 }
 function updateAdminMenu(){
  const loggedIn=isOwner();
- document.getElementById("adminMenuIcon").textContent=loggedIn?"♙":"♙";
- document.getElementById("adminMenuTitle").textContent=loggedIn?"Owner Panel":"Login Admin";
- document.getElementById("adminMenuSubtitle").textContent=loggedIn?"Buka panel upload pemilik":"Masuk ke akun pemilik";
+ document.getElementById("adminMenuIcon").textContent=loggedIn?"↪":"♙";
+ document.getElementById("adminMenuTitle").textContent=loggedIn?"Logout Admin":"Login Admin";
+ document.getElementById("adminMenuSubtitle").textContent=loggedIn?"Keluar dari akun admin":"Masuk ke akun admin";
 }
 document.addEventListener("click",event=>{
  const panel=document.getElementById("menuPanel");
@@ -855,6 +844,8 @@ function renderEditor(){
  const preview=document.querySelector(".editor-preview");
  const ctx=canvas.getContext("2d");
  const size=getRotatedSize();
+
+ /* Batasi ukuran kerja agar tetap ringan di HP */
  const maxSide=2200;
  const scale=Math.min(1,maxSide/Math.max(size.width,size.height));
  const width=Math.max(1,Math.round(size.width*scale));
@@ -878,6 +869,7 @@ function renderEditor(){
  document.getElementById("contrastValue").textContent=values.contrast+"%";
  document.getElementById("saturationValue").textContent=values.saturation+"%";
 
+ /* Ukuran tampilan canvas mengikuti ruang preview */
  const availableWidth=Math.max(100,preview.clientWidth-22);
  const availableHeight=Math.max(100,preview.clientHeight-22);
  const displayScale=Math.min(availableWidth/width,availableHeight/height);
@@ -935,7 +927,7 @@ function changeCropRatio(){
  document.getElementById("editorStatus").textContent="Rasio crop diperbarui. Kamu masih bisa mengatur area potong dengan jari.";
 }
 
-/* GERAKKAN DAN UBAH UKURAN CROP */
+/* GERAKKAN DAN UBAH UKURAN CROP DENGAN POINTER / JARI */
 const cropOverlay=document.getElementById("cropOverlay");
 cropOverlay.addEventListener("pointerdown",event=>{
  if(!editorReady)return;
@@ -1147,20 +1139,15 @@ async function login(){
   await db.auth.signOut();currentUser=null;updateLoginUI();
   setStatus("Akun ini bukan akun pemilik galeri.","loginStatus");return;
  }
- currentUser=data.user;
- updateLoginUI();
- setStatus("Berhasil masuk! Panel pemilik siap digunakan.","loginStatus");
+ currentUser=data.user;updateLoginUI();
+ setStatus("Berhasil masuk!","loginStatus");
  document.getElementById("password").value="";
- /* FIX: setelah login, langsung tetap berada di Owner Panel */
- showMenuView("loginView");
+ showMenuView("mainMenu");
  await Promise.all([loadGallery(),loadMusic()]);
 }
 async function logout(){
- await db.auth.signOut();
- currentUser=null;
- updateLoginUI();
- setStatus("Kamu sudah keluar.");
- showMenuView("mainMenu");
+ await db.auth.signOut();currentUser=null;updateLoginUI();
+ setStatus("Kamu sudah keluar.");showMenuView("mainMenu");
  await Promise.all([loadGallery(),loadMusic()]);
 }
 
@@ -1172,24 +1159,22 @@ function makeSafeFileName(file){
  return Date.now()+"-"+Math.random().toString(36).slice(2,9)+"-"+base+"."+extension;
 }
 async function uploadPhotos(event){
- if(!isOwner()){setStatus("Silakan login sebagai pemilik.","loginStatus");return}
+ if(!isOwner()){setStatus("Silakan login sebagai pemilik.");return}
  const files=Array.from(event.target.files||[]);
  if(!files.length)return;
- setStatus("Sedang mengunggah foto dan musik...","loginStatus");
+ setStatus("Sedang mengunggah foto dan musik...");
  let photoSuccess=0,musicSuccess=0,failed=0;
  for(const file of files){
   const mp3=isMp3(file);
   if(!mp3&&!file.type.startsWith("image/")){failed++;continue}
   const uniqueName=makeSafeFileName(file);
   const contentType=mp3?"audio/mpeg":file.type;
-  const {error}=await db.storage.from(BUCKET).upload(uniqueName,file,{
-   cacheControl:"3600",upsert:false,contentType
-  });
+  const {error}=await db.storage.from(BUCKET).upload(uniqueName,file,{cacheControl:"3600",upsert:false,contentType});
   if(error){console.error(error);failed++}
   else if(mp3)musicSuccess++;else photoSuccess++;
  }
  event.target.value="";
- setStatus("Selesai! Foto: "+photoSuccess+" · MP3: "+musicSuccess+(failed?" · Gagal: "+failed:""),"loginStatus");
+ setStatus("Selesai! Foto: "+photoSuccess+" · MP3: "+musicSuccess+(failed?" · Gagal: "+failed:""));
  await Promise.all([loadGallery(),loadMusic()]);
 }
 
@@ -1513,4 +1498,4 @@ window.addEventListener("resize",()=>{
 });
 </script>
 </body>
- </html>
+     </html>

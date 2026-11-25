@@ -155,11 +155,6 @@ header{
  font-weight:600;font-size:11px;
 }
 .dark-button{padding:9px;border:1px solid var(--gold-dark);border-radius:8px;color:var(--gold-light);background:var(--accent-bg)}
-/* TOMBOL ADMIN DI LAYAR DEPAN */
-.front-admin-actions{display:none;align-items:center;justify-content:center;gap:9px;width:min(100%,360px);margin:14px auto 0;padding:0 12px}
-.front-admin-actions.show{display:flex}
-.front-admin-actions .upload-label{flex:1;margin:0;padding:11px 8px;font-weight:600}
-.front-admin-actions .front-logout{flex:1;padding:11px 8px;border:1px solid var(--gold-dark);border-radius:9px;color:var(--gold-light);background:var(--accent-bg);font-size:11px;font-weight:600}
 .owner-area{display:none}
 .owner-area.show{display:block}
 .owner-label{color:var(--gold);font-size:11px;text-align:center;margin-bottom:10px}
@@ -168,6 +163,11 @@ header{
  border-radius:9px;color:var(--gold-light);cursor:pointer;margin-bottom:9px;font-size:11px;
 }
 .upload-label input{display:none}
+.owner-logout{
+ display:block;width:100%;padding:10px;border:1px solid var(--gold-dark);
+ border-radius:9px;color:var(--gold-light);background:var(--accent-bg);
+ font-size:11px;font-weight:600;
+}
 .status{color:var(--muted);font-size:11px;text-align:center;margin-top:9px;min-height:18px;overflow-wrap:anywhere}
 
 /* GALERI */
@@ -302,8 +302,7 @@ main{max-width:1250px;padding:28px 17px 60px;margin:auto}
 .track-row{display:flex;align-items:center;gap:7px;flex:0 0 42px;min-width:0;min-height:42px;height:42px;padding:5px 7px;border:1px solid color-mix(in srgb,var(--gold) 12%,transparent);border-radius:8px;background:color-mix(in srgb,var(--accent-bg) 85%,transparent);transition:background .2s,border .2s;cursor:pointer}
 .track-row.active{border-color:var(--gold-dark);background:color-mix(in srgb,var(--frame) 85%,var(--gold) 8%);box-shadow:inset 3px 0 var(--gold),0 3px 12px #0003}
 .track-number{width:19px;text-align:center;color:var(--muted);font-size:10px;flex:0 0 19px}
-.track-name{flex:1;min-width:0;color:var(--text);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.track-row.active .track-name{color:var(--gold-light)}
+.track-name{flex:1;min-width:0;color:var(--text);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.track-row.active .track-name{color:var(--gold-light)}
 .track-playing{font-size:12px;color:var(--gold);margin-right:2px}
 .music-empty{padding:15px 6px;text-align:center;color:var(--muted);font-family:'Playfair Display',serif;font-size:11px}
 .music-status{grid-area:status;text-align:center;color:var(--muted);font-size:9px;min-height:13px}
@@ -483,12 +482,6 @@ footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'
  <h1 class="logo">AILIN ZEZE</h1>
  <div class="tagline">The Art of Memories</div>
  <div class="header-line"></div>
- <div class="front-admin-actions" id="frontAdminActions">
-  <label class="upload-label">＋ Upload Foto
-   <input id="frontPhotoInput" type="file" accept="image/*" multiple onchange="uploadPhotos(event)">
-  </label>
-  <button class="front-logout" onclick="logout()">↪ Logout</button>
- </div>
 
  <div class="menu-panel" id="menuPanel">
   <div id="mainMenu" class="menu-view active">
@@ -527,9 +520,10 @@ footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'
    <div class="owner-area" id="ownerArea">
     <div class="menu-title">✧ OWNER PANEL ✧</div>
     <div class="owner-label">Kamu masuk sebagai pemilik galeri</div>
-    <label class="upload-label">＋ Upload foto ke galeri
+    <label class="upload-label">＋ Upload Foto
      <input id="photoInput" type="file" accept="image/*" multiple onchange="uploadPhotos(event)">
     </label>
+    <button class="owner-logout" onclick="logout()">↪ Logout</button>
    </div>
    <div class="status" id="loginStatus"></div>
   </div>
@@ -604,8 +598,7 @@ footer{padding:22px 10px 30px;text-align:center;color:var(--muted);font-family:'
 
 <footer>✧ AILIN ZEZE · A Collection of Memories ✧</footer>
 
-<!-- EDITOR FOTO -->
-<div class="photo-editor" id="photoEditor">
+<!-- EDITOR FOTO --><div class="photo-editor" id="photoEditor">
  <div class="editor-inner">
   <div class="editor-header">
    <div class="editor-heading">✧ ZEZE PHOTO EDITOR</div>
@@ -756,14 +749,13 @@ function showMenuView(id){
  document.getElementById(id).classList.add("active");
 }
 function handleAdminMenu(){
- if(isOwner())logout();
- else showMenuView("loginView");
+ showMenuView("loginView");
 }
 function updateAdminMenu(){
  const loggedIn=isOwner();
- document.getElementById("adminMenuIcon").textContent=loggedIn?"↪":"♙";
- document.getElementById("adminMenuTitle").textContent=loggedIn?"Logout Admin":"Login Admin";
- document.getElementById("adminMenuSubtitle").textContent=loggedIn?"Keluar dari akun admin":"Masuk ke akun admin";
+ document.getElementById("adminMenuIcon").textContent=loggedIn?"♙":"♙";
+ document.getElementById("adminMenuTitle").textContent=loggedIn?"Panel Admin":"Login Admin";
+ document.getElementById("adminMenuSubtitle").textContent=loggedIn?"Kelola foto atau logout":"Masuk ke akun pemilik";
 }
 document.addEventListener("click",event=>{
  const panel=document.getElementById("menuPanel");
@@ -1122,12 +1114,9 @@ function saveEditedPhoto(){
   setTimeout(()=>URL.revokeObjectURL(url),3000);
   status.textContent="Hasil edit berhasil disiapkan untuk disimpan.";
  },"image/png");
-}
-
-/* LOGIN */
+}/* LOGIN */
 function updateLoginUI(){
  const loggedIn=isOwner();
- document.getElementById("frontAdminActions").classList.toggle("show",loggedIn);
  document.getElementById("loginArea").style.display=loggedIn?"none":"block";
  document.getElementById("ownerArea").classList.toggle("show",loggedIn);
  document.getElementById("privateSection").classList.toggle("show",loggedIn);
